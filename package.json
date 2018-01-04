@@ -1,0 +1,17 @@
+{
+  "name": "laml",
+  "version": "1.0.0",
+  "description": "not a lame joke about LaTeX and HTML",
+  "main": "index.js",
+  "dependencies": {
+    "markdown-it-mathjax": "^2.0.0",
+    "posthtml": "^0.11.0",
+    "posthtml-custom-elements": "^1.1.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Peter Krautzberger, Samuel Coskey",
+  "license": "MIT"
+}
