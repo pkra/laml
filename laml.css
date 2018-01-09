@@ -1,0 +1,70 @@
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+/* all but spans/mathjax get the "owl selector" */
+* + *:not(span) {
+  margin-top: 1em;
+}
+body {
+  max-width: 42em;
+  margin-right: auto;
+  margin-left: auto;
+  hyphens: auto;
+}
+img {
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+}
+.theorem,
+.lemma,
+.proposition,
+.corollary,
+figure {
+  display: block;
+  border: 1px solid;
+  border-image: linear-gradient(to right, black 1%, transparent 0%);
+  border-image-slice: 1;
+  margin: 1em 0;
+  padding: 0.5em;
+}
+.name {
+  font-style: italic;
+  margin-top: 0;
+}
+.abstract {
+  font-size: 0.9em;
+  font-style: italic;
+  border-top: 1px solid;
+  border-bottom: 1px solid;
+}
+.blame {
+  display: inline-block;
+  font-weight: lighter;
+}
+.blame:before {
+  display: inline;
+  content: '\2005(';
+}
+.blame:after {
+  display: inline;
+  content: ')';
+}
+
+.proof:after {
+  border-bottom: 1px solid black;
+  content: '';
+  display: block;
+  margin: 0 25% 0 25%;
+  margin-bottom: 1em;
+}
+
+.footnote {
+  display: none;
+}
+.footnote:target {
+  display:block;
+  background-color: darkgray
+}

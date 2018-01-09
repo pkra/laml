@@ -7,115 +7,31 @@
     <title>Document</title>
 </head>
 <body>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/8.4.0/markdown-it.js"></script>
-    <script></script>
-    <script id="metadata" type="application/json">
-        {
-            "title": "An Erdős-Hajnal analogue for permutation classes",
-            "author": {
-                "name": "Vincent Vatter",
-                "address": "Department of Mathematics, University of Florida, Gainesville, Florida, USA"
-            },
-            "date": "2017-11-08T20:56:17+01:00",
-            "history": {
-                "received": "3rd Nov. 2015",
-                "accepted": "9th Feb. 2016"
-
-            }
-            "keywords": ["grid classes", "monotone subsequences", "permutations"],
-            "license": "Creative Commons Attribution 4.0 International License",
-            "source": "https://arxiv.org/abs/1511.01076"
-        }
-    </script>
-<style>
-
-  .theorem, .lemma, .proposition, .corollary {
-    display:block;
-    border-bottom: 1px solid black;
-    border-top: 1px solid black;
-    padding: 1em;
-    margin: 1em;
-  }
-  /* .theorem:before {
-    content: "Theorem ";
-    font-size: 1.33em;
-    font-weight: bolder;
-  }
-  .lemma:before {
-    content: "Lemma ";
-    font-size: 1.33em;
-    font-weight: bolder;
-  }
-  .proposition:before {
-    content: "Proposition ";
-    font-size: 1.33em;
-    font-weight: bolder;
-  }
-  .corollary:before {
-    content: "Corollary ";
-    font-size: 1.33em;
-    font-weight: bolder; */
-  }
-  .name {
-    font-size: 1.33em;
-    font-weight: bolder;
-    display: block
-  }
-  .theorem .name{
-    font-style:italic;
-  }
-  .abstract:before{
-    content: 'Abstract';
-    display: block;
-    font-weight: bolder;
-    font-size: 1.33em
-  }
-  .cite:before, .ref:before  {
-    /*content: "[" attr(target) "]"*/
-  }
-  .bibliography {
-    content: 'Bibliography';
-    display: block;
-    font-weight: bolder;
-    font-size: 1.33em
-  }
-</style>
-<script type="text/javascript">
-window.MathJax = {
-tex2jax: {
-  inlineMath: [['$','$'], ['\\(','\\)']],
-  processEscapes: true
-},
-"fast-preview":{
-    disabled: true
-}
-};
+<script id="metadata" type="application/json">
+    {
+        "title": "An Erdős-Hajnal analogue for permutation classes",
+        "authors": [{
+            "name": "Vincent Vatter",
+            "address": "Department of Mathematics, University of Florida, Gainesville, Florida, USA"
+        }],
+        "date": "2017-11-08T20:56:17+01:00",
+        "history": {
+            "received": "3rd Nov. 2015",
+            "accepted": "9th Feb. 2016"
+        },
+        "keywords": ["grid classes", "monotone subsequences", "permutations"],
+        "license": "Creative Commons Attribution 4.0 International License",
+        "source": "https://arxiv.org/abs/1511.01076"
+    }
 </script>
-<script type="text/javascript" async
-  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full">
-</script>
-
+<!-- <link rel="stylesheet" href="https://unpkg.com/sakura.css/css/sakura.css" type="text/css"> -->
+<!-- <link rel="stylesheet" href="https://rawgit.com/mblode/marx/master/css/marx.min.css"> -->
+<!-- <link rel="stylesheet" href="http://barecss.com/css/`bare.min.css"> -->
+<!-- <link rel="stylesheet" href="https://cdn.concisecss.com/concise.min.css"> -->
+<link rel="stylesheet" href="laml.css">
+<div style="display:none">
 \[\newcommand{\Av}{\operatorname{Av}}\newcommand{\Grid}{\operatorname{Grid}}\newcommand{\C}{\mathcal{C}}\newcommand{\D}{\mathcal{D}}\newcommand{\st}{\::\:}\]
-
-<!--
-TODO
-* Switch to PostHTML
-  * write infrastructure to apply it
-  * write plugins
-* JS tooling
-  * [DONE] bibliography
-    * what should be the contents of the cite elements?
-      * we do numbers
-      * author can override with <li mark="">
-  * convert custom elements?
-    * add headings
-  * theorem-env headings
-    * add auto-numbering XOR <name>
-  * long-term: the statement (aka theorem-type environment) element, with lots of configuration (name/blame, tag name, list of custom tags subtyped)
-  * cross-references
-    * for now: pick up on <name> or [auto-number]
-* try markdown-it, markdown-it-mathjax
--->
+</div>
 
 <abstract>
   Let $\mathcal{C}$ be a permutation class that does not contain all layered permutations or all colayered permutations. We prove that every permutation in $\mathcal{C}$ contains a monotone subsequence of linear size.
@@ -145,7 +61,6 @@ sequence A079402 in the OEIS <cite target="sloane_the-on-line-enc"></cite>. One 
 
 <figure id=fig-layered-EES>
   <img src=fig1.svg>
-  <!-- <name>Fig. 1</name> -->
   The layered permutation $321\ 654\ 987=\oplus^3 (321)$ and the colayered permutation $789\ 456\ 123=\ominus^3 (123)$.
 </figure>
 
@@ -169,11 +84,10 @@ One special case of <ref target="thm-EH-main"></ref> is quite easy. By the folkl
   Let $\C$ be a permutation class that does not contain $k\cdots 21$ (or, by symmetry, $12\cdots k$). Then every permutation of length $n$ in $\C$ contains a monotone subsequence of length at least $n/(k-1)$.
 </proposition>
 
-To establish <cite target="thm-EH-main"></cite> we first recall some results on transversals of (nonhomogeneous<note>There is also a homogeneous case, for which we refer to <cite target="#kaiser_transversals-of"></cite></note>) $d$-intervals (although we only appeal to the case $d=2$ in what follows). Let $L_1$, $\dots$, $L_d$ be disjoint copies of the real line. A $d$-interval $I$ is a nonempty subset of $L_1\cup\cdots\cup L_d$ such that each *component* $I\cap L_i$ is either empty or a closed interval. The *packing number* of a set $\mathfrak{I}$ of $d$-intervals is the maximum number of pairwise disjoint elements of $\mathfrak{I}$, and this quantity is denoted $\nu(\mathfrak{I})$. A subset of $L_1\cup\cdots \cup L_d$ which intersects every member of $\mathfrak{I}$ is called a *transversal* of $\mathfrak{I}$ and the minimum size of a transversal of $\mathfrak{I}$ is its *transversal number*, $\tau(\mathfrak{I})$.
+To establish <ref target="thm-EH-main"></ref> we first recall some results on transversals of (nonhomogeneous<note>There is also a homogeneous case, for which we refer to <cite target="#kaiser_transversals-of"></cite></note>) $d$-intervals (although we only appeal to the case $d=2$ in what follows). Let $L_1$, $\dots$, $L_d$ be disjoint copies of the real line. A $d$-interval $I$ is a nonempty subset of $L_1\cup\cdots\cup L_d$ such that each *component* $I\cap L_i$ is either empty or a closed interval. The *packing number* of a set $\mathfrak{I}$ of $d$-intervals is the maximum number of pairwise disjoint elements of $\mathfrak{I}$, and this quantity is denoted $\nu(\mathfrak{I})$. A subset of $L_1\cup\cdots \cup L_d$ which intersects every member of $\mathfrak{I}$ is called a *transversal* of $\mathfrak{I}$ and the minimum size of a transversal of $\mathfrak{I}$ is its *transversal number*, $\tau(\mathfrak{I})$.
 
 <figure id='fig-2-interval'>
   <img src="fig2.svg">
-  <!-- <name>Fig 2.</name> -->
   A set of $2$-intervals (left) arising from a set of axis-parallel rectangles (right).
 </figure>
 
@@ -182,7 +96,7 @@ An example of a set of $2$-intervals is shown on the left of <ref target="fig-2-
 It is trivial to see that $\tau(\mathfrak{I})\ge \nu(\mathfrak{I})$. In the other direction, building on and improving work of Gyárfás and Lehel  <cite target="gyarfas_a-helly-type-pr"></cite> and Károlyi and Tardos  <cite target="karolyi_on-point-covers"></cite>, Tardos established the following.
 
 <theorem id=thm-2int-transversal>
-  <name>Tardos <cite target="tardos_transversals-of"></cite></name>
+  <blame>Tardos <cite target="tardos_transversals-of"></cite></blame>
   For every system $\mathfrak{I}$ of $2$-intervals, $\tau(\mathfrak{I})\le 2\nu(\mathfrak{I})$.
 </theorem>
 
@@ -192,9 +106,9 @@ Henceforth we adopt a geometric viewpoint of permutations where a permutation $\
 
 Given a set of closed axis-parallel rectangles $\mathfrak{R}$ we can naturally associate to it a set $\mathfrak{I}$ of $2$-intervals in the following manner. Let $L_x$ and $L_y$ be disjoint copies of the real line. For each $R\in\mathfrak{R}$ we create a $2$-interval $I_R$ such that $I_R\cap L_x$ is the projection of $R$ onto the $x$-axis and $I_R\cap L_y$ is the projection of $R$ onto the $y$-axis. The set of three rectangles shown on the right of <ref target="fig-2-interval"></ref> corresponds in this manner to the set of $2$-intervals shown on the left of the figure.
 
-We say that two rectangles are * independent* if both their $x$- and $y$-axis projections are disjoint. A set of rectangles is said to be independent if they are pairwise independent, and we define the *independence number* of a set of axis-parallel rectangles to be the size of the largest independent set of rectangles it contains.
+We say that two rectangles are *independent* if both their $x$- and $y$-axis projections are disjoint. A set of rectangles is said to be independent if they are pairwise independent, and we define the *independence number* of a set of axis-parallel rectangles to be the size of the largest independent set of rectangles it contains.
 
-It follows readily that if $\mathfrak{R}$ is a set of closed axis-parallel rectangles and $\mathfrak{I}$ is the corresponding set of $2$-intervals then the independence number of $\mathfrak{R}$ is equal to the packing number of $\mathfrak{I}$. Therefore <ref target="thm-2int-transversal"></ref> shows that $\mathfrak{I}$ has a transversal of size at most $2\nu(\mathfrak{I})$. That is, there is a set of at most $2\nu(\mathfrak{I})$ points of $L_x\cup L_y$ which intersect every $2$-interval in $\mathfrak{I}$. We want to convert this transversal of $\mathfrak{I}$ into a set of vertical and horizontal lines that *slice* (i.e., intersect the interior) of every rectangle in $\mathfrak{R}$, but we must be careful because the transversal is allowed to contain endpoints of $2$-intervals. Thus given a transversal $T\subseteq L_x\cup L_y$ we associate to it a set of vertical and horizontal lines $\mathcal{L}_T$ in the following way: if $t\in T$ is from $L_x$ we associate the two vertical lines $x=t\pm\epsilon$ while if $t\in T$ is from $L_y$ we associate the two horizontal lines $y=t\pm\epsilon$ where $\epsilon>0$ is a small constant (depending on $\mathfrak{R}$). These are the dotted lines shown in <ref target="fig-2-interval"></ref>. This construction yields the following result.
+It follows readily that if $\mathfrak{R}$ is a set of closed axis-parallel rectangles and $\mathfrak{I}$ is the corresponding set of $2$-intervals then the independence number of $\mathfrak{R}$ is equal to the packing number of $\mathfrak{I}$. Therefore <ref target="thm-2int-transversal"></ref> shows that $\mathfrak{I}$ has a transversal of size at most $2\nu(\mathfrak{I})$. That is, there is a set of at most $2\nu(\mathfrak{I})$ points of $L_x\cup L_y$ which intersect every $2$-interval in $\mathfrak{I}$. We want to convert this transversal of $\mathfrak{I}$ into a set of vertical and horizontal lines that *slice* (i.e., intersect the interior) of every rectangle in $\mathfrak{R}$, but we must be careful because the transversal is allowed to contain endpoints of $2$-intervals. Thus given a transversal $T\subseteq L_x\cup L_y$ we associate to it a set of vertical and horizontal lines $\mathcal{L}_T$ in the following way: if $t\in T$ is from $L_x$ we associate the two vertical lines $x=t\pm\epsilon$ while if $t\in T$ is from $L_y$ we associate the two horizontal lines $y=t\pm\epsilon$ where $\epsilon >0$ is a small constant (depending on $\mathfrak{R}$). These are the dotted lines shown in <ref target="fig-2-interval"></ref>. This construction yields the following result.
 
 <corollary id=cor-2int-slice>
   If a finite collection $\mathfrak{R}$ of axis-parallel rectangles has independence number at most $m$ then there is a collection of $4m$ vertical and horizontal lines which slice every rectangle in $\mathfrak{R}$.
@@ -214,10 +128,11 @@ In the language of generalized grid classes introduced in Vatter <cite target="v
 <ref target="thm-EH-main"></ref> can also be interpreted in the context of splittability, which has recently been studied in general by Jelínek and Valtr <cite target="jelinek_splittings-and-"></cite>. Given two permutation classes $\C$ and $\D$, their *merge*, $\C\odot\D$, consists of those permutations whose entries can be partitioned into two subsequences, one order isomorphic to a permutation in $\C$ and the other order isomorphic to a permutation in $\D$. Thus <ref target="thm-EH-main"></ref> shows that every class which does not contain the layered or colayered classes can be expressed as the merge of a finite number of monotone classes (i.e., classes of the form $\Av(21)$ or $\Av(12)$). Note that the converse---if a class does contain all layered or colayered permutations then it is not the merge of a finite number of monotone classes---holds trivially. The proof of <ref target="thm-EH-main"></ref> also gives a bound on how many monotone classes are required:
 
 <corollary id=cor-merge-mono>
-  If a permutation class avoids both $\oplus^k (k\cdots 21)$ and $\ominus^k (12\cdots k)$ then it can be expressed as the merge of at most $8k^3$$ monotone classes.
+  If a permutation class avoids both $\oplus^k (k\cdots 21)$ and $\ominus^k (12\cdots k)$ then it can be expressed as the merge of at most $8k^3$ monotone classes.
 </corollary>
 
 <bibliography>
+
 * <a id="chudnovsky_the-erdos--hajn" href="https://dx.doi.org/10.1002/jgt.21730">M. Chudnovsky. The Erdős--Hajnal conjecture---a survey. <em>J. Graph Theory</em>, 75(2):178–190, 2014.</a>
 * <a id="erdos_ramsey-type-the" href="https://doi.org/10.1016/0166-218X(89)90045-0">P. Erdős and A. Hajnal. Ramsey-type theorems. <em>Discrete Appl. Math.</em>, 25(1-2):37–52, 1989.</a>
 * <a id="erdos_a-combinatorial" href="http://www.numdam.org/item/CM_1935__2__463_0">P. Erdős and G. Szekeres. A combinatorial problem in geometry. <em>Compos. Math.</em>, 2:463–470, 1935.</a>
@@ -227,34 +142,16 @@ In the language of generalized grid classes introduced in Vatter <cite target="v
 * <a id="kaiser_transversals-of" href="https://doi.org/10.1007/PL00009315">T. Kaiser. Transversals of $d$-intervals. </em>Discrete Comput. Geom.</em>, 18(2):195–203, 1997.</a>
 * <a id="karolyi_on-point-covers" href="https://doi.org/10.1007/BF01844847">G. Károlyi and G. Tardos. On point covers of multiple intervals and axis-parallel rectangles.<em> Combinatorica</em>, 16(2):213–222, 1996.</a>
 * <a id="kim_on-increasing-s" href="https://doi.org/10.1006/jcta.1996.0095">J. H. Kim. On increasing subsequences of random permutations. <em> J. Combin. Theory Ser. A</em>, 76(1):148–155, 1996.</a>
-* <a id="pittel:limit-shapes-fo" href="https://doi.org/10.1016/j.aam.2005.12.005">B. Pittel and D. Romik. Limit shapes for random square Young tableaux.", <em> Adv. in Appl. Math.</em>, 38(2):164–209, 2007.</a>
+* <a id="pittel_limit-shapes-fo" href="https://doi.org/10.1016/j.aam.2005.12.005">B. Pittel and D. Romik. Limit shapes for random square Young tableaux.", <em> Adv. in Appl. Math.</em>, 38(2):164–209, 2007.</a>
 * <a id="romik_permutations-wi" href="https://doi.org/10.1016/j.aam.2005.08.008">D. Romik. Permutations with short monotone subsequences. <em>Adv. in Appl. Math.</em>, 37(4):501–510, 2006.</a>
-* <a id="stanley_solution-to-pro_5641">R. P. Stanley. Solution to problem 5641. <em>Amer. Math. Monthly</em<, 76(10):1153, 1969.</a>
+* <a id="stanley_solution-to-pro_5641" href="http://www-math.mit.edu/~rstan/">R. P. Stanley. Solution to problem 5641. <em>Amer. Math. Monthly</em>, 76(10):1153, 1969.</a>
 * <a id="su_on-increasing-s" href="https://doi.org/10.1007/s10114-011-8653-6">Z. G. Su. On increasing subsequences of minimal Erdős–Szekeres permutations. <em>Acta Math. Sin. (Engl. Ser.)</em> 27(8):1573–1580, 2011.</a>
 * <a id="tardos_transversals-of" href="https://mathscinet.ams.org/mathscinet-getitem?mr=1325276">G. Tardos. Transversals of $2$-intervals, a topological approach. <em>Combinatorica</em>, 15(1):123–134, 1995.</a>
 * <a id="sloane_the-on-line-enc" href="http://oeis.org">The On-line Encyclopedia of Integer Sequences.</a>
 * <a id="vatter_small-permutati" href="https://doi.org/10.1112/plms/pdr017">V. Vatter. Small permutation classes. <em>Proc. Lond. Math. Soc. (3)</em>, 103:879--921, 2011.</a>
+
 </bibliography>
 
-<script>
-const populateBibcites = function(){
-  const bibitems = document.querySelectorAll('bibliography a');
-  for (let i = 0; i< bibitems.length; i++) {
-    const bibitem = bibitems[i];
-    console.log(bibitem.id)
-    const cites = document.querySelectorAll('cite[target="'+bibitem.id +'"]');
-    console.log(cites.length)
-      for (let cite of cites){
-      cite.innerHTML = '[' + (i+1) + ']';
-      const anchor = document.createElement('a');
-      anchor.setAttribute('href', '#' + bibitem.id);
-      cite.parentNode.replaceChild(anchor, cite);
-      anchor.appendChild(cite);
-    }
-  }
-}
-populateBibcites()
-</script>
-
+<script src="laml.js"></script>
 </body>
 </html>
