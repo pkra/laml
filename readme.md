@@ -7,21 +7,8 @@ A simple JS file that converts LaTeX-like tag soup into something decent.
 
 ## TODOs
 
-* markdown in text nodes
-* add nodejs version & watch functionality for authoring
-  * allow for fragments
-  * modularize the scripts
-* YAML processing
-  * what do we want here?
-* statements (aka theorem-type environment)
-  * treat statements more like fixed-position figures, free of page hierarchy
-  * add many configuration options (e.g., pass a selector, customize name/blame handling)
-* `renameTag` add option for class name;
-* add links to emmet documentation and demo videos
-* bibliography
-  * create DLs
-  * add example from JSON
-  * allow customization per item
+See [the issues](https://github.com/pkra/laml/issues/).
+
 
 ## Example components
 
