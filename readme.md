@@ -58,3 +58,6 @@ Some simple components
   * create footnote-caller
   * add backlink from footnote to footnote-caller
 
+## Demo
+
+[Vince Vatter, An Erdős-Hajnal analogue for permutation classes"](./vatter.html)
