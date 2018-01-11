@@ -1,13 +1,10 @@
 {
   "name": "laml",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "not a lame joke about LaTeX and HTML",
   "main": "index.js",
   "dependencies": {
-    "markdown-it": "^8.4.0",
-    "markdown-it-mathjax": "^2.0.0",
-    "posthtml": "^0.11.0",
-    "posthtml-custom-elements": "^1.1.0"
+    "commonmark": "^0.28.1"
   },
   "devDependencies": {},
   "scripts": {
