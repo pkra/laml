@@ -1,0 +1,148 @@
+
+@font-face {
+  font-family: "Computer Modern";
+  src: url('cm/Serif/cmunrm.woff');
+}
+
+@font-face {
+  font-family: "Computer Modern Bold";
+  src: url('cm/Serif/cmunbx.woff');
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: "Computer Modern Italic";
+  src: url('cm/Serif/cmunti.woff');
+  font-style: italic, oblique;
+}
+
+@font-face {
+  font-family: "Computer Modern Bold-Italic";
+  src: url('cm/Serif/cmunbi.woff');
+  font-weight: bold;
+  font-style: italic, oblique;
+}
+
+i, em {
+  font-family: "Computer Modern Italic";
+}
+strong {
+  font-family: "Computer Modern Bold";
+}
+
+p {
+  font-family: "Computer Modern", serif;
+  font-style: normal;
+  text-indent: 1.66em;
+  font-size: 1em;
+  line-height: normal;
+  text-align: justify;
+}
+script+p {
+  text-indent: 0;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-variant: small-caps;
+    font-family: "Computer Modern";
+    font-weight: normal;
+    text-align: center;
+}
+
+.articleInfo > h1 {
+  font-family: "Computer Modern Bold";
+  text-transform: uppercase;
+  text-align: center;
+  text-indent: 0;
+  margin-bottom: 2em;
+  line-height: normal;
+}
+.theorem,
+.lemma,
+.proposition,
+.corollary,
+figure {
+  display: block;
+  border: 0 solid;
+  border-image: none;
+  border-image-slice: 0;
+  margin: 1em 0;
+  padding: 0.5em;
+}
+
+.theorem h2,
+.lemma h2,
+.proposition h2,
+.corollary h2,
+.proof h2,
+figure h2,
+
+.theorem h3,
+.lemma h3,
+.proposition h3,
+.corollary h3,
+.proof h3,
+figure h3,
+
+.theorem h4,
+.lemma h4,
+.proposition h4,
+.corollary h4,
+.proof h4,
+figure h4 {
+    display: inline;
+    font-size: 1em;
+    font-family: "Computer Modern Bold";
+    font-variant: normal;
+}
+
+.theorem>p:first-of-type {
+    display: inline;
+}
+
+[data-jats-content-type="theorem"]>p {
+    font-family: "Computer Modern Italic";
+}
+
+[data-jats-content-type="theorem"] i {
+    font-family: "Computer Modern";
+}
+cite {
+  font-style: normal;
+}
+
+figure {
+  margin: 1em auto;
+  width: 66%;
+}
+
+figcaption {
+  text-indent: 0;
+}
+
+figcaption>h2 {
+  font-variant: small-caps;
+  font-weight: normal;
+  font-family: "Computer Modern";
+}
+
+figcaption>p:first-of-type {
+  display: inline;
+}
+
+figure>img {
+  display: block;
+  margin: 1em auto;
+}
+
+body {
+    font-family: "Computer Modern", serif;
+}
+
+.abstract {
+    font-family: "Computer Modern Italic";
+}
