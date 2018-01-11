@@ -1,27 +1,60 @@
-# Work item
+# laml
 
-* REJECTED Switch to PostHTML
-  * write infrastructure to apply it
-  * write plugins
-* JS tooling
-  * DONE bibliography
-    * what should be the contents of the cite elements?
-      * for now, we do numbers
-  * TODO author can override with <li mark="">
-    * not sure we can do this with a markdown processor
-  * DONE convert custom elements?
-    * DONE add headings
-  * DONE theorem-env headings
-    * DONE add auto-numbering XOR <name>
-  * TODO long-term: the statement (aka theorem-type environment) element, with lots of configuration (name/blame, tag name, list of custom tags subtyped)
-    * DONE blame
-  * DONE cross-references
-    * for now: pick up on <name> or [auto-number]
-  * DONE (foot)notes
-* DONE try markdown-it, markdown-it-mathjax
-  * we use commonmark
-* TODO markdown in text nodes
-* Sam: statements are more like figures, free of the hierarchy
-* TODO: node-processor & watch
+A lame joke on LaTeX and HTML.
+
+A simple JS file that converts LaTeX-like tag soup into something decent.
+
+
+## TODOs
+
+* markdown in text nodes
+* add nodejs version & watch functionality for authoring
   * allow for fragments
+  * modularize the scripts
 * YAML processing
+  * what do we want here?
+* statements (aka theorem-type environment)
+  * treat statements more like fixed-position figures, free of page hierarchy
+  * add many configuration options (e.g., pass a selector, customize name/blame handling)
+* `renameTag` add option for class name;
+* add links to emmet documentation and demo videos
+* bibliography
+  * create DLs
+  * add example from JSON
+  * allow customization per item
+
+## Example components
+
+Some simple components
+
+* helpers
+  * `renameTag` to "rename" elements
+* pre-processing
+  * MathJax-conformant TeX pre-processing
+  * CommonMarkJS pre-processing
+* article header: via json
+  * pick up json metadata
+  * add a section, heading, and paragraphs with information
+*  abstract: `<abstract>`
+  * rename to `<section>` and add a class.
+*  theorem-environments via custom tag names (right now: `<theorem>, <lemma>, <proposition>, <corollary>, <proof>`)
+  * select all suitable elements
+  * rename to sections and add suitable classes
+  * keep a counter for auto-numbering
+  * if no `<name>`, add heading with auto-numbering
+  * if `<blame>`, rename and add it
+* figures via `<figure>`
+  * if no `<name>`, add heading with auto-numbering
+* generic heading via `<name>`
+  * convert to heading and add class
+* cross-references via `<ref target=ID>`
+  * replace with `<a>` tags
+  * look up target's heading to populate `<a>`content with it (but strip `<blame>`)
+* bibliographic citations  via `<cite target=ID>`
+  * for each bibitem in the bibliography
+  * look up `<cite>` elements with target=ID of bibitem
+  * populate `<cite>` with content and wrap link pointing to bibitem
+* (foot)notes via `<note>`
+  * create footnote-caller
+  * add backlink from footnote to footnote-caller
+
