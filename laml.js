@@ -67,6 +67,12 @@ licensing.classList.add('license');
 licensing.innerHTML = 'Derived from <a href="' + articleMeta.source + '">' + articleMeta.source + '</a>, ' + articleMeta.license + ' and licensed as such.'
 articleInfo.appendChild(licensing);
 
+// preamble
+
+const preamble = document.querySelector('preamble');
+const newpreamble = renameTag(preamble, 'div');
+newpreamble.id = 'preamble';
+
 // abstract
 
 const abstract = document.querySelector('abstract');
@@ -92,12 +98,6 @@ for (let statement of statements) {
   heading.innerHTML =
     tagname[0].toUpperCase() + tagname.substring(1) + ' ' + statement_counter;
   renamedNode.insertBefore(heading, renamedNode.firstChild);
-  const blame = renamedNode.querySelector('blame');
-  if (blame) {
-    const newBlame = renameTag(blame, 'span');
-    newBlame.classList.add('blame');
-    heading.appendChild(newBlame);
-  }
 }
 
 // handle figures
@@ -121,6 +121,13 @@ for (let name of names) {
   // TODO look up correct heading level
   const renamedNode = renameTag(name, 'h2');
   renamedNode.classList.add('name');
+}
+
+// convert blames to spans
+const blames = document.querySelectorAll('blame');
+for (let blame of blames) {
+  const renamedNode = renameTag(blame, 'span');
+  renamedNode.classList.add('blame');
 }
 
 // convert ref to links

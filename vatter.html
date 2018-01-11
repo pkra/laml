@@ -30,9 +30,16 @@
 <!-- <link rel="stylesheet" href="https://cdn.concisecss.com/concise.min.css"> -->
 <link rel="stylesheet" href="laml.css">
 <link rel="stylesheet" href="cm.css">
-<div style="display:none">
-\[\newcommand{\Av}{\operatorname{Av}}\newcommand{\Grid}{\operatorname{Grid}}\newcommand{\C}{\mathcal{C}}\newcommand{\D}{\mathcal{D}}\newcommand{\st}{\::\:}\]
-</div>
+
+<preamble>
+\[
+\newcommand{\Av}{\operatorname{Av}}
+\newcommand{\Grid}{\operatorname{Grid}}
+\newcommand{\C}{\mathcal{C}}
+\newcommand{\D}{\mathcal{D}}
+\newcommand{\st}{\::\:}
+\]
+</preamble>
 
 <abstract>
   Let $\mathcal{C}$ be a permutation class that does not contain all layered permutations or all colayered permutations. We prove that every permutation in $\mathcal{C}$ contains a monotone subsequence of linear size.
@@ -41,14 +48,16 @@
 Ramsey's Theorem tells us that every graph on $n$ vertices has a clique or independent set of size at least a constant times $\log n$. In 1989, Erdős and Hajnal conjectured that one can do much better when avoiding a fixed induced subgraph:
 
 <theorem id=erdos-hajnal-conjecture>
-  <name>The Erdős–Hajnal Conjecture <cite target="erdos_ramsey-type-the"></cite>.</name>
+  <name>The Erdős–Hajnal Conjecture</name>
+  <blame><cite target="erdos_ramsey-type-the"></blame>
   For every graph $H$ there is a constant $\delta\ge0$ such that every graph on $n$ vertices which does not contain $H$ as an induced subgraph has a clique or independent set of size at least $n^\delta$.
 </theorem>
 
 We refer to Chudnovsky's survey <cite target="chudnovsky_the-erdos--hajn"></cite> for an account of the progress that has been made toward the Erdős–Hajnal Conjecture. Here we investigate a version of this conjecture for permutations. In this context, the analogue of the induced subgraph order is the permutation pattern order and the analogues of cliques and independent sets are decreasing and increasing subsequences, respectively. Thus the naive translation of the Erdős–Hajnal Conjecture to permutations is well known to hold with $\delta=1/2$:
 
 <theorem id=erdos-szekeres-theorem>
-  <name>The Erdős–Szekeres Theorem <cite target="erdos_a-combinatorial"></cite></name>
+  <name>The Erdős–Szekeres Theorem</name>
+  <blame><cite target="erdos_a-combinatorial"></cite></blame>
   Every permutation of length at least $(k-1)(\ell-1)+1$ contains either a decreasing subsequence of length $k$ or an an increasing subsequence of length $\ell$.
 </theorem>
 

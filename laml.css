@@ -34,6 +34,9 @@ figure {
   font-style: italic;
   margin-top: 0;
 }
+#preamble {
+  display: none;
+}
 .abstract {
   font-size: 0.9em;
   font-style: italic;
@@ -44,11 +47,11 @@ figure {
   display: inline-block;
   font-weight: lighter;
 }
-.blame:before {
+.blame::before {
   display: inline;
   content: '\2005(';
 }
-.blame:after {
+.blame::after {
   display: inline;
   content: ')';
 }
