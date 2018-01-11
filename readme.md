@@ -17,6 +17,11 @@
     * DONE blame
   * DONE cross-references
     * for now: pick up on <name> or [auto-number]
-  * TODO (foot)notes
+  * DONE (foot)notes
 * DONE try markdown-it, markdown-it-mathjax
   * we use commonmark
+* TODO markdown in text nodes
+* Sam: statements are more like figures, free of the hierarchy
+* TODO: node-processor & watch
+  * allow for fragments
+* YAML processing

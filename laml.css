@@ -65,6 +65,31 @@ figure {
   display: none;
 }
 .footnote:target {
-  display:block;
-  background-color: darkgray
+  display: block;
+  background-color: darkgray;
+}
+.bibliography > ul {
+  list-style: none;
+}
+
+.articleInfo p {
+  text-indent: 0;
+}
+
+@media print {
+  body > * {
+    max-width: 32em;
+  }
+  .footnote {
+    display: block;
+    position: absolute;
+    right: 0;
+    width: 10em;
+    font-size: 0.66em;
+    background: white;
+    text-indent: 0;
+  }
+  .footnote .backlink {
+    display: none;
+  }
 }

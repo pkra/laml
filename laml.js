@@ -112,6 +112,7 @@ for (let [index, figure] of figures.entries()) {
   heading.innerHTML =
     'Figure ' + (index+1);
   figure.insertBefore(heading, figure.firstChild);
+    // TODO for amsart-like output figure.querySelector('img').nextSibling);
 }
 
 // convert names to headings
@@ -170,6 +171,7 @@ for (let [index, note] of notes.entries()){
   const backlink = document.createElement('a');
   backlink.setAttribute('href', '#' + fnlink.id );
   backlink.innerHTML = '<sup>🔙</sup>';
+  backlink.classList.add('backlink');
   newNote.appendChild(backlink);
   // TODO not actually disabling clicks
   fnlink.addEventListener("click", function(event) {
