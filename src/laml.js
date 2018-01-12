@@ -3,26 +3,13 @@ const metadata = require('./metadata.js');
 const preamble = require('./preamble.js');
 const abstract = require('./abstract.js');
 const statements = require('./statements.js');
-
+const figures = require('./figures.js')
 const laml = function(document) {
   metadata(document);
   preamble(document);
   abstract(document);
   statements(document);
-
-  // handle figures
-  const figures = document.querySelectorAll('figure');
-  for (let [index, figure] of figures.entries()) {
-    figure.classList.add('figure');
-    const name = figure.querySelector('name');
-    if (name) continue;
-    // TODO look up correct heading level
-    const heading = document.createElement('h2');
-    heading.classList.add('name');
-    heading.innerHTML = 'Figure ' + (index + 1);
-    figure.insertBefore(heading, figure.firstChild);
-    // TODO for amsart-like output figure.querySelector('img').nextSibling);
-  }
+  figures(document, false);
 
   // convert names to headings
   const names = document.querySelectorAll('name');
