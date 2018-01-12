@@ -1,9 +1,24 @@
+/************************************************************************
+ *  Copyright (c) 2016 The MathJax Consortium
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
 var tex2jax = function () {};
 
 tex2jax.prototype.config = {
     doc: {},
     inlineMath: [ // The start/stop pairs for in-line math
-        ['$','$'],               //  (comment out any you don't want, or add your own, but
+        //    ['$','$'],               //  (comment out any you don't want, or add your own, but
         ['\\(', '\\)'] //  be sure that you don't have an extra comma at the end)
     ],
 
@@ -30,7 +45,7 @@ tex2jax.prototype.config = {
     // are ignored.  Note that this is a regular expression,
     // so be sure to quote any regexp special characters
 
-    processEscapes: true, // set to true to allow \$ to produce a dollar without
+    processEscapes: false, // set to true to allow \$ to produce a dollar without
     //   starting in-line math mode
 
     processEnvironments: true, // set to true to process \begin{xxx}...\end{xxx} outside
@@ -42,10 +57,10 @@ tex2jax.prototype.config = {
 
 tex2jax.prototype.PreProcess = function (element) {
     if (typeof (element) === "string") {
-        element = document.getElementById(element)
+        element = this.config.doc.getElementById(element)
     }
     if (!element) {
-        element = document.body
+        element = this.config.doc.body
     }
     if (this.createPatterns()) {
         this.scanElement(element, element.nextSibling)
@@ -222,9 +237,9 @@ tex2jax.prototype.startMatch = function (match, element) {
             span = [slashes.substr(1).replace(/\\\\/g, "\\"), "$"];
             n = 0
         }
-        escaped = document.createElement("span");
+        escaped = this.config.doc.createElement("span");
         escaped.innerHTML = span.join('');
-        var text = document.createTextNode(element.nodeValue.substr(0, match.index));
+        var text = this.config.doc.createTextNode(element.nodeValue.substr(0, match.index));
         element.nodeValue = element.nodeValue.substr(match.index + match[0].length - n);
         element.parentNode.insertBefore(escaped, element);
         element.parentNode.insertBefore(text, escaped);
@@ -276,7 +291,7 @@ tex2jax.prototype.encloseMath = function (element) {
         close = close.splitText(search.cpos)
     }
     if (!close) {
-        CLOSE = close = search.close.parentNode.appendChild(document.createTextNode(""));
+        CLOSE = close = search.close.parentNode.appendChild(this.config.doc.createTextNode(""));
     }
     search.close = close;
     math = (search.opos ? search.open.splitText(search.opos) : search.open);
@@ -311,7 +326,7 @@ tex2jax.prototype.insertNode = function (node) {
 };
 
 tex2jax.prototype.createMathTag = function (mode, tex) {
-    var script = document.createElement("script");
+    var script = this.config.doc.createElement("script");
     script.type = 'math/' + mode;
     script.text = tex;
     this.insertNode(script);
@@ -322,5 +337,4 @@ tex2jax.prototype.filterPreview = function (tex) {
     return tex
 };
 
-t2j = new tex2jax
-t2j.PreProcess(document.body);
+exports.tex2jax = new tex2jax();

@@ -1,14 +1,19 @@
 {
   "name": "laml",
-  "version": "2.0.0",
-  "description": "not a lame joke about LaTeX and HTML",
+  "version": "3.0.0",
+  "description": "a lame joke about LaTeX and HTML",
   "main": "index.js",
   "dependencies": {
-    "commonmark": "^0.28.1"
+    "commonmark": "^0.28.1",
+    "jsdom": "^11.5.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "reload": "^2.2.2",
+    "webpack": "^3.10.0"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npx webpack"
   },
   "author": "Peter Krautzberger, Samuel Coskey",
   "license": "MIT"

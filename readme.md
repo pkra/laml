@@ -47,4 +47,18 @@ Some simple components
 
 ## Demo
 
-[Vince Vatter, An Erdős-Hajnal analogue for permutation classes"](./vatter.html)
+[Vince Vatter, An Erdős-Hajnal analogue for permutation classes"](./vatter-out.html)
+
+## Getting started
+
+* in-browser preview (e.g., while authoring HTML or laml itself)
+  * create an HTML file in this folder
+  * add `<script src="dist/laml-browser.js"></script>` to it
+  * run `npx reload -b -s YOUR.html`
+  * put newly opened browser window and editor with the HTML file side-by-side
+  * just save the HTML to refresh the browser
+* server-side conversion
+  * Run `$ node index.js input.html output.html`
+  * Open `output.html`
+* TODO server side processing with live reload
+  * maybe https://github.com/tapio/live-server "middleware" fits?
