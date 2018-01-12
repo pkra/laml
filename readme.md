@@ -62,3 +62,14 @@ Some simple components
   * Open `output.html`
 * when developing, it often helps to have automatic rebuilds and a server with live-reload
   * e.g., `$ npm run watch & npx reload -b -s vatter.html`
+
+
+## Tips and tools
+
+Some tools and training tips might help.
+
+### Learn Emmet
+
+[Emmet](https://www.emmet.io/) is a fantastic tool built into many text editors these days. Think of it as overpowered code snippets.
+
+We strongly suggest learning it as it makes writing lots of HTML reasonable.
