@@ -60,5 +60,5 @@ Some simple components
 * server-side conversion
   * Run `$ node index.js input.html output.html`
   * Open `output.html`
-* TODO server side processing with live reload
-  * maybe https://github.com/tapio/live-server "middleware" fits?
+* when developing, it often helps to have automatic rebuilds and a server with live-reload
+  * e.g., `$ npm run watch & npx reload -b -s vatter.html`
