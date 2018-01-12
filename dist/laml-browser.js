@@ -866,6 +866,9 @@ else worker(window);
     ' and licensed as such.';
   articleInfo.appendChild(licensing);
 
+  // preamble
+  renameTag(document.querySelector('preamble'), 'div').classList.add('.hidden');
+
   // abstract
 
   const abstract = document.querySelector('abstract');
@@ -891,12 +894,6 @@ else worker(window);
     heading.innerHTML =
       tagname[0].toUpperCase() + tagname.substring(1) + ' ' + statement_counter;
     renamedNode.insertBefore(heading, renamedNode.firstChild);
-    const blame = renamedNode.querySelector('blame');
-    if (blame) {
-      const newBlame = renameTag(blame, 'span');
-      newBlame.classList.add('blame');
-      heading.appendChild(newBlame);
-    }
   }
 
   // handle figures
@@ -919,6 +916,13 @@ else worker(window);
     // TODO look up correct heading level
     const renamedNode = renameTag(name, 'h2');
     renamedNode.classList.add('name');
+  }
+
+  // convert blames
+  // TODO should depend on cm.css?
+  const blames = document.querySelectorAll('blame');
+  for (let blame of blames) {
+    renameTag(blame, 'span').classList.add('blame');
   }
 
   // convert ref to links
@@ -1055,14 +1059,16 @@ else worker(window);
   //     for (node of array) para.appendChild(node);
   //   }
   // }
-
 };
 
 // if in NodeJS, export (cf. https://www.npmjs.com/package/detect-node), else run automatically
-if (Object.prototype.toString.call(typeof process !== 'undefined' ? process : 0) === '[object process]'){
+if (
+  Object.prototype.toString.call(
+    typeof process !== 'undefined' ? process : 0
+  ) === '[object process]'
+) {
   module.exports.laml = laml;
-}
-else {
+} else {
   laml(document);
   window.MathJax = {
     'fast-preview': {

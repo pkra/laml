@@ -44,11 +44,11 @@ figure {
   display: inline-block;
   font-weight: lighter;
 }
-.blame:before {
+.blame::before {
   display: inline;
   content: '\2005(';
 }
-.blame:after {
+.blame::after {
   display: inline;
   content: ')';
 }
@@ -74,6 +74,10 @@ figure {
 
 .articleInfo p {
   text-indent: 0;
+}
+
+.hidden {
+  display:none;
 }
 
 @media print {
