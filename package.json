@@ -1,6 +1,6 @@
 {
   "name": "laml",
-  "version": "3.0.0",
+  "version": "3.2.0",
   "description": "a lame joke about LaTeX and HTML",
   "main": "index.js",
   "dependencies": {
@@ -13,7 +13,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npx webpack"
+    "build": "npx webpack",
+    "watch": "webpack --watch"
   },
   "author": "Peter Krautzberger, Samuel Coskey",
   "license": "MIT"

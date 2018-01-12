@@ -1,4 +1,4 @@
-const {laml} = require('./laml.js');
+const laml = require('./laml.js');
 const {tex2jax} = require('./tex2jax.js');
 const commonmark = require('commonmark');
 
@@ -21,4 +21,16 @@ const worker = function(window) {
 if (Object.prototype.toString.call(typeof process !== 'undefined' ? process : 0) === '[object process]'){
     module.exports.worker = worker;
 }
-else worker(window);
+else {
+  worker(window);
+  window.MathJax = {
+    'fast-preview': {
+      disabled: true
+    }
+  };
+  const mj = document.createElement('script');
+  mj.src =
+    'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full';
+  document.head.appendChild(mj);
+
+}

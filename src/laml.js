@@ -1,89 +1,14 @@
+const { renameTag } = require('./helpers.js');
+const metadata = require('./metadata.js');
+const preamble = require('./preamble.js');
+const abstract = require('./abstract.js');
+const statements = require('./statements.js');
+
 const laml = function(document) {
-  // helpers
-
-  // Source: https://stackoverflow.com/a/27404602/1339651
-  const renameTag = function(node, newTagName) {
-    const newNode = document.createElement(newTagName);
-    while (node.firstChild) newNode.appendChild(node.firstChild);
-    for (let attribute of node.attributes) {
-      newNode.setAttribute(attribute.name, attribute.value);
-    }
-    newNode.setAttribute('data-originalTagName', node.tagName.toLowerCase());
-    node.parentNode.replaceChild(newNode, node);
-    return newNode;
-  };
-
-  // handle metadata
-  const articleMeta = JSON.parse(document.getElementById('metadata').text);
-  const articleInfo = document.createElement('section');
-  articleInfo.classList.add('articleInfo');
-  document.body.insertBefore(articleInfo, document.body.firstChild);
-
-  const articleTitle = articleMeta.title;
-  if (articleTitle) {
-    const title = document.querySelector('title');
-    title.innerHTML = articleTitle;
-    const heading = document.createElement('h1');
-    heading.innerHTML = articleTitle;
-    articleInfo.appendChild(heading);
-  }
-  const articleAuthors = articleMeta.authors || [];
-  for (let author of articleAuthors) {
-    const name = author.name;
-    const address = author.address;
-    const authorP = document.createElement('p');
-    authorP.classList.add('author');
-    authorP.innerHTML = name + ', ' + address + '.';
-    articleInfo.appendChild(authorP);
-  }
-  const keywords = articleMeta.keywords;
-  const kw = document.createElement('p');
-  kw.classList.add('keywords');
-  kw.innerHTML = 'Keywords: ' + keywords.join(', ') + '.';
-  articleInfo.appendChild(kw);
-
-  const licensing = document.createElement('p');
-  licensing.classList.add('license');
-
-  licensing.innerHTML =
-    'Derived from <a href="' +
-    articleMeta.source +
-    '">' +
-    articleMeta.source +
-    '</a>, ' +
-    articleMeta.license +
-    ' and licensed as such.';
-  articleInfo.appendChild(licensing);
-
-  // preamble
-  renameTag(document.querySelector('preamble'), 'div').classList.add('.hidden');
-
-  // abstract
-
-  const abstract = document.querySelector('abstract');
-  const newabs = renameTag(abstract, 'section');
-  newabs.classList.add('abstract');
-
-  // convert statements to sections
-  const statements = document.querySelectorAll(
-    'proof, theorem, proposition, lemma, corollary'
-  );
-  let statement_counter = 0;
-  for (let statement of statements) {
-    const renamedNode = renameTag(statement, 'section');
-    const tagname = statement.tagName.toLowerCase();
-    renamedNode.classList.add(tagname);
-    const name = renamedNode.querySelector('name');
-    if (name) continue;
-    statement_counter++;
-    // TODO look up correct heading level
-    const heading = document.createElement('h2');
-    heading.classList.add('name');
-    heading.id = tagname.toLowerCase() + '-' + statement_counter;
-    heading.innerHTML =
-      tagname[0].toUpperCase() + tagname.substring(1) + ' ' + statement_counter;
-    renamedNode.insertBefore(heading, renamedNode.firstChild);
-  }
+  metadata(document);
+  preamble(document);
+  abstract(document);
+  statements(document);
 
   // handle figures
   const figures = document.querySelectorAll('figure');
@@ -103,7 +28,7 @@ const laml = function(document) {
   const names = document.querySelectorAll('name');
   for (let name of names) {
     // TODO look up correct heading level
-    const renamedNode = renameTag(name, 'h2');
+    const renamedNode = renameTag(document, name, 'h2');
     renamedNode.classList.add('name');
   }
 
@@ -111,13 +36,13 @@ const laml = function(document) {
   // TODO should depend on cm.css?
   const blames = document.querySelectorAll('blame');
   for (let blame of blames) {
-    renameTag(blame, 'span').classList.add('blame');
+    renameTag(document, blame, 'span').classList.add('blame');
   }
 
   // convert ref to links
   const refs = document.querySelectorAll('ref');
   for (let ref of refs) {
-    const renamedNode = renameTag(ref, 'a');
+    const renamedNode = renameTag(document, ref, 'a');
     const targetId = renamedNode.getAttribute('target');
     const target = document.getElementById(targetId);
     renamedNode.classList.add('ref');
@@ -154,7 +79,7 @@ const laml = function(document) {
   // handle (foot)notes
   const notes = document.querySelectorAll('note');
   for (let [index, note] of notes.entries()) {
-    const newNote = renameTag(note, 'span');
+    const newNote = renameTag(document, note, 'span');
     newNote.classList.add('footnote');
     newNote.id = 'fn-' + index;
     const fnlink = document.createElement('a');
@@ -186,7 +111,7 @@ const laml = function(document) {
 
   const buildBib = function() {
     const oldBib = document.querySelector('bibliography');
-    const bib = renameTag(oldBib, 'section');
+    const bib = renameTag(document, oldBib, 'section');
     bib.classList.add('bibliography');
     // const inner = bib.innerHTML;
     // bib.innerHTML = '';
@@ -250,22 +175,4 @@ const laml = function(document) {
   // }
 };
 
-// if in NodeJS, export (cf. https://www.npmjs.com/package/detect-node), else run automatically
-if (
-  Object.prototype.toString.call(
-    typeof process !== 'undefined' ? process : 0
-  ) === '[object process]'
-) {
-  module.exports.laml = laml;
-} else {
-  laml(document);
-  window.MathJax = {
-    'fast-preview': {
-      disabled: true
-    }
-  };
-  const mj = document.createElement('script');
-  mj.src =
-    'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full';
-  document.head.appendChild(mj);
-}
+module.exports = laml;

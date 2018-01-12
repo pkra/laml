@@ -3,6 +3,7 @@ const path = require('path');
 const browser = {
     name: 'browser',
     entry: './src/worker.js',
+    devtool: 'inline-source-map',
     output: {
         path: __dirname + '/dist',
         filename: 'laml-browser.js'
