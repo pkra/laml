@@ -7,6 +7,7 @@ const figures = require('./figures.js');
 const names = require('./names.js');
 const blames = require('./blames.js');
 const refs = require('./refs.js');
+const cites = require('./cites.js');
 
 const laml = function(document) {
   metadata(document);
@@ -18,27 +19,8 @@ const laml = function(document) {
   // TODO should depend on cm.css?
   blames(document);
   refs(document);
+  cites(document);
 
-
-
-  // populate bibliographic citations
-  const bibitems = document.querySelectorAll('bibliography > a');
-  for (let [index, bibitem] of bibitems.entries()) {
-    const counter = '[' + (index + 1) + ']';
-    // TODO create DL in buildBib instead
-    const counterNode = document.createTextNode(counter + ' ');
-    bibitem.parentNode.insertBefore(counterNode, bibitem);
-    const cites = document.querySelectorAll(
-      'cite[target="' + bibitem.id + '"]'
-    );
-    for (let cite of cites) {
-      cite.innerHTML = counter;
-      const anchor = document.createElement('a');
-      anchor.setAttribute('href', '#' + bibitem.id);
-      cite.parentNode.replaceChild(anchor, cite);
-      anchor.appendChild(cite);
-    }
-  }
 
   // handle (foot)notes
   const notes = document.querySelectorAll('note');
