@@ -5,7 +5,7 @@ const abstract = require('./abstract.js');
 const statements = require('./statements.js');
 const figures = require('./figures.js');
 const names = require('./names.js');
-const blames = require('./blame.js');
+const blames = require('./blames.js');
 
 const laml = function(document) {
   metadata(document);
