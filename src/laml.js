@@ -5,6 +5,7 @@ const abstract = require('./abstract.js');
 const statements = require('./statements.js');
 const figures = require('./figures.js');
 const names = require('./names.js');
+const blames = require('./blame.js');
 
 const laml = function(document) {
   metadata(document);
@@ -13,13 +14,9 @@ const laml = function(document) {
   statements(document);
   figures(document, false);
   names(document);
-
-  // convert blames
   // TODO should depend on cm.css?
-  const blames = document.querySelectorAll('blame');
-  for (let blame of blames) {
-    renameTag(document, blame, 'span', true);
-  }
+  blames(document);
+
 
   // convert ref to links
   const refs = document.querySelectorAll('ref');
