@@ -6,6 +6,7 @@ const statements = require('./statements.js');
 const figures = require('./figures.js');
 const names = require('./names.js');
 const blames = require('./blames.js');
+const refs = require('./refs.js');
 
 const laml = function(document) {
   metadata(document);
@@ -16,25 +17,9 @@ const laml = function(document) {
   names(document);
   // TODO should depend on cm.css?
   blames(document);
+  refs(document);
 
 
-  // convert ref to links
-  const refs = document.querySelectorAll('ref');
-  for (let ref of refs) {
-    const renamedNode = renameTag(document, ref, 'a');
-    const targetId = renamedNode.getAttribute('target');
-    const target = document.getElementById(targetId);
-    renamedNode.classList.add('ref');
-    renamedNode.setAttribute('href', '#' + targetId);
-    renamedNode.removeAttribute('target');
-    targetHeading = renamedNode.innerHTML = target
-      .querySelector('h1, h2, h3, h4, h5, h6')
-      .cloneNode(true);
-    // strip blame
-    if (targetHeading.querySelector('.blame'))
-      targetHeading.removeChild(targetHeading.querySelector('.blame'));
-    renamedNode.innerHTML = targetHeading.innerHTML;
-  }
 
   // populate bibliographic citations
   const bibitems = document.querySelectorAll('bibliography > a');
