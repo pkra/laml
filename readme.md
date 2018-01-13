@@ -2,12 +2,12 @@
 
 A lame joke on LaTeX and HTML.
 
-A simple JS file that converts LaTeX-like tag soup into something decent.
+A bit of JS that converts a bunch of tags into something perhaps useful.
 
+## Demo
 
-## TODOs
+[Vince Vatter, An Erdős-Hajnal analogue for permutation classes"](./vatter.html) ([source](https://github.com/pkra/laml/blob/master/vatter.html))
 
-See [the issues](https://github.com/pkra/laml/issues/).
 
 
 ## Example components
@@ -45,9 +45,12 @@ Some simple components
   * create footnote-caller
   * add backlink from footnote to footnote-caller
 
-## Demo
 
-[Vince Vatter, An Erdős-Hajnal analogue for permutation classes"](./vatter-out.html)
+## TODOs
+
+See [the issues](https://github.com/pkra/laml/issues/).
+
+
 
 ## Getting started
 
