@@ -1,7 +1,6 @@
 module.exports = function(document) {
   // populate bibliographic citations
   const bibitems = document.querySelectorAll('bibliography a');
-  console.log(bibitems)
   for (let [index, bibitem] of bibitems.entries()) {
     const counter = '[' + (index + 1) + ']';
     // TODO create DL in buildBib instead
