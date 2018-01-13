@@ -3,27 +3,22 @@ const metadata = require('./metadata.js');
 const preamble = require('./preamble.js');
 const abstract = require('./abstract.js');
 const statements = require('./statements.js');
-const figures = require('./figures.js')
+const figures = require('./figures.js');
+const names = require('./names.js');
+
 const laml = function(document) {
   metadata(document);
   preamble(document);
   abstract(document);
   statements(document);
   figures(document, false);
-
-  // convert names to headings
-  const names = document.querySelectorAll('name');
-  for (let name of names) {
-    // TODO look up correct heading level
-    const renamedNode = renameTag(document, name, 'h2');
-    renamedNode.classList.add('name');
-  }
+  names(document);
 
   // convert blames
   // TODO should depend on cm.css?
   const blames = document.querySelectorAll('blame');
   for (let blame of blames) {
-    renameTag(document, blame, 'span').classList.add('blame');
+    renameTag(document, blame, 'span', true);
   }
 
   // convert ref to links
