@@ -52,6 +52,6 @@ Well we certainly don't want to expose the authors to XML---it's really heavy to
 
 ### It looks like you typed your sample bibliography by hand. How can I get that from a bib file or json data?
 
-For now we are just copying the bibliography text from Bibtex. But it is not difficult to imagine producing the bibliography automatically using JS, and perhaps this should be implemented. One package that exists now is bibtex-js.
+For now we are just copying the bibliography text from Bibtex. But it is not difficult to imagine producing the bibliography automatically using JS, and perhaps this should be implemented. One package that exists already is bibtex-js.
 
 But consider also that classical bibliographies are made for in-library research. With web searching, all you really need these days is author and title. The links (especially the ones with the DOI) are more than enough for all practical purposes! Also they are more general to allow various modern types of references (tweets anyone?).
