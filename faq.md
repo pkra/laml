@@ -42,11 +42,11 @@ Because it doesn't have YY feature. We would need to extend it further anyway, s
 
 First of all, that's exactly why we are using HTML! But we are also providing some extras to make our lives easier. For example we don't like having to use `<p>` tags because they make it difficult to reorganize paragraphs on the fly, and Markdown helps with that.
 
-Second of all, HTML is very general and it is really meant to be reined in for special purposes like ours. Consider that the tag names are general and don't have any fixed interpretation. Any two authors writing math research in HTML are likely to make different choices. Is a theorem a div, or just a paragraph with a span at the beginning? With this project we hope to attract a community of people who either like thinking about these silly issues or want someone else to think about it for them. Then the community can provide a common set of idioms and tools that are helpful for math writing.
+Second of all, HTML is very general and it is really meant to be reined in for special purposes like ours. Consider that the tag names don't have any fixed interpretation--any two authors writing math research in HTML are likely to make different choices. Is a theorem a div, or just a paragraph with a span at the beginning? With this project we hope to attract a community of people who either like thinking about these silly issues or want someone else to think about it for them. Then the community can provide a common set of idioms and tools that are helpful for math writing.
 
 ### Why don't you just use XML? You seem to basically be using custom tag names.
 
-Well we certainly don't want to expose the authors to XML---it's really heavy to write and edit, even with desktop tools. It's annoying enough to use `<p>` tags in pure HTML. One might use XML as some kind of intermediate format, but we're having a pretty good time just going from the LAML format directly to HTML, which is what we really want in the end anyway. It is true that some of our steps would be fun to implement in XSLT, but not all of them, and the advantages of pure Javascript are massive.
+Well we certainly don't want to expose the authors to XML--it's really heavy to write and edit, even with desktop tools. It's annoying enough to use `<p>` tags in HTML. One might use XML as some kind of intermediate format, but we're having a pretty good time just going from the LAML format directly to HTML, which is what we really want in the end anyway. It is true that some of our steps would be fun to implement in XSLT, but not all of them, and the advantages of pure Javascript are massive.
 
 ## How do you...
 
