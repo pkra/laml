@@ -1,7 +1,7 @@
 # FAQ
 
-* [I can't use this because...](i-cant-use-this-because)
-* [Why don't you just...](why-dont-you-just)
+* [I can't use this because...](#i-cant-use-this-because)
+* [Why don't you just...](#why-dont-you-just)
 
 ## I can't use this because...
 
