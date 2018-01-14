@@ -1,39 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
 </head>
 <body>
 <script id="metadata" type="application/json">
-    {
-        "title": "An Erdős-Hajnal analogue for permutation classes",
-        "authors": [{
-            "name": "Vincent Vatter",
-            "address": "Department of Mathematics, University of Florida, Gainesville, Florida, USA"
-        }],
-        "date": "2017-11-08T20:56:17+01:00",
-        "history": {
-            "received": "3rd Nov. 2015",
-            "accepted": "9th Feb. 2016"
-        },
-        "keywords": ["grid classes", "monotone subsequences", "permutations"],
-        "license": "Creative Commons Attribution 4.0 International License",
-        "source": "https://arxiv.org/abs/1511.01076"
-    }
+  {
+      "title": "An Erdős-Hajnal analogue for permutation classes",
+      "authors": [{
+          "name": "Vincent Vatter",
+          "address": "Department of Mathematics, University of Florida, Gainesville, Florida, USA"
+      }],
+      "date": "2017-11-08T20:56:17+01:00",
+      "history": {
+          "received": "3rd Nov. 2015",
+          "accepted": "9th Feb. 2016"
+      },
+      "keywords": ["grid classes", "monotone subsequences", "permutations"],
+      "license": "Creative Commons Attribution 4.0 International License",
+      "source": "https://arxiv.org/abs/1511.01076"
+  }
 </script>
+
 <!-- <link rel="stylesheet" href="https://unpkg.com/sakura.css/css/sakura.css" type="text/css"> -->
 <!-- <link rel="stylesheet" href="https://rawgit.com/mblode/marx/master/css/marx.min.css"> -->
 <!-- <link rel="stylesheet" href="http://barecss.com/css/bare.min.css"> -->
 <!-- <link rel="stylesheet" href="https://cdn.concisecss.com/concise.min.css"> -->
 <link rel="stylesheet" href="laml.css">
 <link rel="stylesheet" href="cm.css">
+  
 <preamble>
-
+\[
+\newcommand{\Av}{\operatorname{Av}}
+\newcommand{\Grid}{\operatorname{Grid}}
+\newcommand{\C}{\mathcal{C}}
+\newcommand{\D}{\mathcal{D}}
+\newcommand{\st}{\::\:}
+\]
 </preamble>
-\[\newcommand{\Av}{\operatorname{Av}}\newcommand{\Grid}{\operatorname{Grid}}\newcommand{\C}{\mathcal{C}}\newcommand{\D}{\mathcal{D}}\newcommand{\st}{\::\:}\]
 
 <abstract>
   Let $\mathcal{C}$ be a permutation class that does not contain all layered permutations or all colayered permutations. We prove that every permutation in $\mathcal{C}$ contains a monotone subsequence of linear size.
@@ -55,12 +62,11 @@ We refer to Chudnovsky's survey <cite target="chudnovsky_the-erdos--hajn"></cite
   Every permutation of length at least $(k-1)(\ell-1)+1$ contains either a decreasing subsequence of length $k$ or an an increasing subsequence of length $\ell$.
 </theorem>
 
-We instead ask for a stronger conclusion. A *permutation class* is a downset of permutations under the containment order. We show <ref target='thm-EH-main'></ref> that unless a permutation class contains all layered permutations or all colayered permutations, its members contain monotone subsequences of linear size.
+We instead ask for a stronger conclusion. A *permutation class* is a downset of permutations under the containment order. We show (<ref target='thm-EH-main'></ref>) that unless a permutation class contains all layered permutations or all colayered permutations, its members contain monotone subsequences of linear size.
 
 The Erdős–Szekeres Theorem is best possible in that there are permutations of length $(k-1)(\ell-1)$ which have neither decreasing subsequences of length $k$ nor increasing subsequences of length $\ell$. Focusing on the case $k=\ell$, we call a permutation of length $k^2$ *Erdős–Szekeres extremal* if it does not contain a monotone subsequence of length $k+1$. If follows from the Robinson–Schensted correspondence and the Hook Length Formula that the number of Erdős–Szekeres extremal permutations of length $k^2$ is
-
-\[\left(\frac {(k^2)!} {1^1\cdot 2^2\cdot 3^3\cdots k^k\cdot (k+1)^{k-1}\cdot (k+2)^{k-2}\cdots (2k-1)^1} \right)^2,\]
-
+\[\left(\frac {(k^2)!} {1^1\cdot 2^2\cdot 3^3\cdots k^k\cdot (k+1)^{k-1}\cdot (k+2)^{k-2}\cdots (2k-1)^1} \right)^2,
+\]
 sequence A079402 in the OEIS <cite target="sloane_the-on-line-enc"></cite>. One of the earliest references to this formula is Stanley's *Monthly* solution <cite target="stanley_solution-to-pro_5641"></cite>  from 1969. There has also been some recent interest in these permutations. In particular, Romik <cite target="romik_permutations-wi"></cite> computed the limit shape of Erdős–Szekeres extremal permutations. Additional results in this direction have been obtained by Kim <cite target="kim_on-increasing-s"></cite>, Pittel and Romik <cite target="pittel_limit-shapes-fo"></cite>, and Su <cite target="su_on-increasing-s"></cite>.
 
 <figure id=fig-layered-EES>
@@ -69,13 +75,10 @@ sequence A079402 in the OEIS <cite target="sloane_the-on-line-enc"></cite>. One 
 </figure>
 
 Despite the fact that there are a great many extremal Erdős–Szekeres permutations, we need to define only two families, the *layered* and *colayered* extremal Erdős–Szekeres permutations, of which examples are plotted in <ref target="fig-layered-EES"></ref>. It is convenient to use the *sum* and *skew sum* operations in defining these permutations, which can be defined pictorially as below.
-
 <img src="fig-noname.svg">
-
 We use the symbols $\oplus^k$ and $\ominus^k$ to denote repeated sums and skew sums, respectively, so the extremal Erdős–Szekeres layered permutation of length $k^2$ is
-
-\[\oplus^k (k\cdots 21) = \underbrace{(k\cdots 21)\oplus\cdots\oplus (k\cdots 21)}_{\text{ $k$ summands}}.\]
-
+\[\oplus^k (k\cdots 21) = \underbrace{(k\cdots 21)\oplus\cdots\oplus (k\cdots 21)}_{\text{ $k$ summands}}.
+\]
 We show that these two families of extremal permutations are the only obstructions preventing a class from having a linear bound on monotone subsequences:
 
 <theorem id="thm-EH-main">
@@ -112,7 +115,7 @@ Given a set of closed axis-parallel rectangles $\mathfrak{R}$ we can naturally a
 
 We say that two rectangles are *independent* if both their $x$- and $y$-axis projections are disjoint. A set of rectangles is said to be independent if they are pairwise independent, and we define the *independence number* of a set of axis-parallel rectangles to be the size of the largest independent set of rectangles it contains.
 
-It follows readily that if $\mathfrak{R}$ is a set of closed axis-parallel rectangles and $\mathfrak{I}$ is the corresponding set of $2$-intervals then the independence number of $\mathfrak{R}$ is equal to the packing number of $\mathfrak{I}$. Therefore <ref target="thm-2int-transversal"></ref> shows that $\mathfrak{I}$ has a transversal of size at most $2\nu(\mathfrak{I})$. That is, there is a set of at most $2\nu(\mathfrak{I})$ points of $L_x\cup L_y$ which intersect every $2$-interval in $\mathfrak{I}$. We want to convert this transversal of $\mathfrak{I}$ into a set of vertical and horizontal lines that *slice* (i.e., intersect the interior) of every rectangle in $\mathfrak{R}$, but we must be careful because the transversal is allowed to contain endpoints of $2$-intervals. Thus given a transversal $T\subseteq L_x\cup L_y$ we associate to it a set of vertical and horizontal lines $\mathcal{L}_T$ in the following way: if $t\in T$ is from $L_x$ we associate the two vertical lines $x=t\pm\epsilon$ while if $t\in T$ is from $L_y$ we associate the two horizontal lines $y=t\pm\epsilon$ where $\epsilon >0$ is a small constant (depending on $\mathfrak{R}$). These are the dotted lines shown in <ref target="fig-2-interval"></ref>. This construction yields the following result.
+It follows readily that if $\mathfrak{R}$ is a set of closed axis-parallel rectangles and $\mathfrak{I}$ is the corresponding set of $2$-intervals then the independence number of $\mathfrak{R}$ is equal to the packing number of $\mathfrak{I}$. Therefore <ref target="thm-2int-transversal"></ref> shows that $\mathfrak{I}$ has a transversal of size at most $2\nu(\mathfrak{I})$. That is, there is a set of at most $2\nu(\mathfrak{I})$ points of $L_x\cup L_y$ which intersect every $2$-interval in $\mathfrak{I}$. We want to convert this transversal of $\mathfrak{I}$ into a set of vertical and horizontal lines that *slice* (i.e., intersect the interior) of every rectangle in $\mathfrak{R}$, but we must be careful because the transversal is allowed to contain endpoints of $2$-intervals. Thus given a transversal $T\subseteq L_x\cup L_y$ we associate to it a set of vertical and horizontal lines $\mathcal{L}_T$ in the following way: if $t\in T$ is from $L_x$ we associate the two vertical lines $x=t\pm\epsilon$ while if $t\in T$ is from $L_y$ we associate the two horizontal lines $y=t\pm\epsilon$ where $\epsilon\gt0$ is a small constant (depending on $\mathfrak{R}$). These are the dotted lines shown in <ref target="fig-2-interval"></ref>. This construction yields the following result.
 
 <corollary id=cor-2int-slice>
   If a finite collection $\mathfrak{R}$ of axis-parallel rectangles has independence number at most $m$ then there is a collection of $4m$ vertical and horizontal lines which slice every rectangle in $\mathfrak{R}$.
@@ -140,7 +143,7 @@ In the language of generalized grid classes introduced in Vatter <cite target="v
 * <a id="chudnovsky_the-erdos--hajn" href="https://dx.doi.org/10.1002/jgt.21730">M. Chudnovsky. The Erdős--Hajnal conjecture---a survey. <em>J. Graph Theory</em>, 75(2):178–190, 2014.</a>
 * <a id="erdos_ramsey-type-the" href="https://doi.org/10.1016/0166-218X(89)90045-0">P. Erdős and A. Hajnal. Ramsey-type theorems. <em>Discrete Appl. Math.</em>, 25(1-2):37–52, 1989.</a>
 * <a id="erdos_a-combinatorial" href="http://www.numdam.org/item/CM_1935__2__463_0">P. Erdős and G. Szekeres. A combinatorial problem in geometry. <em>Compos. Math.</em>, 2:463–470, 1935.</a>
-* <a id="greene_an-extension-of" href="https://doi.org/10.1016/0001-8708(74)90031-0">C. Greene. An extension of Schensted's theorem. <em>Advances in Math.</em>, 14:254–265, 1974.
+* <a id="greene_an-extension-of" href="https://doi.org/10.1016/0001-8708(74)90031-0">C. Greene. An extension of Schensted's theorem. <em>Advances in Math.</em>, 14:254–265, 1974.</a>
 * <a id="gyarfas_a-helly-type-pr" href="https://mathscinet.ams.org/mathscinet-getitem?mr=298550">A. Gyárfás and J. Lehel. A Helly-type problem in trees. In P. Erdős, A. Rényi, and V. T. Sos, editors, <em> Combinatorial Theory and its Applications, II (Proc. Colloq., Balatonfüred, 1969)</em>, pages 571–584. North-Holland, Amsterdam, 1970.</a>
 * <a id="jelinek_splittings-and-" href="https://doi.org/10.1016/j.aam.2014.10.003">V. Jelínek and P. Valtr. Splittings and Ramsey properties of permutation classes.<em> Adv. in Appl. Math.</em>, 63:41–67, 2015.</a>
 * <a id="kaiser_transversals-of" href="https://doi.org/10.1007/PL00009315">T. Kaiser. Transversals of $d$-intervals. </em>Discrete Comput. Geom.</em>, 18(2):195–203, 1997.</a>
@@ -155,6 +158,8 @@ In the language of generalized grid classes introduced in Vatter <cite target="v
 * <a id="vatter_small-permutati" href="https://doi.org/10.1112/plms/pdr017">V. Vatter. Small permutation classes. <em>Proc. Lond. Math. Soc. (3)</em>, 103:879--921, 2011.</a>
 
 </bibliography>
+
 <script src="dist/laml-browser.js"></script>
+
 </body>
 </html>
