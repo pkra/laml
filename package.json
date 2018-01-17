@@ -2,10 +2,14 @@
   "name": "laml",
   "version": "3.2.0",
   "description": "a lame joke about LaTeX and HTML",
-  "main": "index.js",
+  "main": "./src/worker.js",
+  "bin" : {
+    "laml" : "./bin/laml.js"
+  },
   "dependencies": {
     "commonmark": "^0.28.1",
-    "jsdom": "^11.5.1"
+    "jsdom": "^11.5.1",
+    "minimist": "^1.2.0"
   },
   "devDependencies": {
     "reload": "^2.2.2",
@@ -14,7 +18,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "npx webpack",
-    "watch": "webpack --watch"
+    "watch": "webpack --watch",
+    "convert": "node ./src/index.js"
   },
   "author": "Peter Krautzberger, Samuel Coskey",
   "license": "MIT"
