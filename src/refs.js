@@ -10,6 +10,11 @@ module.exports = function(document) {
     renamedNode.classList.add('ref');
     renamedNode.setAttribute('href', '#' + targetId);
     renamedNode.removeAttribute('target');
+    if ( ! /^\s*$/.test(renamedNode.innerHTML) ) {
+      // the node has some nontrivial contents
+      continue;
+    }
+    // the node is whitespace. replace it with our defaults.
     targetHeading = renamedNode.innerHTML = target
       .querySelector('h1, h2, h3, h4, h5, h6')
       .cloneNode(true);

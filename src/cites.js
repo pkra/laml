@@ -10,7 +10,12 @@ module.exports = function(document) {
       'cite[target="' + bibitem.id + '"]'
     );
     for (let cite of cites) {
-      cite.innerHTML = counter;
+      if ( /^\s*$/.test(cite.innerHTML) ) {
+        // the node is whitespace, replace it with our defaults
+        cite.innerHTML = counter;
+      } else {
+        // leave it alone
+      }
       const anchor = document.createElement('a');
       anchor.setAttribute('href', '#' + bibitem.id);
       cite.parentNode.replaceChild(anchor, cite);
