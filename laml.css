@@ -43,6 +43,7 @@ figure {
 .blame {
   display: inline-block;
   font-weight: lighter;
+  font-style: normal;
 }
 .blame::before {
   display: inline;
