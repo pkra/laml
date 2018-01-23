@@ -7,7 +7,12 @@ module.exports = function(document) {
   const articleTitle = articleMeta.title;
   if (articleTitle) {
     const title = document.querySelector('title');
-    title.innerHTML = articleTitle;
+    if (title) title.innerHTML = articleTitle;
+    else {
+      newtitle = document.createElement('title');
+      newtitle.innerHTML = articleTitle;
+      document.head.appendChild(newtitle);
+    }
     const heading = document.createElement('h1');
     heading.innerHTML = articleTitle;
     articleInfo.appendChild(heading);
