@@ -82,13 +82,14 @@ figure {
 }
 
 @media print {
-  body > * {
-    max-width: 32em;
+  body  {
+    max-width: 30em;
+    margin: 0 auto;
   }
   .footnote {
     display: block;
     position: absolute;
-    right: 0;
+    right: 1em;
     width: 10em;
     font-size: 0.66em;
     background: white;

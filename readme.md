@@ -6,8 +6,7 @@ A bit of JS that converts a bunch of tags into something perhaps useful.
 
 ## Demo
 
-[Vince Vatter, An Erdős-Hajnal analogue for permutation classes"](./vatter.html) ([source](https://github.com/pkra/laml/blob/master/vatter.html))
-
+[Vince Vatter, An Erdős-Hajnal analogue for permutation classes"](./samples/vatter/vatter.html) ([source](https://github.com/pkra/laml/blob/master/samples/vatter/vatter.html))
 
 
 ## Example components
@@ -49,8 +48,6 @@ Some simple components
 ## TODOs
 
 See [the issues](https://github.com/pkra/laml/issues/).
-
-
 
 ## Getting started
 
