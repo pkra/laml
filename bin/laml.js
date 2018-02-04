@@ -12,7 +12,8 @@ const {worker} = require('../src/worker.js');
 const argv = require('minimist')(process.argv.slice(2));
 
 if (!argv.i || !argv.o) {
-  console.log('Required arguments: -i path/to/input.html -o path/to/output.html | Optional: -f [fragment]')
+  console.log('Required arguments: -i path/to/input.html -o path/to/output.html | Optional: -f [fragment]');
+  process.exit();
 }
 
 const input = fs.readFileSync(argv.i).toString();
