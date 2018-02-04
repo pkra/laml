@@ -1,0 +1,669 @@
+<script id="metadata" type="application/json">
+    {
+        "title": "Category, measure, and forcing, Math 522 lecture notes, Fall, 2014",
+        "authors": [
+          {
+              "name": "Samuel Coskey",
+              "address": "Boise State"
+          },
+          {
+              "name": "Erik Holmes",
+              "address": "Boise State"
+          }
+        ],
+        "date": "2018-02-04",
+        "keywords": ["category", "measure", "forcing"],
+        "license": "By special permission of the authors",
+        "source": "https://github.com/scoskey/m522/commit/179e0daffd3b12264eafc7c7de6ff37c7d230375"
+    }
+  </script>
+
+<link rel="stylesheet" href="../vatter/laml.css">
+
+<preamble>
+    \[ \newcommand{\set}[1]{\left\{\,#1\,\right\}} \newcommand{\NN}{\mathbb N} \newcommand{\PP}{\mathbb P} \newcommand{\QQ}{\mathbb
+    Q} \newcommand{\RR}{\mathbb R} \newcommand{\BB}{\mathbb B} \newcommand{\Null}{\mathcal N} \newcommand{\Meager}{\mathcal
+    M} \newcommand{\Ksigma}{\mathcal K_\sigma} \newcommand{\forces}{\Vdash} \DeclareMathOperator{\dom}{dom} \DeclareMathOperator{\cod}{cod}
+    \DeclareMathOperator{\rng}{rng} \DeclareMathOperator{\cl}{cl} \DeclareMathOperator{\rk}{rk} \DeclareMathOperator{\add}{\mathsf{add}}
+    \DeclareMathOperator{\non}{\mathsf{non}} \DeclareMathOperator{\cov}{\mathsf{cov}} \DeclareMathOperator{\cof}{\mathsf{cof}}
+    \DeclareMathOperator{\Diff}{Diff} \DeclareMathOperator{\Con}{Con} \DeclareMathOperator{\Fn}{Fn} \DeclareMathOperator{\Nonnull}{Nonnull}
+    \]
+</preamble>
+
+<chapter>
+<name>Introduction</name>
+This course is about set theory, and its use in the study of the real line. By way of motivation, consider the question of measuring the *size* of a given set of real numbers. The word "size" can mean many different things, depending on the context. To see what I mean, consider these three important examples.
+
+* To a set theorist or combinatorist, the simplest notion of size is
+*cardinality*, which asks for instance whether a set is finite, countably infinite, or uncountable. Of course if the set is uncountable, a set theorist would further hope to distinguish whether it is of the first uncountable cardinality ($\aleph_1$), the second uncountable cardinality ($\aleph_2$), etc.
+* To an analyst, one standard notion of size is *measure*, which asks for instance whether a set has zero length or positive length.
+* To a topologist, a key notion of size is *category*, which asks whether a set is meager (topologically negligable), comeager, or else neither meager nor comeager.
+
+In this course we will ask the natural question: How do these three kinds of size compare with one another? In answering this question, we will discover numerous relationships between measure and category, with the diagram of these relationships revealing a beautiful structure.
+
+Our investigation of measure and category will lead us to a number of statements that are *independent* of the axioms of set theory. This means that such statements cannot be proved true or false using the usual axioms of set theory. The most central example of such a statement is the *continuum hypothesis* (CH), which asserts that the set of all real numbers has cardinality equal to the first uncountable cardinal number. Cantor initially posed this problem in 1878. In 1940 Gödel showed the axioms of set theory can't disprove CH, and in 1965 Cohen finally showed that the axioms of set theory can't prove CH.
+
+In his proof of the latter half of the independence of CH, Cohen developed a tool for building models of set theory called *forcing*. Far from being an isolated application, since then forcing has become a standard tool for establishing independence results. We will develop the machinery of forcing and give a number of such applications.
+
+With the tool of forcing in hand, we will return to the notions of measure and category. We will find that there are numerous cardinal numbers surrounding the zero length sets and the meager sets whose values, like the size of the set of all real numbers, are also independent of the axioms of set theory.
+</chapter>
+
+<chapter>
+<name>Category and measure</name>
+<section>
+<name>The real number system</name>
+
+
+
+<defn>
+
+The *real number system* is a complete ordered field. That is, it is a set $\RR$ together with distinguished elements $0,1$, operations $+,\times$ and an ordering $\lt $ satisfying the following rules.
+
+* It is a *field*: it satisfies the associative, commutative, and distributive laws, $0$ is the additive identity and $1$ is the multiplicative identity;
+* It is an *ordered* field: $\lt $ is a strict total order, $a\lt b$ implies $a+c\lt b+c$, and if $c$ is positive then $a\lt b$ implies $ac\lt bc$;
+* It is *complete*: if $A\subset\RR$ has an upper bound, then it has a least upper bound (supremum).
+
+</defn>
+
+<rem>
+It is not difficult to prove that any two complete ordered fields are isomorphic to each other, so it makes sense to define the real number system as the unique such object.
+</rem>
+
+<rem>
+The above definition of the real number system is an abstract, axiomatic definition. That is, it tells you how real numbers behave, but it leaves it up to your imagination what a real number really is. In fact, we have some choice in this matter. For example we can view the real numbers as decimal strings or binary strings. For our set-theoretic purposes, all that matters is that we give one construction of the real numbers that works.
+</rem>
+
+The first to give an explicit and rigorous construction of the real number system was Dedekind, who did so in the 19th century. Here is how his construction worked. First we will take the construction of the rational number system for granted. It is simply the set of fractions whose numerator is an integer and whose denominator is a nonzero natural number.
+
+The key insight is to realize that each real number $r$ has a *cut* in the rational numbers associated with it: the set of rational numbers that are strictly less than $r$. This association should be bijective: If the least upper bound property is true, then any such cut gives rise to a real number as the supremum of the cut. And if two real numbers are different, then they should give rise to different cuts.
+
+So all we have to do to define real numbers was to define cuts. To avoid circularity, we should axiomatize cuts without referring to real numbers at all. A *cut* in the rational numbers is a subset $r\subset\QQ$ satisfying three properties:
+
+* nontriviality: $r\neq\emptyset$ and $r\neq\QQ$
+* downward closure: if $q\in r$ and $q'\lt q$ then $q'\in r$
+* no last element: if $q\in r$ then there is $q'\gt q$ such that $q'\in r$
+
+To complete the construction one must say how the $+,\times$ operations and $\lt$ relation can be defined just in terms of cuts, and then prove that they satisfy the axioms of a complete ordered field. For example, one defines $r+r'$ to be the supremum of the set $\set{q+q'\mid q\in r,q'\in r'}$, and one defines $r\lt r'$ if and only if $r\subset r'$ and $r\neq r'$. We omit the details of verifying that these definitions work.
+
+<rem>
+It is interesting to compare Dedekind's construction with the modern decimal number construction (which we omit). The decimal number construction is practical for calculations, but has some oddities. For example some numbers have two decimal representations, like $.999\cdots$ and $1$. Also we made an arbitrary decision to use decimal expansions as opposed to any other base. Dedekind's construction is beautiful because it is completely uniform and does not involve any arbitrary decisions.
+</rem>
+
+<defn>
+A set $A$ of real numbers is said to be *countable* if its elements can be enumerated using natural number indices. In other words, $A$ is countable if there exists a sequence $(a_n)_{n\in\NN}$ such that $A=\set{a_n\mid n\in\NN}$.
+</defn>
+
+Note that this definition implies that finite sets are countable. If we wish to emphasize that a particular countable set is infinite, we will use the term *countably infinite*. A set that is not countable is called *uncountable*. We now give Cantor's famous proof of the fact that the set of all real numbers is uncountable. The argument goes by contradiction and uses a recursive construction to reach a contradiction one step at a time. Such arguments are often called "diagonal", for reasons we shall see later on.
+
+<theorem id="thm-cantor">
+<name>Cantor</name>
+The set of all real numbers is uncountable.
+</theorem>
+
+<proof>
+Suppose towards a contradiction that the set of all real numbers is countable. Then there exists a sequence $(a_n)_{n\in\NN}$ such that $\RR=\set{a_n\mid n\in\NN}$. Our strategy will be to inductively construct a decreasing sequence of closed intervals $I_n=[l_n,r_r]$ such that for all $n$, $a_n\notin I_n$. Then if $r$ lies in the intersection of these intervals, $r$ cannot be equal to $a_n$ for any $n$, a contradiction.
+
+The construction itself is straightforward. For the base case let $I_1=[l_1,r_1]$ be any interval which omits $a_1$. For the inductive step, if $I_{n-1}$ has been defined, let $I_n=[l_n,r_n]$ be any subinterval of $I_{n-1}$ which omits $a_n$.
+
+We can now find a point in the intersection of the $I_n$ using the completeness property. First observe that since $I_n\subset I_{n-1}$ for all $n$, the set of left endpoints $\set{l_n\mid n\in\NN}$ is bounded above by any and all of the right endpoints $r_n$. By the completeness property, the set of left endpoints has a least upper bound $x$. Since $x$ is an upper bound for $\set{l_n\mid n\in\NN}$, we have $l_n\leq x$ for all $n$. Since $x$ is the least possible upper bound for $\set{l_n\mid n\in\NN}$, we have $x\leq r_n$ for all $n$. Therefore we have $x\in[l_n,r_n]=I_n$ for all $n$.
+
+Since $x$ lies in $I_n$ for all $n$, and since we chose $I_n$ in such a way that it omits $a_n$, we know that $x\neq a_n$ for all $n$. This contradicts the hypothesis that $\RR=\set{a_n\mid n\in\NN}$, and concludes the proof.
+</proof>
+
+This argument appears in one form or another numerous times throughout elementary analysis and set theory. We shall next see it in the proof of the Baire category theorem.
+
+<exerc>
+With the definition of $r+r'$ for Dedekind cuts, show that addition is commutative and associative.
+</exerc>
+
+<exerc>
+Define multiplication $r\times r'$ for Dedekind cuts, and show that it agrees with multiplication for rational numbers. [Hint: consider four cases when $r,r'$ are negative or nonnegative.]
+</exerc>
+
+<exerc>
+Let $A$ be a set of real numbers containing a positive-length interval. Show that $A$ is uncountable.
+</exerc>
+
+<notes>
+Although the material in this section is standard and can be located in most any analysis book, an excellent introduction is *Understanding Analysis* by Stephen Abbott. For the completeness axiom see Abbott, Section~1.3. For Cantor's theorem see Abbott, Section~1.4. For Dedekind cuts see Abbott, Section~8.4.
+</notes>
+
+    </section>
+
+</chapter>
+
+<section>
+<name>Baire category theory</name>
+<defn>
+  A set of real numbers $A$ is said to be *nowhere dense* if every positive-length interval $I$ contains a positive-length interval $J$ such that $J$ is disjoint from $A$.
+</defn>
+
+<example>
+  Any finite subset of $\RR$ is nowhere dense. The set $\set{1/n\mid n\in\NN}$ is nowhere dense. In fact, any *discrete* set is nowhere dense (here, $A$ is discrete if every point of $A$ is isolated). The set of rational numbers whose numerator is $1$ and whose denominator is a power of $2$ is *not* nowhere dense, because such a number can be found in every positive-length subinterval of $[0,1]$.
+</example>
+
+Note that nowhere dense sets need not be countable. The classical Cantor middle thirds set is an archetypal example of a nowhere dense set. Recall that the *Cantor set* is defined as follows. Begin with the set $C_1=[0,1]$. Let $C_2=[0,1/3]\cup[2/3,1]$ be the set $C_1$ with its open middle third removed. Let $C_3=[1,1/9]\cup[2/9,1/3]\cup[2/3,7/9]\cup[8/9,1]$ be the set $C_2$ with the open middle third removed from each component of $C_2$. Refer to Figure~\ref{fig-cantor-set} for a picture of these first few sets. Recursively, let $C_{n+1}$ be constructed from $C_n$ by removing the open middle third from each component of $C_n$. Finally the Cantor set $C$ is defined to be $C=\bigcap C_n$. We will see in a later section that the Cantor set is uncountable. % add ref
+
+<figure id="fig-cantor-set">
+  <tikzpicture>
+    \draw[|-|] (0,0) -- (10,0) node[anchor=west] {\ \ $C_1$};
+    \draw[|-|] (0,-.5) -- (10/3,-.5);
+    \draw[|-|] (20/3,-.5) -- (10,-.5) node[anchor=west] {\ \ $C_2$};
+    \draw[|-|] (0,-1) -- (10/9,-1);
+    \draw[|-|] (20/9,-1) -- (30/9,-1);
+    \draw[|-|] (60/9,-1) -- (70/9,-1);
+    \draw[|-|] (80/9,-1) -- (10,-1) node[anchor=west] {\ \ $C_3$};
+    \node[anchor=west] at (10,-1.4) {\ \ \ $\vdots$};
+    \draw[decoration=Cantor set,very thick]
+    decorate{ decorate{ decorate{ decorate{ decorate{ decorate{
+                (0,-2) -- (10,-2) }}}}}} node[anchor=west] {\ \ $C$};
+  </tikzpicture>
+  <img src="" alt="">
+The first few steps in the construction of the Cantor set, and a rough image of the Cantor set itself.
+</figure>
+
+<prop>
+  The Cantor set $C$ is nowhere dense.
+</prop>
+
+<proof>
+  First compute that the sum of the lengths of all of those middle thirds removed in the construction of the cantor set is exactly $1$ (Exercise~\ref{exerc-cantor}). It follows from this that $C$ does not contain any positive-length intervals. Now if $I$ is any positive-length interval, then $I$ must contain a point $x\notin C$. Now note that $C$ is closed because it is an intersection of closed sets, and hence $\RR\smallsetminus C$ is open. Thus there is an open interval $J$ centered at $x$ such that $J\subset\RR\smallsetminus C$. Shrinking the radius of $J$ if necessary, we can suppose that $J\subset I$. This shows that $C$ is nowhere dense.
+</proof>
+
+The terminology "nowhere dense" may sound strange at first, but it is justified by the following fact.
+
+<prop>
+  \label{prop-nwd-equiv}
+  Let $A$ be a set of real numbers. The following are equivalent.
+<enumerate>
+* $A$ is nowhere dense;
+* $\cl(A)$ (the topological closure of $A$) has no interior;
+* for every nonempty open set $O$, we have that $A$ is not dense in $O$.
+</enumerate>
+</prop>
+
+The proof is requested in Exercise~\ref{exerc-nwd-equiv}.
+
+ <theorem>
+  The class of nowhere dense sets is closed under the operations of subset, union, and closure.
+ </theorem>
+
+<proof>
+  Preservation to subsets is immediate from the definition.
+
+  For preservation to unions, suppose that $A,B$ are nowhere dense and let $I$ be a positive-length interval. Since $A$ is nowhere dense, there is a positive-length interval $J\subset I\smallsetminus A$. Since $B$ is nowhere dense there is a further positive-length interval $J'\subset J\smallsetminus B$. It follows that
+\[J'\subset (I\smallsetminus A)\smallsetminus B=I\smallsetminus (A\cup B)
+\]
+This establishes that $A\cup B$ is again nowhere dense.
+
+Preservation to closures is immediate from condition (b) of Proposition~\ref{prop-nwd-equiv}, but we can also give a direct argument. Let $A$ be nowhere dense and let $I$ be a given positive-length interval. Since $A$ is nowhere dense there is a positive-length interval $J$ such that $J\subset\RR\smallsetminus A$. Removing endpoints if necessary, we may suppose that $J$ is open. It follows that $J\subset\RR\smallsetminus\cl(A)$ (recall that since $\cl(A)$ is the intersection of all closed sets containing $A$, we have that $\RR\smallsetminus\cl(A)$ is the union of all open sets disjoint from $A$). This shows that $\cl(A)$ is nowhere dense.
+</proof>
+
+<rem>
+  It is easy to see that the class of nowhere dense sets is *not* preserved to infinite unions, even countably infinite ones. For example, the set of rational numbers is countable, and therefore it is a countable unions of singletons: $\QQ=\bigcup_{q\in\QQ}\{q\}$. Each singleton $\{q\}$ is clearly nowhere dense, so $\QQ$ is a countable union of nowhere dense sets, but $\QQ$ is dense.
+</rem>
+
+<defn>
+  A set of real numbers $A$ is called *meager* if it is a union of countably many nowhere dense sets. A set $A$ is called *comeager* if $\RR\smallsetminus A$ is meager.
+</defn>
+
+In principal it is possible that this notion is completely moot in the sense that maybe every set of real numbers is meager according to this definition. The Baire category theorem says that this is not the case. In fact, we will soon see that meager sets are rather paltry as the name implies.
+
+ <theorem id="thm-baire">
+<name>Baire category theorem</name>
+  The set of all real numbers $\RR$ is nonmeager. In fact, if $I$ is a positive-length interval then $I$ is nonmeager.
+ </theorem>
+
+<proof>
+  The proof is very similar to Cantor's proof of Theorem~\ref{thm-cantor}. Let $I$ be a positive-length interval and suppose towards a contradiction that $I$ is meager. Then there exists a sequence $(A_n)_{n\in\NN}$ of nowhere dense sets such that $\bigcup A_n=I$. We will inductively construct a decreasing sequence of closed subintervals $J_n\subset I$ such that for all $n$, $J_n\cap N_n=\emptyset$.
+
+  The induction is again straightforward. First apply the definition of $A_1$ being nowhere dense to obtain $J_1$. Inductively apply the definition of $A_n$ being nowhere dense to $J_n$ to obtain $J_{n+1}$. (Each time we may shrink the newly obtained interval slightly to suppose that it is closed.)
+
+  We can now argue just as in the proof of Theorem~\ref{thm-cantor} that there exists a point $x\in\bigcap J_n$. It follows that $x\notin\bigcup A_n$, which contradicts the assumption that $I=\bigcup A_n$, and completes the proof.
+</proof>
+
+<rem>
+  Baire category theory gets its name from the above theorem, and the fact that meager sets used to be called "first category". Nonmeager sets used to be called "second category".
+</rem>
+
+ <theorem>
+  \label{thm-meager-pres}
+  The class of meager sets is closed under the operations of subset and countable union.
+ </theorem>
+
+We remark that the meager property is not necessarily preserved to the closure. In fact $\cl(A)$ is meager if and only if $A$ is nowhere dense.
+
+As a consequence of the Baire category theorem, for any set $A$ it is possible to assign $A$ one of three distinct "sizes":
+
+* $A$ is meager (small)
+* $A$ is comeager (large)
+* $A$ neither meager nor comeager (intermediate)
+
+We should verify that no set of numbers can be both meager and comeager. Indeed, suppose that both $A$ and $\RR\smallsetminus A$ were meager. Then by Theorem~\ref{thm-meager-pres} their union $\RR$ would be meager, contradicting the Baire category theorem.
+
+We should also verify that there exists sets of numbers that are neither meager nor comeager. Indeed, if $I$ is any bounded positive-length interval then by the Baire category theorem $I$ is nonmeager, and since $\RR\smallsetminus I$ also contains a bounded interval, $I$ is also non-comeager.
+
+<exerc>
+  \label{exerc-cantor}
+  Compute the sum of the lengths of all of the intervals removed from $[0,1]$ in the construction of the Cantor set. What if some other fraction is removed at each stage?
+</exerc>
+
+<exerc>
+  \label{exerc-nwd-equiv}
+  Prove Proposition~\ref{prop-nwd-equiv}.
+</exerc>
+
+<exerc>
+  We have observed that unlike the nowhere dense property, the meager property is not necessarily preserved to the closure. Prove that if $\cl(A)$ is meager, then $A$ was nowhere dense to begin with.
+</exerc>
+
+<notes>
+  For more on the Cantor set see Abbott, Section~3.1. For the Baire category theorem see Abbott, Section~3.5. For Baire category theory generally see Oxtoby, Chapter~1.
+</notes>
+</section>
+<section>
+<name>Lebesgue measure theory</name>
+
+Classical measure theory aims to try to extend the length function on intervals to be defined on more complicated sets. For example, if a given set is a finite or even countable union of intervals, then it is appropriate to take the sum of the lengths of the components. But what about more unwieldy sets like the Cantor set? This was known as the *measure problem*: to construct a measurement function $m$, defined on sets of real numbers and valued in $[0,\infty]$, satisfying:
+
+1. $m$ agrees with length: if $I$ is an interval then $m(I)=\ell(I)$
+2. translation invariance: $m(x+A)=m(A)$ for all sets $A$ and real numbers $x$
+3. countably additivity: if $(A_n)_{n\in\NN}$ is a sequence pairwise disjoint sets then $m(\bigcup A_n)=\sum m(A_n)$
+
+Perhaps surprisingly, the conditions (a)--(c) are mutually contradictory and so no such measurement function $m$ exists! Here is Vitali's simple example of a contradiction arising from these requirements. Regard $\QQ$ as an additive subgroup of $\RR$ and consider the cosets of $\QQ$, that is, sets of the form $x+\QQ$. Let $A\subset[0,1]$ be a set of coset representatives, that is, $A$ contains exactly one element from each of the cosets. (It is always possible to choose a coset representative in $[0,1]$ because $\QQ$ is dense.)
+
+Then the translations $q+A$ for $q\in\QQ$ form a countable sequence of pairwise disjoint sets that cover all of $\RR$. In fact, if we let $S=\QQ\cap[-1,1]$ then the translations $q+A$ for $q\in S$ already cover all of $[0,1]$. We can then infer from (a) and (c) that $m[\bigcup_{q\in S}(q+A)]$ lies between $1$ and $4$. But on the other hand, by (b) and (c) we have that
+\[m\left(\bigcup_{q\in S}(q+A)\right)=\sum_{q\in S}m(q+A)=\sum_{q\in S}m(A)
+\]
+This is a contradiction because an infinite sum of a single constant value $m(A)$ can be equal only to either $0$ or $\infty$, and so cannot lie between $1$ and $4$.
+
+<rem>
+  We observe that the axiom of choice was explicitly used in Vitali's construction of the set $A$ above. In fact, it is known that the use of the axiom of choice is necessary to build a counterexample.
+</rem>
+
+The contradiction described above is typically resolved not by dropping one of the conditions (a)--(c), but rather by dropping the requirement that $m$ is defined on *all* sets of real numbers. The justification for this decision is that sets like the $A$ constructed above should be regarded as pathological, and we don't usually need to measure them in applications.
+
+Let us na\"ively begin to construct a measure $m$ that is at least defined on reasonable sets. First, condition (a) implies we should let $m(I)=\ell(I)$ for any interval $I$. Next, if $A=\bigcup I_n$ is a union of disjoint intervals $I_n$, then condition (c) implies we should let $m(A)=\sum\ell(I_n)$. Third, if $A=\bigcap A_n$ is an intersection of sets where $m$ is defined and finite, then it is natural to define $m(A)=\inf m(A_n)$. We now observe that all three of the above simple cases fit into the rule given by the following key formula:
+\begin{equation}
+  \label{eq:measure}
+  m(A)=\inf\set{\sum\ell(I_n)\mid A\subset\bigcup I_n}
+\end{equation}
+
+The next result states that this rule for defining $m$ actually works for all sets that are reasonably constructible. Recall that a *Borel set* is one that can be constructed by beginning with the intervals and then executing countably many countable unions or intersections.
+
+ <theorem id="thm-caratheodory">
+<name>Carathéodory's extension theorem</name>
+  The measure $m$ defined in Equation~\eqref{eq:measure} satisfies conditions (a) and (b), and additionally satisfies condition (c) when applied to Borel sets.
+ </theorem>
+
+<proof>
+<name>Proof of conditions (a) and (b) only</name>
+
+For condition (a), let $I$ be an interval. It is clear that $m(I)\leq\ell(I)$, since $I$ itself is an interval covering $I$. For the other direction, we will show that $I\subset\bigcup I_n$ implies $\sum\ell(I_n)\geq\ell(I)$. Then taking the infemum over all such coverings this allows us to conclude that $m(I)\geq\ell(I)$.
+
+  Let us first handle the case when $I=[a,b]$ is closed and bounded, and all of the $I_n$ are open intervals $(a_n,b_n)$. Then since $I$ is compact, $I$ is covered by just finitely many of the $I_n$, without loss of generality we may assume they are indexed $I_0,\ldots,I_N$. Now after further renaming or removing intervals from the list, we may suppose that $I_0$ covers the left endpoint of $I$, each $I_{n+1}$ covers the right endpoint of $I_n$, and $I_N$ covers the right endpoint of $I$. We can now compute that
+\[\sum\ell(I_n)
+\geq\sum_0^N(b_n-a_n)
+\geq\sum_1^N(b_n-b_{n-1})-a
+\geq b-a
+= \ell(I)\text{.}
+\]
+
+  If $I$ is not necessarily closed and the $I_n$ are not necessarily open, then we look instead at $I'=\cl(I)$ and $I_n'=(I_n)^\circ$. Then the $I_n'$ cover all but a countable subset of $I'$, so for any $\epsilon$ we can find additional open intervals $J_n$ with $\ell(J_n)\leq\epsilon/2^n$ covering these missing points. Now the previous argument shows that $\sum\ell(I_n)+\sum\ell(J_n)\geq\ell(I)$. Using the geometric series formula we obtain $\sum\ell(I_n)+\epsilon\geq\ell(I)$. Letting $\epsilon\to0$ we have the desired result.
+
+  Finally if $I$ is not bounded, we let $A_k$ be a sequence of bounded subintervals of $I$ such that $\ell(A_k)\to\infty$. The above result implies that $\sum\ell(I_n)\geq\ell(A_k)$, and letting $k\to\infty$ we once again achieve the desired result. This concludes the proof of condition (a).
+
+  Condition (b) follows directly from the fact that the length function $\ell$ is translation invariant, and the definition of $m$ depends only on $\ell$.
+
+  For the proof that $m$ satisfies condition (c), we refer the reader to any standard measure theory text.
+</proof>
+
+From now on we will ignore the full power of measure theory to assign a real number measure to any Borel set, and focus only on the specific value zero. Sets whose measure is zero are called null sets, and for convenience we extract the definition of null set from the above definition of arbitrary measure.
+
+<defn id="defn-null">
+  A set of real numbers $A$ is *null* if for all $\epsilon>0$ there exists a sequence of intervals $(I_n)_{n\in\NN}$ such that $A\subset\bigcup I_n$ and $\sum\ell(I_n)<\epsilon$.
+</defn>
+
+<example>
+  The Cantor set $C$ is null. Indeed, we have already computed that the sum of the lengths of all intervals removed from $[0,1]$ in the construction of $C$ is equal to $1$. Since $[0,1]$ has measure $1$, it follows from additivity that $C$ must have measure $0$.
+</example>
+
+The notion of null set bears many similarities with the notion of meager set. As was the case with meager sets, the notion of a null set allows us to assign to any given set $A$ one of three simple "sizes": null, conull, or nonnull and non-conull. Moreover, null sets satisfy an analog of the Baire category theorem and the preservation properties of meager sets.
+
+<cor id="cor-interval-nonnull">
+  \label{}
+  The set $\RR$ of all real numbers is not null. In fact, if $I$ is any positive-length interval then $I$ is not null.
+</cor>
+
+<cor id="cor-null-pres">
+  The class of null sets is closed under the operations of subset and countable union.
+</cor>
+
+Corollary~\ref{cor-interval-nonnull} is immediate from condition (a) of Theorem~\ref{thm-caratheodory}. Corollary~\ref{cor-null-pres} is immediate from condition (c) of Theorem~\ref{thm-caratheodory}.
+
+<exerc>
+  Prove that condition (c) of a measure implies *monotonicity*: if $A\subset B$ then $m(A)\leq m(B)$.
+</exerc>
+
+<exerc id="exerc-continuity-above">
+  Prove that condition (c) of a measure implies *continuity from above*: if $A_n$ is a decreasing sequence of sets, $m(A_n)$ is finite, and $A=\bigcap A_n$, then $m(A)=\inf m(A_n)$.
+</exerc>
+
+<exerc>
+  Give a proof directly from Definition~\ref{defn-null} that the Cantor set is null.
+</exerc>
+
+<exerc>
+  Give a proof directly from Definition ~\ref{defn-null} that the class of null sets is closed under countable union.
+</exerc>
+
+<notes>
+  Our presentation of Vitali's construction follows Folland, Section~1.1. Our proof of Theorem~\ref{thm-caratheodory}, part (a) follows Oxtoby, Chapter~1. For a proof of part (c), see Folland, Section~1.4.
+</notes>
+
+</section>
+<section>
+<name>Sets, orderings, and cardinality</name>
+
+So far we have seen sets that are finite, countable, and uncountable. If a set $A$ is finite, then there is a natural number that tells us exactly how many elements $A$ has. If $A$ is countable, we understand that it has exactly as many elements as there are natural numbers. But if $A$ is uncountable, is that all that needs be said or is there some kind of number that tells us just how uncountable it is?
+
+In this section we discuss the notion of "cardinality" of a set $A$, which replaces the notion of "number of elements" in the case when $A$ is infinite. Notationally, we write $|A|$ for the cardinality of $A$. As we shall see, when $A$ is finite $|A|$ will be a natural number. When $A$ is countable $|A|$ will take the value $\aleph_0$ (called aleph zero, or aleph nought). And when $A$ is uncountable $|A|$ will take one of the values $\aleph_1,\aleph_2$ and so forth.
+
+In the next section we will describe exactly what the $\aleph$'s are. But first it turns out that we can give many of the most important facts about cardinality without ever defining the cardinal numbers precisely.
+
+<defn id="defn-cardinal-rel">
+  Let $A$ and $B$ be sets. We say that $|A|=|B|$ if there is a bijective function $f\colon A\to B$, we say that $|A|\leq|B|$ if there is an injective function $i\colon A\to B$, and we say that $|A|<|B|$ if $|A|\leq|B|$ and also $|A|\neq|B|$.
+</defn>
+
+<rem>
+  In the above definition, we managed to define all of the comparisons between cardinals without ever defining the cardinal itself. For most practical purposes, this definition is sufficient.
+</rem>
+
+Our first result confirms that there are many different uncountable cardinalities. Recall that if $A$ is a set, then the *power set* of $A$, denoted $\mathcal P(A)$, is the set of all subsets of $A$.
+
+ <theorem>
+<name>Cantor</name>
+  If $A$ is any set, then $|A|\lt|\mathcal P(A)|$.
+ </theorem>
+
+<proof>
+  It is clear that $|A|\leq|\mathcal P(A)|$, since the map $i(a)=\{a\}$ is an injection from $A$ into $\mathcal P(A)$.
+
+  To see that there is no bijection between $A$ and $\mathcal P(A)$, let $f\colon A\to\mathcal P(A)$ be any function. Then build the set $D$ of all elements $a\in A$ such that $a\notin f(a)$. We claim that $D$ is not in the range of $f$, and therefore that $f$ is not a bijection.
+
+  To see this, suppose towards a contradiction that there exists $a_0\in A$ such that $D=f(a_0)$. Then by the definition of $D$, we have that $a_0\in D$ iff $a_0\notin f(a_0)$. And since $D=f(a_0)$ we can write this as $a_0\in D$ iff $a_0\notin D$, which is a clear contradiction.
+</proof>
+
+<rem>
+  The classical argument above is given the name "diagonal" because of the key formula in the proof: $a\notin f(a)$. The idea is that if you were to shade the set of pairs $(x,y)\in A^2$ such that that $x\in f(y)$, then the set $D$ would be built by taking the unshaded elements of the diagonal of the $A^2$ plane.
+</rem>
+
+<defn>
+  Let $A$ be a set (or class).
+
+  * A *partial ordering* of $A$ is a binary relation $\leq$ satisfying: (reflexive) $a\leq a$; (antisymmetric) $a\leq b\leq a\implies a=b$; (transitive) $a\leq b\leq c\implies a\leq c$.
+  * A *total ordering* of $A$ is a partial ordering such that for all $a,a'$ either $a\leq a'$ or $a'\leq a$.
+  * A *well-ordering* of $A$ is a total ordering $\leq$ such that every subset $B\subset A$ has a $\leq$-least element $b_0$.
+
+</defn>
+
+<rem>
+  The well-order property may seem obscure at first, but finding a least element is precisely what is needed in induction arguments. It is what allows us to say "otherwise, let $x$ be the least counterexample".
+</rem>
+
+In the next few results, we essentially show that the cardinals are well-ordered by $\leq$. Note that reflexivity holds because the identity function is an injection from $A$ into itself, and transitivity holds because the composition of two injections is an injection. The following result establishes antisymmetry.
+
+ <theorem id="thm-csb">
+<name>Cantor--Schröder--Bernstein</name>
+  If there are injections $i\colon A\to B$ and $j\colon B\to A$ then there is a bijection $f\colon A\to B$.
+ </theorem>
+
+<proof>
+  Replacing $B$ with $j(B)$, we may suppose that that $B\subset A$. Then we have
+  \[A\supset B\supset i(A)\supset i(B)\supset i^2(A)\supset\cdots
+  \]
+  Now $A$ can be written as the union of the successive differences of these sets, together with the intersection of them all:
+  \[A=(A\mathord{\smallsetminus}B)\cup(B\mathord{\smallsetminus}i(A))
+  \cup(i(A)\mathord{\smallsetminus}i(B))\cup\cdots\cup \bigcap i^n(A)
+  \]
+  Meanwhile, $i$ gives bijections
+  \[A\mathord{\smallsetminus}B\leftrightarrow i(A)\mathord{\smallsetminus}i(B)\leftrightarrow i^2(A)\mathord{\smallsetminus}i^2(B)\leftrightarrow\cdots
+  \]
+  It follows that the map
+  \[f(a)=\begin{cases}i(a)&amp;\text{if }a\in(A\mathord{\smallsetminus}B)\cup(i(A)\mathord{\smallsetminus}i(B))\cup(i^2(A)\mathord{\smallsetminus}i^2(B))\cup\cdots\\
+    a&amp;\text{otherwise}
+  \end{cases}
+  \]
+  is a bijection from $A$ to $B$.
+</proof>
+
+<rem>
+  This result also gives a simple recipe for checking whether two sets have the same cardinality. For example, to show that there is a bijection between $[0,1]$ and $(0,1)$ it is much easier to construct two injections than a single bijection.
+</rem>
+
+The next result shows that the cardinalities are totally ordered. In the proof we will need *Zorn's lemma*: If $P$ is a partially ordered set such that every totally ordered subset has an upper bound, then $P$ has at least one maximal element.  Zorn's lemma is used perennially in analysis, and it is a consequence of the axiom of choice.
+
+ <theorem id="thm-card-total">
+  If $A,B$ are sets then either there is an injective function from $A$ to $B$ or an injective function from $B$ to $A$.
+ </theorem>
+
+<proof>
+  Consider the family $\mathcal F$ of all injective functions whose domain is a subset of $A$ and whose range is a subset of $B$. Then $\mathcal F$ is partially ordered by extension of functions, and it is easy to check that this ordering satisfies the hypothesis of Zorn's lemma. Thus there is a maximal element $f$, and since it is maximal either the domain of $f$ is all of $A$ or the range of $f$ is all of $B$. In the first case $f$ is an injection from $A$ to $B$, and in the second case $f^{-1}$ is an injection from $B$ to $A$.
+</proof>
+
+Finally we show that the cardinals are well-ordered. One technicality arises here that did not in the last four properties. To check that the cardinals are well-ordered, we should check that *any* collection of sets has a minimal element, and that collection need not itself be a set. (Remember: the set of all sets isn't a set!)
+
+ <theorem id="thm-card-well">
+  Let $\mathcal A$ be a class of sets. Then there exists $A\in\mathcal A$ that injects into all other sets $B\in\mathcal A$.
+ </theorem>
+
+<proof>
+  We argue very similarly to Theorem~\ref{thm-card-total}, but in order to apply Zorn's lemma we must first suppose that $\mathcal A$ really is a set. Fix any element $A\in\mathcal A$ and let
+\[\mathcal F=\set{(f_B)_{B\in\mathcal A}\mid\text{there is $A_0\subset A$ such that for all $B$, $f_B$ is an injection from $A_0$ to $B$}}
+\]
+This time $\mathcal F$ is partially ordered by *coordinatewise* extension of functions. By Zorn's lemma there is a maximal element $(f_B)_{B\in\mathcal A}$, and since it is maximal either the domain $A_0$ is all of $A$ or the range of one of the functions $f_B$ is all of $B$. In the first case $f_B$ is an injection from $A$ to $B$ for all $B$. In the second case, fix $B$ such that $f_B(A_0)=B$. Then for any $C\in\mathcal A$, the composition $f_C\circ f_B^{-1}$ is an injection from $B$ to $C$, so $B$ is as desired.
+
+In the general case when $\mathcal A$ is a class, we can reduce to the set case as follows. Fix an element $D\in\mathcal A$ and let $\mathcal A'$ denote the collection of subsets of $D$ that are in bijection with some element of $\mathcal A$. Since $\mathcal A'$ is a set, we can find $A\in\mathcal A$ which injects into all elements of $\mathcal A'$. It follows that $A$ injects into all other elements of $\mathcal A$ too. Indeed if $B\in\mathcal A$ and $A$ does not inject into $B$, then by Theorem~\ref{thm-card-total}, $B$ injects into $A$. It follows that $B$ is in bijection with a subset of $D$ and hence $A$ injects into $B$ after all.
+</proof>
+
+Although we still can't be fully rigorous about the meaning of the symbols $\aleph_1,\aleph_2,\ldots$, the well-ordering property helps justify the use of these symbols. Essentially $\aleph_1$ is the least cardinality greater than $\aleph_0$, $\aleph_2$ is the least cardinality greater than $\aleph_1$, and so forth. In the next section, we will make this fully precise.
+
+<exerc>
+  Show that there is a bijection between $\mathcal P(\NN)$ and $\RR$.
+</exerc>
+
+<exerc>
+  Which of the following categories satisfy the analog of the Cantor--Schr\"oder--Bernstein theorem? (That is, monomorphisms $A\to B\to A$ implies isomorphism $A\cong B$.) linear orders with order-preserving maps; groups with group homomorphisms; topological spaces with continuous maps; topological spaces with piecewise continuous maps.
+</exerc>
+
+% why not show the set of countable ordinals is an ordinal
+<exerc>
+  We used the well-ordering principle together with Cantor's theorem to argue that there are uncountable ordinals. Here is another way: show that the set of isomorphism equivalence classes of well-orderings of $\omega$ is itself naturally well-ordered, and that this well-ordering is uncountable.
+</exerc>
+
+<notes>
+  Our proof of Theorem~\ref{thm-card-well} follows and extends the proof given in Chaim Samuel H\"onig, *Proof of the well-ordering of cardinal numbers*. For a more detailed proof of Theorem~\ref{thm-csb}, see Kunen (Foundations), Section~I.10.
+</notes>
+
+</section>
+<section>
+<name>Ordinal numbers and cardinal numbers</name>
+
+Ordinal numbers play a central role in set theory, including both cardinality theory and forcing. While cardinal numbers are needed to measure the *size* of an infinite set, ordinal numbers are needed to measure the *length* of an infinite well-ordered set. The ordinals can be used to extend the notion of *counting* into the infinite, and also to give a formal definition of the $\aleph$ cardinals described in the previous section.
+
+The initial goal in defining the ordinals is to provide a collection of well-ordered sets such that for any given well-ordered set $A$ there is one and only one ordinal $\alpha$ such that $A$ is isomorphic to $\alpha$. For finite well-ordered sets, we can write such a definition explicitly:
+\begin{align*}
+0&amp;=\emptyset\\
+1&amp;=\{0\}\\
+2&amp;=\{0,1\}\\
+\vdots\\
+n+1&amp;=\{0,\ldots,n\}
+\end{align*}
+
+This construction can be summed up in one recurrence: $n+1=n\cup\{n\}$. The first infinite ordinal, called $\omega$ or $\omega_0$, is simply the union of all the finite ordinals. The process can then continue; the successor of $\omega$ is the ordinal $\omega+1=\omega\cup\{\omega\}$.
+
+Intuitively, infinite ordinals are all constructed in this fashion. If $\alpha$ is any ordinal then its successor is $\alpha+1=\alpha\cup\{\alpha\}$, and after infinitely many such steps we take a union. Unfortunately this prescription is not rigorous because it is circular; we cannot make a definition like $\alpha=\bigcup_{\beta<\alpha}\beta$. Instead we have the following more technical characterization.
+
+<defn id="defn-ordinals">
+  A set $\alpha$ is an *ordinal* if it satisfies the properties:
+
+  * $\alpha$ is well-ordered by the $\in$ relation (or more precisely by the relation $\leq$ defined as $\in$-or-equal);
+  * $\alpha$ is transitive: if $\gamma\in\beta\in\alpha$ then $\gamma\in\alpha$.
+</defn>
+
+<rem>
+The first condition ensures that the ordinals are in fact well-ordered; the order relation $\in$ is simply the most convenient one available in set theory. The second condition ensures that the ordinals have no "gaps"; for instance the set $\{0,1,3,5,9\}$ is well-ordered but not an ordinal.
+</rem>
+
+The following fundamental facts about ordinals together imply that Definition~\ref{defn-ordinals} achieves our initial goals in defining the ordinals.
+
+ <theorem id="thm-ordinals">
+  * The class of all ordinals is itself transitive and well-ordered by $\leq$.
+  * If $A$ is a well-ordered set then there exists a unique ordinal $\alpha$ such that $A$ is isomorphic to $\alpha$.\qed
+ </theorem>
+
+An ordinal $\alpha$ is said to be *successor* ordinal if it is of the form $\beta+1$ for some ordinal $\beta$. Otherwise $\alpha$ is said to be *limit* ordinal. The first part of Theorem~\ref{thm-ordinals} allows us to show that successor and limit are appropriate names.
+
+<prop>
+  If $\alpha=\beta+1$ then $\alpha$ is the least ordinal greater than $\beta$. If $\alpha$ is a limit ordinal then $\alpha$ is the union of the ordinals that came before it.
+</prop>
+
+<proof>
+  It is easy to check $\alpha=\beta\cup\{\beta\}$ is indeed an ordinal (it is transitive and well-ordered by $\in$). Since the ordinals are well-ordered we may let $\alpha'$ be the least ordinal greater than $\beta$; we want to show that $\alpha=\alpha'$. If this were not the case, then by totality we would either have $\alpha'\in\alpha$ or $\alpha\in\alpha'$. In the first case either $\alpha=\beta$ or $\alpha\in\beta$, which contradicts that $\alpha'$ is greater than $\beta$. The second case contradicts that $\alpha'$ is the least such.
+
+  Next let $\alpha$ be a limit ordinal, and let $\alpha'$ be the union of all $\beta\in\alpha$. Since $\alpha$ is transitive we easily have that $\alpha'\subset\alpha$. On the other hand if $\gamma\in\alpha$ then by the previous paragraph $\gamma+1\leq\alpha$ and since $\alpha$ is limit we must have $\gamma+1\in\alpha$. Thus $\gamma\in\gamma+1\in\alpha$ and it follows that $\gamma\in\alpha'$.
+</proof>
+
+As we have hinted, although ordinals naturally measure the length of well-orderings, they can also be used to measure size $|A|$. Recall that the axiom of choice implies the *well-ordering principle*, which states that any set $A$ admits a well-ordering $\leq$. Combining this with Theorem~\ref{thm-ordinals}, it follows that any set $A$ is in bijection with at least one ordinal. Different well-orderings of $A$ can lead to different ordinals, so we make the following definition.
+
+<defn>
+  If $A$ is any set, then $|A|$ is the least ordinal $\alpha$ such that $A$ is in bijection with $\alpha$.
+</defn>
+
+Thus a cardinal is a special type of ordinal. Most ordinals will not be cardinals, since for instance if $A$ is in bijection with $\omega+7$ then clearly it is also in bijection with $\omega$. We give $\aleph$ names to the ordinals which are cardinals: The first infinite cardinal is $\aleph_0$, the first uncountable cardinal is $\aleph_1$, the next least cardinal is $\aleph_2$, and so forth.
+
+The pattern continues transfinitely as well, with $\aleph_\alpha$ defined for every ordinal $\alpha$. Officially, these higher cardinals are defined using *transfinite recursion*. Just as natural numbers are used to index traditional recursion, ordinals are used to index transfinite recursion. While ordinary recursion requires a special "base" case at $n=0$, transfinite recursion requires a "limit" case at each limit ordinal.
+
+<defn>
+  The first infinite cardinal is $\aleph_0=\omega$. If $\aleph_\alpha$ is defined then $\aleph_{\alpha+1}$ is the least ordinal that is not in bijection with $\aleph_\alpha$. If $\lambda$ is a limit ordinal and $\aleph_\alpha$ has been defined for $\alpha\lt\lambda$, then $\aleph_\lambda=\bigcup_{\alpha\lt\lambda}\aleph_\alpha$.
+</defn>
+<!--
+additional topics
+discuss the value of the continuum |R|
+define cofinality
+konig's lemma limiting the value of |R|:
+the continuum has uncountable cofinality
+ -->
+<exerc>
+  Show that if $\kappa$ is an infinite cardinal, then $\kappa$ is a limit ordinal.
+</exerc>
+
+<exerc>
+  Use Zorn's lemma to prove the well-ordering principle.
+</exerc>
+
+<exerc>
+  If $A$ is an infinite set, show that $|A|$ is equal to $\aleph_\alpha$ for some $\alpha$.
+</exerc>
+
+<notes>
+  This material on ordinals and cardinals can be found in any introductory set theory textbook. For ordinals, see for instance Section~1.7 of Devlin's *The joy of sets*. For cardinals, see Section~3.6 of the same text.
+</notes>
+
+
+</section>
+<section>
+<name>The topology of Cantor and Baire space</name>
+
+If $A$ is a countable set then $A^\omega$ denotes the space of all sequences with values in $A$, that is, functions from $\omega$ to $A$. We can endow $A^\omega$ with a topology by regarding $A$ as discrete, $A^\omega$ as a product of countably many copies of $A$, and using the *product topology*. Officially a basic set in the product topology has the form
+\[\set{x\in A^\omega\mid x(i_0)\in A_0,\ldots,x(i_{n-1})\in A_{n-1}}
+\]
+where $i_j\in\omega$ are distinct and $A_j\subset A$ are open. However in our case we can make two simplifications: since $\omega$ is countable we can replace $i_0,\ldots i_{n-1}$ with $0,\ldots,n-1$, and since $A$ is discrete we can suppose the $A_j$ are singletons. Putting this all together, we obtain a basis consisting of all
+\[V_s=\set{x\in A^\omega\mid s\subset x}
+\]
+where $s$ is an element of $A^n$ for any $n$.
+
+The two most important examples of sequence spaces are the *Cantor space* $2^\omega$ and the *Baire space* $\omega^\omega$.
+
+<prop id="prop-cantor-baire-homeo">
+  The Cantor space is homeomorphic to the Cantor middle thirds set. The Baire space is homeomorphic to the set of irrational real numbers.
+</prop>
+
+<proof>
+  We give the proof in the case of the Cantor space, and a brief hint in the case of the Baire space.
+
+  The Cantor middle thirds set $C$ has a natural description in terms of ternary expansions. If $a\in[0,1]$ then $a$ lies in the Cantor set if and only if it has a ternary expansion that does not contain the digit $1$. Thus there is a simple bijection $2^\omega\to C$ given by replacing the $1$'s in $x$ with $2$'s:
+\[f(x)=0.(2x(0))(2x(1))(2x(2))\cdots
+\]
+The map is continuous: if $f(x)\in(a,b)$ then there exists $n$ such that if we round $f(x)$ down at its $n$th digit then it is still $\gt a$ and if we round it up at its $n$th digit then it is still $\lt b$. It follows that if $s=x\restriction n$, then we have $f(V_s)\gt a$. Finally recall that a continuous bijection between compact spaces is always ahomeomorphism.
+
+  For the Baire space, it is common to use the values of $x\in(\omega\smallsetminus\{0\})^\omega$ as the entries in a continued fraction:
+\[f(x)=x(0)+\cfrac{1}{x(1)+\cfrac{1}{x(2)+\cdots}}
+\]
+With some elementary number theory, it is possible to verify that this map is a bijection onto the set of irrational numbers, and even a homeomorphism.
+</proof>
+
+This result also implies that $2^\omega$ admits a complete metric, because the Cantor set is a closed and hence complete subspace of $\RR$. In fact, any sequence space $A^\omega$ is completely metrizable. For an example of a complete metric, given $x,y\in A^\omega$ such that $x\neq y$, let $n$ be the least natural number such that $x(n)\neq y(n)$ and set $d(x,y)=1/n$.
+
+<prop>
+  The metric on $A^\omega$ defined above is complete.
+</prop>
+
+<proof>
+  Let $x_i$ be a Cauchy sequence in $A^\omega$. We can inductively construct an increasing sequence of indices $i_0,i_1,\ldots$ such that for all $n$ and $i\geq i_n$ we have $d(x_i,x_{i_n})\lt 1/n$. In other words for $i\geq i_0$ the $x_i(0)$ all agree, for $i\geq i_1$ the $x_i(1)$ all agree, etc. Thus we may define an element $x$ by letting $x(i)=$ this agreed upon value. Now it is easy to check that $x_i\to x$.
+</proof>
+
+<rem>
+  While the metric on $A^\omega$ defined above is fairly natural, it is not canonical. For example, any reordering $\omega$ would give rise to a different compatible metric.
+</rem>
+
+We now discuss a variety of topological properties in the context of sequence space. The closed sets, nowhere dense sets, and compact sets all have special descriptions in sequence space.
+
+To begin, let $A^{\lt\omega}=\bigcup A^n$ denote the set of finite sequences of elements of $A$. This set is partially ordered by the subset relation, but we emplay special terminology in this case. If $s\subset t$ we say that $s$ is an *initial segment* of $t$ or alternatively that $t$ is an *extension* of $s$. We use the same terminology if $s\in A^{\lt\omega}$, $x\in A^\omega$, and $s\subset x$: $s$ is a finite initial segment of $x$, or $x$ is an infinite extension of $s$.
+
+A subset $T\subset A^{\lt \omega}$ is said to be a *tree* if it is closed downward, that is, closed under initial segments. An element $x\in A^\omega$ is said to be a *branch* through $T$ if all of its finite initial segments $x\restriction n$ lie in $T$. We denote by $[T]$ the subset of $A^\omega$ consisting of all branches through $T$.
+
+<prop>
+  A subset $C\subset A^\omega$ is closed if and only if there exists a tree $T\subset A^{\lt \omega}$ such that $C=[T]$.
+</prop>
+
+<proof>
+  Given any set $B\subset A^\omega$, we let $T_B$ be the tree consisting of all $s$ such that $V_s\cap B\neq\emptyset$ (that is, all initial segments of elements of $B$). We will show that the set $[T_B]$ of all branches through the tree $T_B$ is precisely the *closure* of $B$, which implies the desired result. For this, note that $x$ lies in the closure of $B$ if and only if every open neighborhood of of $x$ meets $B$. This is equivalent to the statement that for every initial segment $s\subset x$, $V_s\cap B\neq\emptyset$. Finally, this is equivalent to the statement that $x$ is a branch through $T_B$.
+</proof>
+
+In previous sections we have defined nowhere dense subsets of $\RR$ in terms of intervals. In fact we can define nowhere dense subsets of any topological space in terms of open sets: $S\subset X$ is *nowhere dense* in $X$ if every open set has an open subset disjoint from $S$. This definition can even be made with basic open sets in place of open sets. Thus we have the following characterization.
+
+<prop>
+  \label{prop-cantor-space-nwd}
+  $S\subset A^\omega$ is nowhere dense if and only if for every $s\in A^{\lt \omega}$ there exists $t$ such that $s\subset t$ and $V_t$ is disjoint from $S$.
+</prop>
+
+Meager sets are now defined in the same way as before: $X\subset A^{\lt \omega}$ is *meager* if it is the union of countably many nowhere dense sets. Our proof of the Baire category theorem for the real numbers naturally extends to arbitrary complete metric spaces.
+
+ <theorem>[Baire category theorem]
+  If $X$ is a complete metric space then $X$ is not meager. Moreover if $O$ is a nonempty open subset of $X$ then $O$ is not meager.\qed
+ </theorem>
+
+In particular the notions of meager and comeager sets make perfect sense in both $2^\omega$ and $\omega^\omega$. The proof of this general Baire category theorem is nearly identical to the proof of Theorem~\ref{thm-baire} with closed intervals replaced by closures of basic open sets $\overline{O_n}$. The completeness of $X$ is used to verify there is a point $x\in\bigcap\overline{O_n}$.
+
+<exerc>
+  Check that the topology on $A^\omega$ with basis consisting of all $V_s$ is really the same as the product topology.
+</exerc>
+
+<exerc>
+  Give an example of an open subset of $\omega^\omega$ which is not closed.
+</exerc>
+
+<exerc>
+  Show that the sequence space $A^\omega$ is homeomorphic to the cartesian product with itself $A^\omega\times A^\omega$.
+</exerc>
+
+<notes>
+  For introductory material on the combinatorics and topology of sequence space, see Kechris, Sections~2A and~2B. For another proof that the Baire space is homeomorphic to the irrationals, see Section~1 of Miller, *Descriptive set theory and forcing*.
+</notes>
+
+</section>
+<bibliography></bibliography>
+
+
+<script src="laml-scoskey.js"></script>
