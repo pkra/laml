@@ -3,13 +3,14 @@
   "version": "4.0.0",
   "description": "a lame joke about LaTeX and HTML",
   "main": "./src/worker.js",
-  "bin" : {
-    "laml" : "./bin/laml.js"
+  "bin": {
+    "laml": "./bin/laml.js"
   },
   "dependencies": {
     "commonmark": "^0.28.1",
     "jsdom": "^11.5.1",
-    "minimist": "^1.2.0"
+    "minimist": "^1.2.0",
+    "puppeteer": "^1.0.0"
   },
   "devDependencies": {
     "reload": "^2.2.2",
