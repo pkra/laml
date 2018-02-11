@@ -14,10 +14,10 @@ const bibliography = require('./bibliography.js')
 
 module.exports = function(document) {
   yamldata(document);
-  metadata(document);
+  const data = metadata(document);
   preamble(document);
   abstract(document);
-  statements(document);
+  statements(document, data.laml.statements);
   figures(document, false);
   names(document);
   // TODO should depend on cm.css?

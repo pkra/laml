@@ -1,10 +1,11 @@
 module.exports = function(document) {
   // handle metadata
-  const articleMeta = JSON.parse(document.querySelector('script[data-laml="metadata"]').text);
+  const metadata = JSON.parse(document.querySelector('script[data-laml="metadata"]').text);
+  if (!metadata) return;
   const articleInfo = document.createElement('section');
   articleInfo.classList.add('articleInfo');
   document.body.insertBefore(articleInfo, document.body.firstChild);
-  const articleTitle = articleMeta.title;
+  const articleTitle = metadata.title;
   if (articleTitle) {
     const title = document.querySelector('title');
     if (title) title.innerHTML = articleTitle;
@@ -17,7 +18,7 @@ module.exports = function(document) {
     heading.innerHTML = articleTitle;
     articleInfo.appendChild(heading);
   }
-  const articleAuthors = articleMeta.authors || [];
+  const articleAuthors = metadata.authors || [];
   for (let author of articleAuthors) {
     const name = author.name;
     const address = author.address;
@@ -26,7 +27,7 @@ module.exports = function(document) {
     authorP.innerHTML = name + ', ' + address + '.';
     articleInfo.appendChild(authorP);
   }
-  const keywords = articleMeta.keywords;
+  const keywords = metadata.keywords;
   const kw = document.createElement('p');
   kw.classList.add('keywords');
   kw.innerHTML = 'Keywords: ' + keywords.join(', ') + '.';
@@ -37,12 +38,12 @@ module.exports = function(document) {
 
   licensing.innerHTML =
     'Derived from <a href="' +
-    articleMeta.source +
+    metadata.source +
     '">' +
-    articleMeta.source +
+    metadata.source +
     '</a>, ' +
-    articleMeta.license +
+    metadata.license +
     ' and licensed as such.';
   articleInfo.appendChild(licensing);
-
+  return metadata;
 };
