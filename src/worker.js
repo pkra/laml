@@ -2,13 +2,20 @@ const laml = require('./laml.js');
 const {tex2jax} = require('./tex2jax.js');
 const commonmark = require('commonmark');
 
+const htmlHead = require('./html-head');
+const paragraphs = require('./paragaphs.js');
+
 const worker = function(window) {
   const document = window.document;
+  htmlHead(document);
+  paragraphs(document);
+
   window.tex2jax = tex2jax;
   window.tex2jax.config.doc = document;
   window.tex2jax.config.inlineMath.push(['$', '$']);
   window.tex2jax.config.processEscapes = true;
   window.tex2jax.PreProcess();
+
 
   const reader = new commonmark.Parser();
   const writer = new commonmark.HtmlRenderer();

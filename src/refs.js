@@ -15,11 +15,11 @@ module.exports = function(document) {
       continue;
     }
     // the node is whitespace. replace it with our defaults.
-    targetHeading = renamedNode.innerHTML = target
+    targetHeading = target
       .querySelector('h1, h2, h3, h4, h5, h6')
       .cloneNode(true);
     // strip blame
-    if (targetHeading.querySelector('.blame'))
+    if (targetHeading && targetHeading.querySelector('.blame'))
       targetHeading.removeChild(targetHeading.querySelector('.blame'));
     renamedNode.innerHTML = targetHeading.innerHTML;
   }

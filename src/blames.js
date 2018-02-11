@@ -7,6 +7,7 @@ module.exports = function(document) {
     const previous = blame.previousElementSibling;
     if (previous && (previous.classList.contains('name') || previous.tagName === 'NAME')) {
       const renamedNode = renameTag(document, blame, 'span', true);
+      previous.appendChild(document.createTextNode(' '));
       previous.appendChild(renamedNode);
     }
     // TODO look up correct heading level

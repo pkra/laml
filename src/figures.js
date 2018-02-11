@@ -10,6 +10,6 @@ module.exports = function(document, belowOrAbove) {
     heading.classList.add('name');
     heading.innerHTML = 'Figure ' + (index + 1);
     if (belowOrAbove) figure.insertBefore(heading, figure.firstChild);
-    else figure.insertBefore(heading, figure.querySelector('img').nextSibling);
+    else figure.insertBefore(heading, figure.firstChild);
   }
 };
