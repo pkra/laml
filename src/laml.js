@@ -1,5 +1,6 @@
 const { renameTag } = require('./helpers.js');
-const articleHead = require('./articleHead.js');
+const yamldata = require('./yamldata.js')
+const metadata = require('./metadata.js');
 const preamble = require('./preamble.js');
 const abstract = require('./abstract.js');
 const statements = require('./statements.js');
@@ -12,7 +13,8 @@ const notes = require('./notes.js');
 const bibliography = require('./bibliography.js')
 
 module.exports = function(document) {
-  articleHead(document);
+  yamldata(document);
+  metadata(document);
   preamble(document);
   abstract(document);
   statements(document);

@@ -1,6 +1,6 @@
 module.exports = function(document) {
   // handle metadata
-  const articleMeta = JSON.parse(document.getElementById('metadata').text);
+  const articleMeta = JSON.parse(document.querySelector('script[data-laml="metadata"]').text);
   const articleInfo = document.createElement('section');
   articleInfo.classList.add('articleInfo');
   document.body.insertBefore(articleInfo, document.body.firstChild);
