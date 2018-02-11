@@ -9,7 +9,7 @@ module.exports = function(document, belowOrAbove) {
     const heading = document.createElement('h2');
     heading.classList.add('name');
     heading.innerHTML = 'Figure ' + (index + 1);
-    if (belowOrAbove) figure.insertBefore(heading, figure.firstChild);
+    if (belowOrAbove) figure.insertBefore(heading, figure.children[1]);
     else figure.insertBefore(heading, figure.firstChild);
   }
 };
