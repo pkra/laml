@@ -207,7 +207,7 @@ tex2jax.prototype.startMatch = function (match, element) {
     } else if (match[0].substr(0, 6) === "\\begin") { // \begin{...}
         this.search = {
             end: "\\end{" + match[1] + "}",
-            mode: "TeX",
+            mode: "tex; mode=display",
             pcount: 0,
             open: element,
             olen: 0,
