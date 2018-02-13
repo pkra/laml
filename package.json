@@ -21,6 +21,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "npx webpack",
     "watch": "webpack --watch",
+    "live": "webpack --watch & npx reload -b -s ",
     "convert": "node ./src/index.js"
   },
   "author": "Peter Krautzberger, Samuel Coskey",
