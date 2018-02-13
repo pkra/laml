@@ -835,7 +835,8 @@ As was the case with the cardinals we introduced in the previous section, assumi
 All three of the $\sigma$-ideals we have introduced have a basis of Borel sets. For $\Ksigma$ this is clear because $\sigma$-compact sets are Borel. For $\Meager$ any meager set is contained in a countable union of *closed* nowhere dense sets, which are Borel. Finally for $\Null$, note that if $A$ is null then for all $n$ there is a Borel set $A_n$ such that $A\subset A_n$ and $m(A_n)\gt 1/n$. It follows that $A$ is contained in the Borel null set $\bigcap A_n$.
 
 <rem>
-  There can exist proper $\sigma$-ideals containing the singletons that don't have a basis of size $\leq\mathfrak c$. For example, it is consistent that the ideal $\mathcal{SN}$ of *strongly null* sets has $\cof(\mathcal{SN})=\aleph_2$ while $\mathfrak c=\aleph_1$. [ref] % yorioka
+  There can exist proper $\sigma$-ideals containing the singletons that don't have a basis of size $\leq\mathfrak c$. For example, it is consistent that the ideal $\mathcal{SN}$ of *strongly null* sets has $\cof(\mathcal{SN})=\aleph_2$ while $\mathfrak c=\aleph_1$. [ref]
+  <!-- % yorioka -->
 </rem>
 
 We next establish the basic relationships between the four cardinal characteristics associated with $\mathcal I$.
@@ -866,6 +867,12 @@ The conclusions of the two lemmas are summarized in <ref target="fig:ideal"></re
       edge (non) edge (cov);
     \node [right=of cof] {$\mathfrak{c}$} edge (cof);
   </tikzpicture> -->
+  $$\require{AMScd}
+  \begin{CD}
+  @. \mathsf{non}(\mathcal{I})@<<< \mathsf{cof}(\mathcal{I}) @<<< \mathfrak{c} \\
+  @.     @VVV                   @VVV\\
+  \aleph_1  @<<< \mathsf{add}(\mathcal{I})@<<< \mathsf{cov}(\mathcal{I})
+  \end{CD}$$
   <figcaption>The relationships between the cardinal characteristics of $\mathcal I$, assuming $\mathcal I$ satisfies the hypotheses of the two lemmas. In the figure, the arrow $\leftarrow$ represents the inequality $\leq$.</figcaption>
 </figure>
 
@@ -933,13 +940,69 @@ Although this result shows that category and measure are very different in terms
     \node (cofn) [above=2 of nonn] {$\cof(\Null)$} edge (cofm) edge (nonn);
     \node (c) [right=of cofn] {$\mathfrak c$} edge (cofn);
   </tikzpicture> -->
+  <table align="center">
+    <tbody><tr>
+    <td></td>
+    <td></td>
+    <td>${\displaystyle \operatorname {cov} ({\mathcal {L}})}$</td>
+    <td>$\longrightarrow $</td>
+    <td>${\displaystyle\operatorname {non} ({\mathcal {K}})}$</td>
+    <td>${\displaystyle\longrightarrow }$</td>
+    <td>${\displaystyle\operatorname {cov} ({\mathcal {K}})}$</td>
+    <td>${\displaystyle\longrightarrow }$</td>
+    <td>${\displaystyle \operatorname {cof} ({\mathcal {L}})}$</td>
+    <td>${\displaystyle \longrightarrow}$</td>
+    <td>${\displaystyle 2^{\aleph _{0}}}$</td>
+    </tr>
+    <tr align="center">
+    <td></td>
+    <td></td>
+    <td rowspan="3">${\displaystyle {\Bigg \uparrow }}$</td>
+    <td></td>
+    <td>${\displaystyle \uparrow }$</td>
+    <td></td>
+    <td>${\displaystyle \uparrow }$</td>
+    <td></td>
+    <td rowspan="3">${\displaystyle {\Bigg \uparrow }}$</td>
+    </tr>
+    <tr align="center">
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>${\displaystyle {\mathfrak {b}}}$</td>
+    <td>${\displaystyle \longrightarrow }$</td>
+    <td>${\displaystyle {\mathfrak {d}}}$</td>
+    </tr>
+    <tr align="center">
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>${\displaystyle \uparrow }$</td>
+    <td></td>
+    <td>${\displaystyle \uparrow }$</td>
+    </tr>
+    <tr>
+    <td>${\displaystyle \aleph _{1}}$</td>
+    <td>${\displaystyle \longrightarrow }$</td>
+    <td>${\displaystyle \operatorname {add} ({\mathcal {L}})}$</td>
+    <td>${\displaystyle \longrightarrow }$</td>
+    <td>${\displaystyle \operatorname {add} ({\mathcal {K}})}$</td>
+    <td>${\displaystyle \longrightarrow }$</td>
+    <td>${\displaystyle\operatorname {cov} ({\mathcal {K}})}$</td>
+    <td>${\displaystyle \longrightarrow }$</td>
+    <td>${\displaystyle\operatorname {non} ({\mathcal {L}})}$</td>
+    </tr>
+    </tbody></table>
+    <p data-height="265" data-theme-id="0" data-slug-hash="ZrJyvo" data-default-tab="result" data-user="pkra" data-embed-version="2" data-pen-title="Cichoń's diagram using dagre-d3 " class="codepen">See the Pen <a href="https://codepen.io/pkra/pen/ZrJyvo/">Cichoń's diagram using dagre-d3 </a> by Peter Krautzberger (<a href="https://codepen.io/pkra">@pkra</a>) on <a href="https://codepen.io">CodePen</a>.</p>
+<script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
   <figcaption>Cichoń's diagram of cardinal characteristics. Here as usual the arrow $\leftarrow$ represents the inequality $\leq$.</figcaption>
 </figure>
 
 <rem>
   In Cichoń's diagram, the $\Meager$ symbol can stand for the meager ideal on any one of the spaces $\RR$, $2^\omega$, or $\omega^\omega$. Indeed, we have already seen in <ref target="prop:cantor-baire-homeo"></ref> that $\RR$ and $\omega^\omega$ can be made homeomorphic after removing a countable subset of each. In <ref target="exerc:meager-bij"></ref>, we show that the same is true of $\RR$ and $2^\omega$.
 
-  Similarly, the $\Null$ symbol can stand for the null ideal on either $\RR$ or $2^\omega$; see <ref target="exerc:null-bij"></ref>. In fact, it is possible to define a natural measure on $\omega^\omega$, and then $\Null$ can stand for the null ideal on $\omega^\omega$ too. [ref] % blass
+  Similarly, the $\Null$ symbol can stand for the null ideal on either $\RR$ or $2^\omega$; see <ref target="exerc:null-bij"></ref>. In fact, it is possible to define a natural measure on $\omega^\omega$, and then $\Null$ can stand for the null ideal on $\omega^\omega$ too. [ref]
+  <!-- % blass -->
 </rem>
 
 <rem>
@@ -984,7 +1047,7 @@ We conclude this section with proofs of four more fairly easy inequaleties. The 
   Show that $\cov(\Meager)\leq\mathfrak d$.
 </exerc>
 
-% See Bartoszynski
+<!-- % See Bartoszynski -->
 
 
 </section>
@@ -1020,7 +1083,7 @@ It is worth observing that the four cardinals come in two dual pairs. Here, if $
 
 <defn>
   Let $R$ and $S$ be relations, and to avoid excessive notation, write $\dom(R)$ and $\cod(R)$ for the demain and codomain of $R$, and similarly for $S$. A *morphism* from $R$ to $S$ is a pair of maps
-\[<cases\gt \psi\colon\cod(R)\to\cod(S)\\\phi\colon\dom(S)\to\dom(R)</cases>
+\[\begin{cases} \psi\colon\cod(R)\to\cod(S)\\\phi\colon\dom(S)\to\dom(R)\end{cases}
 \]
 such that the following holds
 \[\phi(c)\mathrel{R}d\implies c\mathrel{S}\psi(d)
@@ -1029,7 +1092,7 @@ for all $c\in\dom(S)$ and $d\in\cod(R)$.
 </defn>
 
 The definition in a sense implies that the following diagram ``commutes.'' Of course, the $R$ and $S$ edges symbolize relations, not functions, so this is only a partial analogy.
-<center>
+<!-- <center>
 <tikzpicture>
   \node (domr) {$\dom(R)$};
   \node (codr) [above=of domr] {$\cod(R)$}
@@ -1040,7 +1103,13 @@ The definition in a sense implies that the following diagram ``commutes.'' Of co
   edge[<-] node[above]{$\psi$} (codr)
   edge[<-,dashed] node[right]{$S$} (doms);
 </tikzpicture>
-</center>
+</center> -->
+\begin{array}{ccc}
+\mathsf{cod}(\mathcal{R}) &amp; \stackrel{\psi}{\longrightarrow}{} &amp; \mathsf{cod}(\mathcal{S}) \\
+^R {\large &#8673;} &amp; &amp; {\large&#8673;} ^S \\
+\mathsf{dom}(\mathcal{R}) &amp; \underset{\varphi}{\longleftarrow} &amp; \mathsf{dom}(\mathcal{S}) \\
+\end{array}
+
 In any case, the definition of a morphism is custom-designed to give us the following two key properties.
 
 <prop id="prop:morphism">
@@ -1060,7 +1129,7 @@ For each of the inequalities between cardinal characteristics that we have seen,
 
 <example>
   In <ref target="lem:diamond"></ref>, where we showed that $\cov(\mathcal I)\leq\cof(\mathcal I)$, we could have used the morphism from $\subset$ relation on $\mathcal I$ to the $\in$ relation on $X\times\mathcal I$ given by the maps
-  \[<cases\gt \phi(x)=\{x\}\\\psi(B)=B</cases>
+  \[\begin{cases} \phi(x)=\{x\}\\\psi(B)=B\end{cases}
   \]
   Indeed, it is trivial to see that $\phi(x)\subset B\implies x\in\psi(B)$. The fact that $\psi$ can be taken to be the identity reflects the fact that if $\mathcal F$ is a basis for $\mathcal I$ then the very same $\mathcal F$ is also a covering family.
 
@@ -1069,7 +1138,7 @@ For each of the inequalities between cardinal characteristics that we have seen,
 
 <example>
   In <ref target="lem:covn-nonm"></ref>, where we showed that $\cov(\Null)\leq\non(\Meager)$, we could have used the following morphism from the $\not\ni$ relation on $\Meager\times2^\omega$ to the $\in$ relation on $2^\omega\times\Null$. Again we let $A$ be a fixed null comeager set.
-  \[<cases\gt \phi(x)=x-A^c\\\psi(x)=x+A</cases>
+  \[\begin{cases} \phi(x)=x-A^c\\\psi(x)=x+A\end{cases}
   \]
   To check that it is a morphism, $\phi(x)\not\ni y$ implies $x-y\in A$, which in turn implies that $x\in y+A=\psi(y)$, as required. Recall that the function $\psi(x)=x+A$ featured prominently in our original proof: for each $X\notin\Meager$ we formed the family of translates $\{x+A\mid x\in X\}$.
 
@@ -1151,7 +1220,7 @@ The proof is elementary (though slightly technical), and we leave it for <ref ta
 
 <proof>
   We prove the second inequality by finding a morphism from the $\subset$ relation on $\Meager$ to the $\prec$ relation on interval partitions. We therefore obtain the first inequality as a consequence of duality. For this it is enough to consider the $\subset$ relation just on the basis of meager sets of the form $A=\Diff_Q(y)$. We let:
-  \[<cases\gt \phi(P)=\Diff_P(0)\\\psi(\Diff_Q(y))=Q\text{.}</cases>
+  \[\begin{cases} \phi(P)=\Diff_P(0)\\\psi(\Diff_Q(y))=Q\text{.}\end{cases}
   \]
   Then by <ref target="prop:engulf"></ref>, $\Diff_P(0)\subset\Diff_Q(y)$ in particular implies that $P\prec Q$, and hence $\phi(P)\subset A\implies P\prec\psi(A)$, as desired.
 </proof>
@@ -1184,11 +1253,11 @@ We conclude this section with a further result that gives much more information 
 <exerc id="exerc:homeo">
   Let $n\in\NN$ and $s,s'\in\omega^n$. Show that there exists a homeomorphism $\phi\colon\omega^\omega\to\omega^\omega$ such that $s\subset x$ iff $s'\subset\phi(x)$.
 </exerc>
-
+<!--
 % blass sec4
 % blass sec5
 % bartoszynski sec 2.2
-
+ -->
 
 </section>
 <section><name>Bartoszyński's theorem</name>
@@ -1301,7 +1370,7 @@ This concludes the proof of Bartoszyński's theorem, as well as <ref target="thm
 </chapter>
 <chapter>
   <name>Le tour de forcing</name>
-
+<!--
 %<section><name>Models of set theory</name>
 
 % Very brief tour of logic, axioms, and models of axioms
@@ -1311,14 +1380,14 @@ This concludes the proof of Bartoszyński's theorem, as well as <ref target="thm
 % Vrey brief tour of ZFC
 
 % reflection theorem
-
+ -->
 <section id="sec:idea-forcing">The idea of forcing</section>
 
 In this part, we will assume familiarity with the notions of statement, theory, and model. As a reminder, a *formula* is simply a mathematical assertion that can be expressed using the ordinary logical symbols (and, or, not, quantifiers, variables) and non-logical symbols (in our case, $\in$, $\cup$, $\mathcal P$, etc). A *sentence* is a formula in which every variable is quantified, and a *theory* is a collection of sentences. If $T$ is a theory, then a *model* of $T$ is a set, together with interpretations of the non-logical symbols of $T$, in which all the sentences in $T$ hold true.
 
 We are interested in the theory *ZFC*, which consists of the standard axioms for set theory, that govern how the $\in$ relation behaves. G\"odel's incompleteness theorem implies that for some sentences $\phi$, the models of ZFC do not all agree about whether $\phi$ is true or false. A *theorem* is a sentence that holds true in every model of ZFC. A sentence is *independent* of ZFC if it holds true in some models, and false in others. One example that we have mentioned already is CH, the sentence which says that $\mathfrak c=\aleph_1$.
 
-% In the following (and rest of the chapter) should we use cantor space instead?
+<!-- % In the following (and rest of the chapter) should we use cantor space instead? -->
 
 Forcing is a method of adding new sets to a given model $V$ of ZFC, to obtain a larger model $W$ of ZFC. By carefully choosing *how* we add the new sets, we may be able to *force* a given statement to hold true in $W$. For example if $\mathcal F\subset\omega^\omega$, it is possible to add a new element $g\in\omega^\omega$ that is a bound for $\mathcal F$, even if $\mathcal F$ was unbounded to begin with. This is a powerful move, and when iterated it can have an effect on the value of the cardinal $\mathfrak b$.
 
@@ -1384,10 +1453,10 @@ When we make forcing rigorous, we will show that under appropriate hypotheses, a
 </example>
 
 This example brings us back to our discussion of forcing CH to be false in a forcing extension. We have just seen how to add one new element to $\omega^\omega$; if we were to repeat the process we can add many new elements to $\omega^\omega$.
-
+<!--
 % Marker for basic logic and models
 % Kunen, IV.1 for forcing defs
-
+ -->
 
 </section>
 <section><name>Martin's axiom</name>
@@ -1470,7 +1539,7 @@ We close this section with a result showing the effect of MA on properties of th
 
   Now by MA, we can find a filter $G\subset\PP$ such that $G$ meets $D_A$ for every $A\in\mathcal F$. Then the sets $\overline{I}$ for $I\in G$ have the finite intersection property, and it follows from the completeness of $\RR$ that there is a point $x\in\bigcap\set{\overline{I}\mid I\in G}$. Then if $A\in\mathcal F$, since $G\cap D_A\neq\emptyset$ we can find a positive-length interval $I$ such that $I\in G$ and $\overline{I}\cap A=\emptyset$. That is, we have $x\in\overline{I}$ and $\overline{I}\cap A=\emptyset$, and so $x\notin A$. We conclude that $x$ is not an element of $\bigcup\mathcal F$, as desired.
 </proof>
-
+<!--
 % <proof>
 %   First recall from <ref target="prop:meager-diff"></ref> that a subset $A\subset2^\omega$ is meager if and only if it is contained in a set of the form $\Diff(x,P)$ for $x\in2^\omega$ and $P$ an interval partition. It follows that $\cov(\Meager)$ is the least cardinality of a family $\mathcal F$ of pairs $(y,P)$ such that for all $x\in2^\omega$ there exists $(y,P)\in\mathcal F$ such that $x$ strongly differs from $y$ on $P$.
 
@@ -1487,7 +1556,7 @@ We close this section with a result showing the effect of MA on properties of th
 % jech, Sec16 for covm
 % blass, forcing section for a generalization of "solving" forcing
 
-
+ -->
 </section>
 <section><name>Martin's axiom and Cichoń's diagram</name>
 
