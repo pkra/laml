@@ -12,6 +12,7 @@ module.exports = function(document, config = defaultConfig) {
   // convert statements to section
   const selector = [];
   for (let key in config) selector.push(key);
+  if (selector.length === 0) return;
   const statements = document.querySelectorAll(selector.join(','));
   let statement_counter = 0;
   for (let statement of statements) {
