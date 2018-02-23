@@ -4,6 +4,18 @@ A lame joke on LaTeX and HTML.
 
 A bit of JS that converts a bunch of tags into something perhaps useful.
 
+## So what's this?
+
+A while ago, @scoskey asked @pkra got talking about authoring long form for the web when you have a LaTeX background.
+
+@scoskey suggested that the key may be in the experience of having a text editor open (perhaps with a live preview side-by-side), writing somewhat raw code, having a bit of magic to transform said code into something nice, having the ability to modify existing transformations and adding your own.
+
+@pkra claimed that this is not hard nowadays and @scoskey called him out on it.
+
+This is the result.
+
+*Caveat emptor* this is the result of a few hours.
+
 ## Demo
 
 [Vince Vatter, An Erdős-Hajnal analogue for permutation classes"](./samples/vatter/vatter.html) ([source](https://github.com/pkra/laml/blob/master/samples/vatter/vatter.html))
@@ -18,12 +30,12 @@ Some simple components
 * pre-processing
   * MathJax-conformant TeX pre-processing
   * CommonMarkJS pre-processing
-* article header: via json
-  * pick up json metadata
+* article header: via json or yaml
+  * pick up yaml or json metadata
   * add a section, heading, and paragraphs with information
 *  abstract: `<abstract>`
   * rename to `<section>` and add a class.
-*  theorem-environments via custom tag names (right now: `<theorem>, <lemma>, <proposition>, <corollary>, <proof>`)
+*  theorem-environments via custom tag names (default: `<theorem>, <lemma>, <proposition>, <corollary>, <proof>`, customizable via metadata)
   * select all suitable elements
   * rename to sections and add suitable classes
   * keep a counter for auto-numbering
@@ -58,10 +70,11 @@ See [the issues](https://github.com/pkra/laml/issues/).
   * put newly opened browser window and editor with the HTML file side-by-side
   * just save the HTML to refresh the browser
 * server-side conversion
-  * Run `$ node index.js input.html output.html`
+  * Run `$ node bin/mjextract input.html` to generate a mathjax store (repeat whenever equations change)
+  * Run `$ node bin/laml.js input.html output.html`
   * Open `output.html`
 * when developing, it often helps to have automatic rebuilds and a server with live-reload
-  * e.g., `$ npm run watch & npx reload -b -s vatter.html`
+  * e.g., `$ npm run live ./samples/vatter/vatter.html` combines both of the above
 
 
 ## Tips and tools
