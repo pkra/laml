@@ -20,6 +20,12 @@ const input = fs.readFileSync(argv.i).toString();
 const outputname = argv.o;
 const isFragment = Boolean(argv.f);
 
+const store = JSON.parse(fs.readFileSync(path.join(path.dirname(argv.i), 'store.json')));
+if (!store) {
+  console.log('No store found. Please run mjextract.');
+  process.exit(1);
+}
+
 const dom = new JSDOM(input, {
   virtualConsole: virtualConsole,
   userAgent: 'Node.js'
@@ -27,6 +33,19 @@ const dom = new JSDOM(input, {
 const window = dom.window;
 
 worker(window);
+
+const equations = window.document.querySelectorAll('script[type^="math/tex"]');
+for (let equation of equations) {
+  const type = (equation.getAttribute('type') === 'math/tex') ? "inline-TeX" : "TeX";
+  const tex = equation.text;
+  const key = type +'%' + tex;
+  let svg = '';
+  if (store[key]) svg = store[key].svg;
+  const span = window.document.createElement('span');
+  span.setAttribute('class', type);
+  span.innerHTML = svg;
+  equation.parentNode.replaceChild(span, equation);
+}
 
 // move anything that ends up in the head (e.g., leading script tags) back to the body
 if (isFragment){
