@@ -7,6 +7,7 @@ virtualConsole.sendTo(console);
 const { JSDOM } = jsdom;
 
 const {worker} = require('../src/worker.js');
+const stylesheet = require('../src/stylesheet.js');
 
 // process CLI arguments
 const argv = require('minimist')(process.argv.slice(2));
@@ -32,6 +33,7 @@ const dom = new JSDOM(input, {
 });
 const window = dom.window;
 
+stylesheet(window.document);
 worker(window);
 
 const equations = window.document.querySelectorAll('script[type^="math/tex"]');
