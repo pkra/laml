@@ -1,51 +1,69 @@
 <meta charset="UTF-8">
 <script type="application/yaml">
-  title: "Category, measure, and forcing, Math 522 lecture notes, Fall, 2014"
-  authors:
-    - name: "Samuel Coskey"
-      address: "Boise State"
-    - name: "Erik Holmes"
-      address: "Boise State"
-  date: "2018-02-04"
-  keywords: ["category", "measure", "forcing"]
-  license: "By special permission of the authors"
-  source: "https://github.com/scoskey/m522/commit/179e0daffd3b12264eafc7c7de6ff37c7d230375"
-  laml:
-    statements:
-      thm:
-         fullName: Theorem
-      lem:
-         fullName: Lemma
-      defn:
-         fullName: Definition
-      rem:
-         fullName: Remark
-      exerc:
-         fullName: Exercise
-      notes:
-         fullName: Notes
-      prop:
-         fullName: Proposition
-      cor:
-         fullName: Corollary
-      example:
-         fullName: Example
-  </script>
+title: "Category, measure, and forcing, Math 522 lecture notes, Fall, 2014"
+authors:
+  - name: "Samuel Coskey"
+    address: "Boise State"
+  - name: "Erik Holmes"
+    address: "Boise State"
+date: "2018-02-04"
+keywords: ["category", "measure", "forcing"]
+license: "By special permission of the authors"
+source: "https://github.com/scoskey/m522/commit/179e0daffd3b12264eafc7c7de6ff37c7d230375"
+laml:
+  statements:
+    thm:
+      fullName: Theorem
+    lem:
+      fullName: Lemma
+    defn:
+      fullName: Definition
+    rem:
+      fullName: Remark
+    exerc:
+      fullName: Exercise
+    notes:
+      fullName: Notes
+    prop:
+      fullName: Proposition
+    cor:
+      fullName: Corollary
+    example:
+      fullName: Example
+</script>
 
 <link rel="stylesheet" href="../vatter/laml.css">
 
 <preamble>
-    \[ \newcommand{\set}[1]{\left\{\,#1\,\right\}} \newcommand{\NN}{\mathbb N} \newcommand{\PP}{\mathbb P} \newcommand{\QQ}{\mathbb
-    Q} \newcommand{\RR}{\mathbb R} \newcommand{\BB}{\mathbb B} \newcommand{\Null}{\mathcal N} \newcommand{\Meager}{\mathcal
-    M} \newcommand{\Ksigma}{\mathcal K_\sigma} \newcommand{\forces}{\Vdash} \DeclareMathOperator{\dom}{dom} \DeclareMathOperator{\cod}{cod}
-    \DeclareMathOperator{\rng}{rng} \DeclareMathOperator{\cl}{cl} \DeclareMathOperator{\rk}{rk} \DeclareMathOperator{\add}{\mathsf{add}}
-    \DeclareMathOperator{\non}{\mathsf{non}} \DeclareMathOperator{\cov}{\mathsf{cov}} \DeclareMathOperator{\cof}{\mathsf{cof}}
-    \DeclareMathOperator{\Diff}{Diff} \DeclareMathOperator{\Con}{Con} \DeclareMathOperator{\Fn}{Fn} \DeclareMathOperator{\Nonnull}{Nonnull}
-    \]
+  \[\newcommand{\set}[1]{\left\{\,#1\,\right\}}
+  \newcommand{\NN}{\mathbb N}
+  \newcommand{\PP}{\mathbb P}
+  \newcommand{\QQ}{\mathbb Q}
+  \newcommand{\RR}{\mathbb R}
+  \newcommand{\BB}{\mathbb B}
+  \newcommand{\Null}{\mathcal N}
+  \newcommand{\Meager}{\mathcal M}
+  \newcommand{\Ksigma}{\mathcal K_\sigma}
+  \newcommand{\forces}{\Vdash}
+  \DeclareMathOperator{\dom}{dom}
+  \DeclareMathOperator{\cod}{cod}
+  \DeclareMathOperator{\rng}{rng}
+  \DeclareMathOperator{\cl}{cl}
+  \DeclareMathOperator{\rk}{rk}
+  \DeclareMathOperator{\add}{\mathsf{add}}
+  \DeclareMathOperator{\non}{\mathsf{non}}
+  \DeclareMathOperator{\cov}{\mathsf{cov}}
+  \DeclareMathOperator{\cof}{\mathsf{cof}}
+  \DeclareMathOperator{\Diff}{Diff}
+  \DeclareMathOperator{\Con}{Con}
+  \DeclareMathOperator{\Fn}{Fn}
+  \DeclareMathOperator{\Nonnull}{Nonnull}
+  \]
 </preamble>
 
 <chapter>
 <name>Introduction</name>
+
 This course is about set theory, and its use in the study of the real line. By way of motivation, consider the question of measuring the *size* of a given set of real numbers. The word "size" can mean many different things, depending on the context. To see what I mean, consider these three important examples.
 
 * To a set theorist or combinatorist, the simplest notion of size is
@@ -67,24 +85,22 @@ With the tool of forcing in hand, we will return to the notions of measure and c
 <section>
 <name>The real number system</name>
 
-
-
 <defn>
 
-The *real number system* is a complete ordered field. That is, it is a set $\RR$ together with distinguished elements $0,1$, operations $+,\times$ and an ordering $\lt $ satisfying the following rules.
+  The *real number system* is a complete ordered field. That is, it is a set $\RR$ together with distinguished elements $0,1$, operations $+,\times$ and an ordering $\lt $ satisfying the following rules.
 
-* It is a *field*: it satisfies the associative, commutative, and distributive laws, $0$ is the additive identity and $1$ is the multiplicative identity;
-* It is an *ordered* field: $\lt $ is a strict total order, $a\lt b$ implies $a+c\lt b+c$, and if $c$ is positive then $a\lt b$ implies $ac\lt bc$;
-* It is *complete*: if $A\subset\RR$ has an upper bound, then it has a least upper bound (supremum).
+  * It is a *field*: it satisfies the associative, commutative, and distributive laws, $0$ is the additive identity and $1$ is the multiplicative identity;
+  * It is an *ordered* field: $\lt $ is a strict total order, $a\lt b$ implies $a+c\lt b+c$, and if $c$ is positive then $a\lt b$ implies $ac\lt bc$;
+  * It is *complete*: if $A\subset\RR$ has an upper bound, then it has a least upper bound (supremum).
 
 </defn>
 
 <rem>
-It is not difficult to prove that any two complete ordered fields are isomorphic to each other, so it makes sense to define the real number system as the unique such object.
+  It is not difficult to prove that any two complete ordered fields are isomorphic to each other, so it makes sense to define the real number system as the unique such object.
 </rem>
 
 <rem>
-The above definition of the real number system is an abstract, axiomatic definition. That is, it tells you how real numbers behave, but it leaves it up to your imagination what a real number really is. In fact, we have some choice in this matter. For example we can view the real numbers as decimal strings or binary strings. For our set-theoretic purposes, all that matters is that we give one construction of the real numbers that works.
+  The above definition of the real number system is an abstract, axiomatic definition. That is, it tells you how real numbers behave, but it leaves it up to your imagination what a real number really is. In fact, we have some choice in this matter. For example we can view the real numbers as decimal strings or binary strings. For our set-theoretic purposes, all that matters is that we give one construction of the real numbers that works.
 </rem>
 
 The first to give an explicit and rigorous construction of the real number system was Dedekind, who did so in the 19th century. Here is how his construction worked. First we will take the construction of the rational number system for granted. It is simply the set of fractions whose numerator is an integer and whose denominator is a nonzero natural number.
@@ -100,52 +116,53 @@ So all we have to do to define real numbers was to define cuts. To avoid circula
 To complete the construction one must say how the $+,\times$ operations and $\lt$ relation can be defined just in terms of cuts, and then prove that they satisfy the axioms of a complete ordered field. For example, one defines $r+r'$ to be the supremum of the set $\set{q+q'\mid q\in r,q'\in r'}$, and one defines $r\lt r'$ if and only if $r\subset r'$ and $r\neq r'$. We omit the details of verifying that these definitions work.
 
 <rem>
-It is interesting to compare Dedekind's construction with the modern decimal number construction (which we omit). The decimal number construction is practical for calculations, but has some oddities. For example some numbers have two decimal representations, like $.999\cdots$ and $1$. Also we made an arbitrary decision to use decimal expansions as opposed to any other base. Dedekind's construction is beautiful because it is completely uniform and does not involve any arbitrary decisions.
+  It is interesting to compare Dedekind's construction with the modern decimal number construction (which we omit). The decimal number construction is practical for calculations, but has some oddities. For example some numbers have two decimal representations, like $.999\cdots$ and $1$. Also we made an arbitrary decision to use decimal expansions as opposed to any other base. Dedekind's construction is beautiful because it is completely uniform and does not involve any arbitrary decisions.
 </rem>
 
 <defn>
-A set $A$ of real numbers is said to be *countable* if its elements can be enumerated using natural number indices. In other words, $A$ is countable if there exists a sequence $(a_n)_{n\in\NN}$ such that $A=\set{a_n\mid n\in\NN}$.
+  A set $A$ of real numbers is said to be *countable* if its elements can be enumerated using natural number indices. In other words, $A$ is countable if there exists a sequence $(a_n)_{n\in\NN}$ such that $A=\set{a_n\mid n\in\NN}$.
 </defn>
 
 Note that this definition implies that finite sets are countable. If we wish to emphasize that a particular countable set is infinite, we will use the term *countably infinite*. A set that is not countable is called *uncountable*. We now give Cantor's famous proof of the fact that the set of all real numbers is uncountable. The argument goes by contradiction and uses a recursive construction to reach a contradiction one step at a time. Such arguments are often called "diagonal", for reasons we shall see later on.
 
 <thm id="thm-cantor">
-<blame>Cantor</blame>
-The set of all real numbers is uncountable.
+  <blame>Cantor</blame>
+  The set of all real numbers is uncountable.
 </thm>
 
 <proof>
-Suppose towards a contradiction that the set of all real numbers is countable. Then there exists a sequence $(a_n)_{n\in\NN}$ such that $\RR=\set{a_n\mid n\in\NN}$. Our strategy will be to inductively construct a decreasing sequence of closed intervals $I_n=[l_n,r_r]$ such that for all $n$, $a_n\notin I_n$. Then if $r$ lies in the intersection of these intervals, $r$ cannot be equal to $a_n$ for any $n$, a contradiction.
+  Suppose towards a contradiction that the set of all real numbers is countable. Then there exists a sequence $(a_n)_{n\in\NN}$ such that $\RR=\set{a_n\mid n\in\NN}$. Our strategy will be to inductively construct a decreasing sequence of closed intervals $I_n=[l_n,r_r]$ such that for all $n$, $a_n\notin I_n$. Then if $r$ lies in the intersection of these intervals, $r$ cannot be equal to $a_n$ for any $n$, a contradiction.
 
-The construction itself is straightforward. For the base case let $I_1=[l_1,r_1]$ be any interval which omits $a_1$. For the inductive step, if $I_{n-1}$ has been defined, let $I_n=[l_n,r_n]$ be any subinterval of $I_{n-1}$ which omits $a_n$.
+  The construction itself is straightforward. For the base case let $I_1=[l_1,r_1]$ be any interval which omits $a_1$. For the inductive step, if $I_{n-1}$ has been defined, let $I_n=[l_n,r_n]$ be any subinterval of $I_{n-1}$ which omits $a_n$.
 
-We can now find a point in the intersection of the $I_n$ using the completeness property. First observe that since $I_n\subset I_{n-1}$ for all $n$, the set of left endpoints $\set{l_n\mid n\in\NN}$ is bounded above by any and all of the right endpoints $r_n$. By the completeness property, the set of left endpoints has a least upper bound $x$. Since $x$ is an upper bound for $\set{l_n\mid n\in\NN}$, we have $l_n\leq x$ for all $n$. Since $x$ is the least possible upper bound for $\set{l_n\mid n\in\NN}$, we have $x\leq r_n$ for all $n$. Therefore we have $x\in[l_n,r_n]=I_n$ for all $n$.
+  We can now find a point in the intersection of the $I_n$ using the completeness property. First observe that since $I_n\subset I_{n-1}$ for all $n$, the set of left endpoints $\set{l_n\mid n\in\NN}$ is bounded above by any and all of the right endpoints $r_n$. By the completeness property, the set of left endpoints has a least upper bound $x$. Since $x$ is an upper bound for $\set{l_n\mid n\in\NN}$, we have $l_n\leq x$ for all $n$. Since $x$ is the least possible upper bound for $\set{l_n\mid n\in\NN}$, we have $x\leq r_n$ for all $n$. Therefore we have $x\in[l_n,r_n]=I_n$ for all $n$.
 
-Since $x$ lies in $I_n$ for all $n$, and since we chose $I_n$ in such a way that it omits $a_n$, we know that $x\neq a_n$ for all $n$. This contradicts the hypothesis that $\RR=\set{a_n\mid n\in\NN}$, and concludes the proof.
+  Since $x$ lies in $I_n$ for all $n$, and since we chose $I_n$ in such a way that it omits $a_n$, we know that $x\neq a_n$ for all $n$. This contradicts the hypothesis that $\RR=\set{a_n\mid n\in\NN}$, and concludes the proof.
 </proof>
 
 This argument appears in one form or another numerous times throughout elementary analysis and set theory. We shall next see it in the proof of the Baire category theorem.
 
 <exerc>
-With the definition of $r+r'$ for Dedekind cuts, show that addition is commutative and associative.
+  With the definition of $r+r'$ for Dedekind cuts, show that addition is commutative and associative.
 </exerc>
 
 <exerc>
-Define multiplication $r\times r'$ for Dedekind cuts, and show that it agrees with multiplication for rational numbers. [Hint: consider four cases when $r,r'$ are negative or nonnegative.]
+  Define multiplication $r\times r'$ for Dedekind cuts, and show that it agrees with multiplication for rational numbers. [Hint: consider four cases when $r,r'$ are negative or nonnegative.]
 </exerc>
 
 <exerc>
-Let $A$ be a set of real numbers containing a positive-length interval. Show that $A$ is uncountable.
+  Let $A$ be a set of real numbers containing a positive-length interval. Show that $A$ is uncountable.
 </exerc>
 
 <notes>
-Although the material in this section is standard and can be located in most any analysis book, an excellent introduction is *Understanding Analysis* by Stephen Abbott. For the completeness axiom see Abbott, Section~1.3. For Cantor's theorem see Abbott, Section~1.4. For Dedekind cuts see Abbott, Section~8.4.
+  Although the material in this section is standard and can be located in most any analysis book, an excellent introduction is *Understanding Analysis* by Stephen Abbott. For the completeness axiom see Abbott, Section&nbsp;1.3. For Cantor's theorem see Abbott, Section&nbsp;1.4. For Dedekind cuts see Abbott, Section&nbsp;8.4.
 </notes>
 
-    </section>
+</section>
 
 <section>
 <name>Baire category theory</name>
+
 <defn>
   A set of real numbers $A$ is said to be *nowhere dense* if every positive-length interval $I$ contains a positive-length interval $J$ such that $J$ is disjoint from $A$.
 </defn>
@@ -202,17 +219,17 @@ The terminology "nowhere dense" may sound strange at first, but it is justified 
 <prop id="prop-nwd-equiv">
   Let $A$ be a set of real numbers. The following are equivalent.
 
-1. $A$ is nowhere dense;
-1. $\cl(A)$ (the topological closure of $A$) has no interior;
-1. for every nonempty open set $O$, we have that $A$ is not dense in $O$.
+  1. $A$ is nowhere dense;
+  2. $\cl(A)$ (the topological closure of $A$) has no interior;
+  3. for every nonempty open set $O$, we have that $A$ is not dense in $O$.
 
 </prop>
 
 The proof is requested in <ref target="exerc-nwd-equiv"></ref>.
 
- <thm>
+<thm>
   The class of nowhere dense sets is closed under the operations of subset, union, and closure.
- </thm>
+</thm>
 
 <proof>
   Preservation to subsets is immediate from the definition.
@@ -235,10 +252,10 @@ Preservation to closures is immediate from condition (b) of <ref target="prop-nw
 
 In principal it is possible that this notion is completely moot in the sense that maybe every set of real numbers is meager according to this definition. The Baire category theorem says that this is not the case. In fact, we will soon see that meager sets are rather paltry as the name implies.
 
- <thm id="thm-baire">
-<name>Baire category theorem</name>
+<thm id="thm-baire">
+  <name>Baire category theorem</name>
   The set of all real numbers $\RR$ is nonmeager. In fact, if $I$ is a positive-length interval then $I$ is nonmeager.
- </thm>
+</thm>
 
 <proof>
   The proof is very similar to Cantor's proof of <ref target="thm-cantor"></ref>. Let $I$ be a positive-length interval and suppose towards a contradiction that $I$ is meager. Then there exists a sequence $(A_n)_{n\in\NN}$ of nowhere dense sets such that $\bigcup A_n=I$. We will inductively construct a decreasing sequence of closed subintervals $J_n\subset I$ such that for all $n$, $J_n\cap N_n=\emptyset$.
@@ -252,9 +269,9 @@ In principal it is possible that this notion is completely moot in the sense tha
   Baire category theory gets its name from the above theorem, and the fact that meager sets used to be called "first category". Nonmeager sets used to be called "second category".
 </rem>
 
- <thm id=thm-meager-pres>
+<thm id=thm-meager-pres>
   The class of meager sets is closed under the operations of subset and countable union.
- </thm>
+</thm>
 
 We remark that the meager property is not necessarily preserved to the closure. In fact $\cl(A)$ is meager if and only if $A$ is nowhere dense.
 
@@ -281,9 +298,11 @@ We should also verify that there exists sets of numbers that are neither meager 
 </exerc>
 
 <notes>
-  For more on the Cantor set see Abbott, Section~3.1. For the Baire category theorem see Abbott, Section~3.5. For Baire category theory generally see Oxtoby, Chapter~1.
+  For more on the Cantor set see Abbott, Section&nbsp;3.1. For the Baire category theorem see Abbott, Section&nbsp;3.5. For Baire category theory generally see Oxtoby, Chapter&nbsp;1.
 </notes>
+
 </section>
+
 <section>
 <name>Lebesgue measure theory</name>
 
@@ -314,31 +333,31 @@ Let us na\"ively begin to construct a measure $m$ that is at least defined on re
 
 The next result states that this rule for defining $m$ actually works for all sets that are reasonably constructible. Recall that a *Borel set* is one that can be constructed by beginning with the intervals and then executing countably many countable unions or intersections.
 
- <thm id="thm-caratheodory">
-<name>Carathéodory's extension theorem</name>
+<thm id="thm-caratheodory">
+  <name>Carathéodory's extension theorem</name>
   The measure $m$ defined in Equation~$\eqref{eq:measure}$ satisfies conditions (a) and (b), and additionally satisfies condition (c) when applied to Borel sets.
- </thm>
+</thm>
 
 <proof>
 <name>Proof of conditions (a) and (b) only</name>
 
-For condition (a), let $I$ be an interval. It is clear that $m(I)\leq\ell(I)$, since $I$ itself is an interval covering $I$. For the other direction, we will show that $I\subset\bigcup I_n$ implies $\sum\ell(I_n)\geq\ell(I)$. Then taking the infemum over all such coverings this allows us to conclude that $m(I)\geq\ell(I)$.
+  For condition&nbsp;(a), let $I$ be an interval. It is clear that $m(I)\leq\ell(I)$, since $I$ itself is an interval covering $I$. For the other direction, we will show that $I\subset\bigcup I_n$ implies $\sum\ell(I_n)\geq\ell(I)$. Then taking the infemum over all such coverings this allows us to conclude that $m(I)\geq\ell(I)$.
 
   Let us first handle the case when $I=[a,b]$ is closed and bounded, and all of the $I_n$ are open intervals $(a_n,b_n)$. Then since $I$ is compact, $I$ is covered by just finitely many of the $I_n$, without loss of generality we may assume they are indexed $I_0,\ldots,I_N$. Now after further renaming or removing intervals from the list, we may suppose that $I_0$ covers the left endpoint of $I$, each $I_{n+1}$ covers the right endpoint of $I_n$, and $I_N$ covers the right endpoint of $I$. We can now compute that
-\[\sum\ell(I_n)
-\geq\sum_0^N(b_n-a_n)
-\geq\sum_1^N(b_n-b_{n-1})-a
-\geq b-a
-= \ell(I)\text{.}
-\]
+  \[\sum\ell(I_n)
+    \geq\sum_0^N(b_n-a_n)
+    \geq\sum_1^N(b_n-b_{n-1})-a
+    \geq b-a
+    = \ell(I)\text{.}
+  \]
 
   If $I$ is not necessarily closed and the $I_n$ are not necessarily open, then we look instead at $I'=\cl(I)$ and $I_n'=(I_n)^\circ$. Then the $I_n'$ cover all but a countable subset of $I'$, so for any $\epsilon$ we can find additional open intervals $J_n$ with $\ell(J_n)\leq\epsilon/2^n$ covering these missing points. Now the previous argument shows that $\sum\ell(I_n)+\sum\ell(J_n)\geq\ell(I)$. Using the geometric series formula we obtain $\sum\ell(I_n)+\epsilon\geq\ell(I)$. Letting $\epsilon\to0$ we have the desired result.
 
-  Finally if $I$ is not bounded, we let $A_k$ be a sequence of bounded subintervals of $I$ such that $\ell(A_k)\to\infty$. The above result implies that $\sum\ell(I_n)\geq\ell(A_k)$, and letting $k\to\infty$ we once again achieve the desired result. This concludes the proof of condition (a).
+  Finally if $I$ is not bounded, we let $A_k$ be a sequence of bounded subintervals of $I$ such that $\ell(A_k)\to\infty$. The above result implies that $\sum\ell(I_n)\geq\ell(A_k)$, and letting $k\to\infty$ we once again achieve the desired result. This concludes the proof of condition&nbsp;(a).
 
-  Condition (b) follows directly from the fact that the length function $\ell$ is translation invariant, and the definition of $m$ depends only on $\ell$.
+  Condition&nbsp;(b) follows directly from the fact that the length function $\ell$ is translation invariant, and the definition of $m$ depends only on $\ell$.
 
-  For the proof that $m$ satisfies condition (c), we refer the reader to any standard measure theory text.
+  For the proof that $m$ satisfies condition&nbsp;(c), we refer the reader to any standard measure theory text.
 </proof>
 
 From now on we will ignore the full power of measure theory to assign a real number measure to any Borel set, and focus only on the specific value zero. Sets whose measure is zero are called null sets, and for convenience we extract the definition of null set from the above definition of arbitrary measure.
@@ -380,10 +399,11 @@ The notion of null set bears many similarities with the notion of meager set. As
 </exerc>
 
 <notes>
-  Our presentation of Vitali's construction follows Folland, Section~1.1. Our proof of <ref target="thm-caratheodory"></ref>, part (a) follows Oxtoby, Chapter~1. For a proof of part (c), see Folland, Section~1.4.
+  Our presentation of Vitali's construction follows Folland, Section&nbsp;1.1. Our proof of <ref target="thm-caratheodory"></ref>, part (a) follows Oxtoby, Chapter&nbsp;1. For a proof of part (c), see Folland, Section&nbsp;1.4.
 </notes>
 
 </section>
+
 <section>
 <name>Sets, orderings, and cardinality</name>
 
@@ -403,10 +423,10 @@ In the next section we will describe exactly what the $\aleph$'s are. But first 
 
 Our first result confirms that there are many different uncountable cardinalities. Recall that if $A$ is a set, then the *power set* of $A$, denoted $\mathcal P(A)$, is the set of all subsets of $A$.
 
- <thm>
-<blame>Cantor</blame>
+<thm>
+  <blame>Cantor</blame>
   If $A$ is any set, then $|A|\lt|\mathcal P(A)|$.
- </thm>
+</thm>
 
 <proof>
   It is clear that $|A|\leq|\mathcal P(A)|$, since the map $i(a)=\{a\}$ is an injection from $A$ into $\mathcal P(A)$.
@@ -435,10 +455,10 @@ Our first result confirms that there are many different uncountable cardinalitie
 
 In the next few results, we essentially show that the cardinals are well-ordered by $\leq$. Note that reflexivity holds because the identity function is an injection from $A$ into itself, and transitivity holds because the composition of two injections is an injection. The following result establishes antisymmetry.
 
- <thm id="thm-csb">
-<name>Cantor--Schröder--Bernstein</name>
+<thm id="thm-csb">
+  <name>Cantor--Schröder--Bernstein</name>
   If there are injections $i\colon A\to B$ and $j\colon B\to A$ then there is a bijection $f\colon A\to B$.
- </thm>
+</thm>
 
 <proof>
   Replacing $B$ with $j(B)$, we may suppose that that $B\subset A$. Then we have
@@ -452,8 +472,8 @@ In the next few results, we essentially show that the cardinals are well-ordered
   \[A\mathord{\smallsetminus}B\leftrightarrow i(A)\mathord{\smallsetminus}i(B)\leftrightarrow i^2(A)\mathord{\smallsetminus}i^2(B)\leftrightarrow\cdots
   \]
   It follows that the map
-  \[f(a)=\begin{cases}i(a)&amp;\text{if }a\in(A\mathord{\smallsetminus}B)\cup(i(A)\mathord{\smallsetminus}i(B))\cup(i^2(A)\mathord{\smallsetminus}i^2(B))\cup\cdots\\
-    a&amp;\text{otherwise}
+  \[f(a)=\begin{cases}i(a) & \text{if }a\in(A\mathord{\smallsetminus}B)\cup(i(A)\mathord{\smallsetminus}i(B))\cup(i^2(A)\mathord{\smallsetminus}i^2(B))\cup\cdots\\
+    a&\text{otherwise}
   \end{cases}
   \]
   is a bijection from $A$ to $B$.
@@ -465,9 +485,9 @@ In the next few results, we essentially show that the cardinals are well-ordered
 
 The next result shows that the cardinalities are totally ordered. In the proof we will need *Zorn's lemma*: If $P$ is a partially ordered set such that every totally ordered subset has an upper bound, then $P$ has at least one maximal element.  Zorn's lemma is used perennially in analysis, and it is a consequence of the axiom of choice.
 
- <thm id="thm-card-total">
+<thm id="thm-card-total">
   If $A,B$ are sets then either there is an injective function from $A$ to $B$ or an injective function from $B$ to $A$.
- </thm>
+</thm>
 
 <proof>
   Consider the family $\mathcal F$ of all injective functions whose domain is a subset of $A$ and whose range is a subset of $B$. Then $\mathcal F$ is partially ordered by extension of functions, and it is easy to check that this ordering satisfies the hypothesis of Zorn's lemma. Thus there is a maximal element $f$, and since it is maximal either the domain of $f$ is all of $A$ or the range of $f$ is all of $B$. In the first case $f$ is an injection from $A$ to $B$, and in the second case $f^{-1}$ is an injection from $B$ to $A$.
@@ -475,17 +495,17 @@ The next result shows that the cardinalities are totally ordered. In the proof w
 
 Finally we show that the cardinals are well-ordered. One technicality arises here that did not in the last four properties. To check that the cardinals are well-ordered, we should check that *any* collection of sets has a minimal element, and that collection need not itself be a set. (Remember: the set of all sets isn't a set!)
 
- <thm id="thm-card-well">
+<thm id="thm-card-well">
   Let $\mathcal A$ be a class of sets. Then there exists $A\in\mathcal A$ that injects into all other sets $B\in\mathcal A$.
- </thm>
+</thm>
 
 <proof>
   We argue very similarly to <ref target="thm-card-total"></ref>, but in order to apply Zorn's lemma we must first suppose that $\mathcal A$ really is a set. Fix any element $A\in\mathcal A$ and let
-\[\mathcal F=\set{(f_B)_{B\in\mathcal A}\mid\text{there is $A_0\subset A$ such that for all $B$, $f_B$ is an injection from $A_0$ to $B$}}
-\]
-This time $\mathcal F$ is partially ordered by *coordinatewise* extension of functions. By Zorn's lemma there is a maximal element $(f_B)_{B\in\mathcal A}$, and since it is maximal either the domain $A_0$ is all of $A$ or the range of one of the functions $f_B$ is all of $B$. In the first case $f_B$ is an injection from $A$ to $B$ for all $B$. In the second case, fix $B$ such that $f_B(A_0)=B$. Then for any $C\in\mathcal A$, the composition $f_C\circ f_B^{-1}$ is an injection from $B$ to $C$, so $B$ is as desired.
+  \[\mathcal F=\set{(f_B)_{B\in\mathcal A}\mid\text{there is $A_0\subset A$ such that for all $B$, $f_B$ is an injection from $A_0$ to $B$}}
+  \]
+  This time $\mathcal F$ is partially ordered by *coordinatewise* extension of functions. By Zorn's lemma there is a maximal element $(f_B)_{B\in\mathcal A}$, and since it is maximal either the domain $A_0$ is all of $A$ or the range of one of the functions $f_B$ is all of $B$. In the first case $f_B$ is an injection from $A$ to $B$ for all $B$. In the second case, fix $B$ such that $f_B(A_0)=B$. Then for any $C\in\mathcal A$, the composition $f_C\circ f_B^{-1}$ is an injection from $B$ to $C$, so $B$ is as desired.
 
-In the general case when $\mathcal A$ is a class, we can reduce to the set case as follows. Fix an element $D\in\mathcal A$ and let $\mathcal A'$ denote the collection of subsets of $D$ that are in bijection with some element of $\mathcal A$. Since $\mathcal A'$ is a set, we can find $A\in\mathcal A$ which injects into all elements of $\mathcal A'$. It follows that $A$ injects into all other elements of $\mathcal A$ too. Indeed if $B\in\mathcal A$ and $A$ does not inject into $B$, then by <ref target="thm-card-total"></ref>, $B$ injects into $A$. It follows that $B$ is in bijection with a subset of $D$ and hence $A$ injects into $B$ after all.
+  In the general case when $\mathcal A$ is a class, we can reduce to the set case as follows. Fix an element $D\in\mathcal A$ and let $\mathcal A'$ denote the collection of subsets of $D$ that are in bijection with some element of $\mathcal A$. Since $\mathcal A'$ is a set, we can find $A\in\mathcal A$ which injects into all elements of $\mathcal A'$. It follows that $A$ injects into all other elements of $\mathcal A$ too. Indeed if $B\in\mathcal A$ and $A$ does not inject into $B$, then by <ref target="thm-card-total"></ref>, $B$ injects into $A$. It follows that $B$ is in bijection with a subset of $D$ and hence $A$ injects into $B$ after all.
 </proof>
 
 Although we still can't be fully rigorous about the meaning of the symbols $\aleph_1,\aleph_2,\ldots$, the well-ordering property helps justify the use of these symbols. Essentially $\aleph_1$ is the least cardinality greater than $\aleph_0$, $\aleph_2$ is the least cardinality greater than $\aleph_1$, and so forth. In the next section, we will make this fully precise.
@@ -504,10 +524,11 @@ Although we still can't be fully rigorous about the meaning of the symbols $\ale
 </exerc>
 
 <notes>
-  Our proof of <ref target="thm-card-well"></ref> follows and extends the proof given in Chaim Samuel H\"onig, *Proof of the well-ordering of cardinal numbers*. For a more detailed proof of <ref target="thm-csb"></ref>, see Kunen (Foundations), Section~I.10.
+  Our proof of <ref target="thm-card-well"></ref> follows and extends the proof given in Chaim Samuel H\"onig, *Proof of the well-ordering of cardinal numbers*. For a more detailed proof of <ref target="thm-csb"></ref>, see Kunen (Foundations), Section&nbsp;I.10.
 </notes>
 
 </section>
+
 <section>
 <name>Ordinal numbers and cardinal numbers</name>
 
@@ -534,15 +555,15 @@ Intuitively, infinite ordinals are all constructed in this fashion. If $\alpha$ 
 </defn>
 
 <rem>
-The first condition ensures that the ordinals are in fact well-ordered; the order relation $\in$ is simply the most convenient one available in set theory. The second condition ensures that the ordinals have no "gaps"; for instance the set $\{0,1,3,5,9\}$ is well-ordered but not an ordinal.
+  The first condition ensures that the ordinals are in fact well-ordered; the order relation $\in$ is simply the most convenient one available in set theory. The second condition ensures that the ordinals have no "gaps"; for instance the set $\{0,1,3,5,9\}$ is well-ordered but not an ordinal.
 </rem>
 
 The following fundamental facts about ordinals together imply that <ref target="defn-ordinals"></ref> achieves our initial goals in defining the ordinals.
 
- <thm id="thm-ordinals">
+<thm id="thm-ordinals">
   * The class of all ordinals is itself transitive and well-ordered by $\leq$.
   * If $A$ is a well-ordered set then there exists a unique ordinal $\alpha$ such that $A$ is isomorphic to $\alpha$.\qed
- </thm>
+</thm>
 
 An ordinal $\alpha$ is said to be *successor* ordinal if it is of the form $\beta+1$ for some ordinal $\beta$. Otherwise $\alpha$ is said to be *limit* ordinal. The first part of <ref target="thm-ordinals"></ref> allows us to show that successor and limit are appropriate names.
 
@@ -589,11 +610,11 @@ the continuum has uncountable cofinality
 </exerc>
 
 <notes>
-  This material on ordinals and cardinals can be found in any introductory set theory textbook. For ordinals, see for instance Section~1.7 of Devlin's *The joy of sets*. For cardinals, see Section~3.6 of the same text.
+  This material on ordinals and cardinals can be found in any introductory set theory textbook. For ordinals, see for instance Section&nbsp;1.7 of Devlin's *The joy of sets*. For cardinals, see Section&nbsp;3.6 of the same text.
 </notes>
 
-
 </section>
+
 <section>
 <name>The topology of Cantor and Baire space</name>
 
@@ -661,10 +682,10 @@ In previous sections we have defined nowhere dense subsets of $\RR$ in terms of 
 
 Meager sets are now defined in the same way as before: $X\subset A^{\lt \omega}$ is *meager* if it is the union of countably many nowhere dense sets. Our proof of the Baire category theorem for the real numbers naturally extends to arbitrary complete metric spaces.
 
- <thm>
-   <name>Baire category theorem</name>
+<thm>
+  <name>Baire category theorem</name>
   If $X$ is a complete metric space then $X$ is not meager. Moreover if $O$ is a nonempty open subset of $X$ then $O$ is not meager.\qed
- </thm>
+</thm>
 
 In particular the notions of meager and comeager sets make perfect sense in both $2^\omega$ and $\omega^\omega$. The proof of this general Baire category theorem is nearly identical to the proof of <ref target="thm-baire"></ref> with closed intervals replaced by closures of basic open sets $\overline{O_n}$. The completeness of $X$ is used to verify there is a point $x\in\bigcap\overline{O_n}$.
 
@@ -681,16 +702,18 @@ In particular the notions of meager and comeager sets make perfect sense in both
 </exerc>
 
 <notes>
-  For introductory material on the combinatorics and topology of sequence space, see Kechris, Sections~2A and~2B. For another proof that the Baire space is homeomorphic to the irrationals, see Section~1 of Miller, *Descriptive set theory and forcing*.
+  For introductory material on the combinatorics and topology of sequence space, see Kechris, Sections&nbsp;2A and&nbsp;2B. For another proof that the Baire space is homeomorphic to the irrationals, see Section&nbsp;1 of Miller, *Descriptive set theory and forcing*.
 </notes>
 
 </section>
 
 </chapter>
-<chapter>
-  <name>Cardinal characteristics</name>
 
-<section><name>$\sigma$-compactness in Baire space</name>
+<chapter>
+<name>Cardinal characteristics</name>
+
+<section>
+<name>$\sigma$-compactness in Baire space</name>
 
 As we have discussed in the introduction, the exact cardinal value of the size of the set of all real numbers is independent of the axioms of set theory. That is, if we write $\mathfrak c=|\RR|$ then we know $\mathfrak c=\aleph_\alpha$ for some $\alpha\geq1$, but we do not know which one. Here $\mathfrak c$ stands for *continuum*. Since $\mathfrak c$ is also equal to the cardinality of Cantor space, it is also often denoted $2^{\aleph_0}$. In this section we discuss several cardinal values other than $\mathfrak c$ that arise from the special topology of the Baire space $\omega^\omega$.
 
@@ -705,10 +728,8 @@ Like the meager and null sets, the class of $\sigma$-compact sets is closed unde
 We now introduce for the first time the process of associating *cardinal characteristics* to a class of sets. First we denote by $\Ksigma$ the class of all sets $A\subset\omega^\omega$ such that $A$ is a subset of some $\sigma$-compact set.
 
 <defn>
-
   * The cardinal $\non(\Ksigma)$ is the least cardinality of any set $A\subset\omega^\omega$ which is not $K_\sigma$.
   * The cardinal $\cov(\Ksigma)$ is the least cardinality of any family $\mathcal F$ of subsets of $\omega^\omega$ whose union covers all of $\omega^\omega$.
-
 </defn>
 
 Our next result will generalize Cantor's theorem by showing that the cardinals $\non(\Ksigma)$ and $\cov(\Ksigma)$ are uncountable lower bounds for the value of the continuum. First we need the following characterizations of compact sets in Baire space.
@@ -740,10 +761,8 @@ In fact we'll see shortly that $\non(\Ksigma)\leq\cov(\Ksigma)$.
 We now work establish a key relationship between the cardinals $\non(\Ksigma)$ and $\cov(\Ksigma)$, and the combinatorics of the Baire space. To begin, we can partially order Baire space by $f\leq g$ iff for all $n$, we have $f(n)\leq g(n)$. We also have the more versatile *eventual domination* order: $f\leq^*g$ if $f\leq g$ almost everywher, that is, there is some $N$ such that for all $n\geq N$ we have $f(n)\leq g(n)$. Of course eventual domination is not a partial order because $f\leq^*g\leq^*f$ only implies that $f$ and $g$ agree almost everywhere, which we denote by $f=^*g$.
 
 <defn>
-
   * A subset $\mathcal F\subset\omega^\omega$ is said to be a *dominating family* if for all $h\in\omega^\omega$ there exists $f\in\mathcal F$ such that $h\leq^*f$. The *dominating number* $\mathfrak d$, is the smallest cardinality of any dominating family.
   * A subset $\mathcal F\subset\omega^\omega$ is said to be an *unbounded family* if there is no single $h\in\omega^\omega$ such that $f\leq^*h$ for all $f\in\mathcal F$. The *unbounding number* $\mathfrak b$ is the smallest cardinality of any unbounded family.
-
 </defn>
 
 The following result records the relationship between these two cardinal values.
@@ -754,13 +773,13 @@ The following result records the relationship between these two cardinal values.
 
 <proof>
   We begin by showing that $\mathfrak{b}$ is uncountable. For this, it is enough to show that every countable family $\mathcal F\subset\omega^\omega$ is bounded by some $h\in\omega^\omega$. So let $\mathcal F\subset\omega^\omega$ be a countable family and enumerate its elements $f_0,f_1,\ldots$. To construct the bound $h$, we use a diagonalization process similar to the proof of Cantor's theorem. More specifically, we define $h(n)$ so that it dominates $f_0(n),\ldots,f_n(n)$:
-\[h(n)=\max\set{f_i(n)\mid 0\leq i\leq n}
-\]
-Then for each $i$ we have $f_i(n)\leq h(n)$ for all $n\geq i$, and therefore $f_i\leq^*h$, as desired.
+  \[h(n)=\max\set{f_i(n)\mid 0\leq i\leq n}
+  \]
+  Then for each $i$ we have $f_i(n)\leq h(n)$ for all $n\geq i$, and therefore $f_i\leq^*h$, as desired.
 
-To show that $\mathfrak{b}\leq\mathfrak{d}$, it is enough to show that every dominating family is unbounded. Let us establish the contrapositive: if $\mathcal F$ is bounded, say by $h\in\omega^\omega$, then every $f\in\mathcal F$ satisfies $f\leq^*h$. Letting $h'(n)=h(n+1)$, it follows that every $f\in\mathcal F$ satisfies $h'\not\leq^*f$, and hence that $\mathcal F$ is not a dominating family.
+  To show that $\mathfrak{b}\leq\mathfrak{d}$, it is enough to show that every dominating family is unbounded. Let us establish the contrapositive: if $\mathcal F$ is bounded, say by $h\in\omega^\omega$, then every $f\in\mathcal F$ satisfies $f\leq^*h$. Letting $h'(n)=h(n+1)$, it follows that every $f\in\mathcal F$ satisfies $h'\not\leq^*f$, and hence that $\mathcal F$ is not a dominating family.
 
-Finally, $\mathfrak d\leq\mathfrak c$ since $\mathcal F=\omega^\omega$ is itself a dominating family, and $|\omega^\omega|=\mathfrak c$.
+  Finally, $\mathfrak d\leq\mathfrak c$ since $\mathcal F=\omega^\omega$ is itself a dominating family, and $|\omega^\omega|=\mathfrak c$.
 </proof>
 
 We are now ready to state the connection between $\Ksigma$ sets and the eventual domination ordering.
@@ -790,11 +809,13 @@ We are now ready to state the connection between $\Ksigma$ sets and the eventual
 </exerc>
 
 <notes>
-  The conection between $\mathcal K_\sigma$ and the domination relation $\leq^*$ is presented in Section~2 of Blass, *Combinatorial cardinal characteristics of the continuum*.
+  The conection between $\mathcal K_\sigma$ and the domination relation $\leq^*$ is presented in Section&nbsp;2 of Blass, *Combinatorial cardinal characteristics of the continuum*.
 </notes>
 
 </section>
-<section><name>Ideals and their cardinals</name>
+
+<section>
+<name>Ideals and their cardinals</name>
 
 Let $X$ be any one of the three spaces $\RR$, $2^\omega$, or $\omega^\omega$. An *ideal* on $X$ is a subset $\mathcal I\subset\mathcal P(X)$ which is closed under subsets and (finite) unions. We think of an ideal as any collection of sets that captures some quality of smallness in subsets of $X$. Of course, the whole space $X$ should not be small, so we are only interested in *proper* ideals, i.e.\ those do not contain $X$.
 
@@ -807,17 +828,17 @@ An ideal $\mathcal I$ is called a *$\sigma$-ideal* if it is additionally closed 
 
 As was the case with $\Ksigma$, we can associate cardinal characteristics to any ideal. We will consider four key characteristics.
 
-<defn> Let $\mathcal I$ be an ideal of subsets of a set $X$, such that $\mathcal I$ contains all singletons of $X$.
+<defn>
+  Let $\mathcal I$ be an ideal of subsets of a set $X$, such that $\mathcal I$ contains all singletons of $X$.
 
   * The *additivity* of $\mathcal{I}$, $\add(\mathcal{I})$, is the smallest number of sets in $\mathcal{I}$ whose union is not in $\mathcal{I}$.
   * The *uniformity* of $\mathcal{I}$, $\non(\mathcal{I})$, is the smallest cardinality of any subset of $X$ that is not in $\mathcal{I}$.
   * The *covering number* of $\mathcal{I}$, $\cov(\mathcal{I})$, is the smallest number of sets in $\mathcal{I}$ whose union covers all of $X$.
   * The *cofinality* of $\mathcal{I}$, $\cof(\mathcal{I})$, is the smallest cardinality of any subset $\mathcal{B}\subset\mathcal{I}$ such that every element of $\mathcal{I}$ is a subset of an element of $\mathcal{B}$.
-
 </defn>
 
 <rem>
-The cofinality of an ideal is the least number of sets you need to generate the ideal by closing under subsets. More precisely, a subset $\mathcal B\subset\mathcal I$ is called a *basis* for $\mathcal I$ if every element of $I$ is a subset of some element of $\mathcal B$. Thus the cofinality of $\mathcal I$ is the least cardinality of a basis for $\mathcal I$.
+  The cofinality of an ideal is the least number of sets you need to generate the ideal by closing under subsets. More precisely, a subset $\mathcal B\subset\mathcal I$ is called a *basis* for $\mathcal I$ if every element of $I$ is a subset of some element of $\mathcal B$. Thus the cofinality of $\mathcal I$ is the least cardinality of a basis for $\mathcal I$.
 </rem>
 
 As was the case with the cardinals we introduced in the previous section, assuming $\mathcal I$ is reasonable, all four of the cardinals characteristics associated with $\mathcal I$ provides an uncountable lower bound for the value of the continuum.
@@ -885,7 +906,7 @@ In the previous section we introduced $\Ksigma$, but we dealt only with the char
 <proof>
   We have already shown that $\add(\Ksigma)\leq\non(\Ksigma)=\mathfrak b$. For the reverse inequality, first recall from <ref target="thm:bd-vs-ksigma"></ref> that a subset of $\omega^\omega$ is unbounded if and only if it is not $\Ksigma$. Now suppose that $\mathcal F$ is a family of $\Ksigma$ subsets of $\omega^\omega$ such that $\bigcup\mathcal F$ is not $\Ksigma$. For each $F\in\mathcal F$ let $g_F$ be a bound for $F$. Then $\set{g_F\mid F\in\mathcal F}$ is an unbounded family: Indeed, otherwise the set of things bounded by some $g_F$ would be bounded and hence so would $\bigcup\mathcal F$. This shows that $\add(\Ksigma)\geq\mathfrak b$.
 
-The second equality is similar and left as <ref target="exerc:non-ksigma-d"></ref>.
+  The second equality is similar and left as <ref target="exerc:non-ksigma-d"></ref>.
 </proof>
 
 <exerc id="exerc:non-ksigma-d">
@@ -897,19 +918,21 @@ The second equality is similar and left as <ref target="exerc:non-ksigma-d"></re
 </exerc>
 
 <notes>
-  We have finally entered into the material covered in the book Bartoszyński--Judah, *Set theory: on the structure of the real line*. The basic properties of $\sigma$-ideals and their cardinals begins in Section~1.3.
+  We have finally entered into the material covered in the book Bartoszyński--Judah, *Set theory: on the structure of the real line*. The basic properties of $\sigma$-ideals and their cardinals begins in Section&nbsp;1.3.
 </notes>
 
-
 </section>
-<section><name>Cichoń's diagram</name>
+
+<section>
+<name>Cichoń's diagram</name>
 
 So far we have seen many similarities between the various size notions that we have discussed. The classes of meager sets and null sets are both ideals, both proper, both closed under countable unions, and so on. In this section we further investigate how far this comparison extends, and in the process we reveal a deep and intricate connection between measure and category.
 
 To begin, it is natural to ask whether the meager and null sets are truly different notions. The following result shows that they are very different indeed: it is possible to be small according to either notion, and at the same time, large according to the other.
 
 <prop id="prop:null-comeager">
-  There exists a null comeager set. There exists a meager conull set.  </prop>
+  There exists a null comeager set. There exists a meager conull set.
+</prop>
 
 <proof>
   The key is that we can construct dense open sets of arbitrarily small measure. That is, for each $n$ we will construct a dense open set $A_n$ such that $m(A_n)\gt 1/n$. Assuming we have done so, we let $A=\bigcap A_n$. Clearly the set $A$ is null. To see that it is comeager note that for all $n$, we have that $\RR\smallsetminus A_n$ is closed and nowhere dense. Thus $\RR\smallsetminus A=\bigcup(\RR\smallsetminus A_n)$ is meager.
@@ -1049,9 +1072,10 @@ We conclude this section with proofs of four more fairly easy inequaleties. The 
 
 <!-- % See Bartoszynski -->
 
-
 </section>
-<section><name>Ideals and duality</name>
+
+<section>
+<name>Ideals and duality</name>
 
 At this point one might have observed that many of the proofs of inequalities between cardinal characteristics have come in pairs. This phenomenon is easy to spot in <ref target="lem:b-nonm"></ref> <ref target="lem:covn-nonm"></ref>, but if one examines the proof it is even present in <ref target="lem:diamond"></ref>. It turns out that there is a category-theoretic duality lurking behind all of these pairings. (Here we mean *category* as in objects and morphisms, not as in Baire's theorem.)
 
@@ -1060,7 +1084,6 @@ At this point one might have observed that many of the proofs of inequalities be
 
   * A subfamily $\mathcal F\subset B$ is an *$R$-dominating family* if for every $a\in A$ there exists $b\in\mathcal F$ such that $a\mathrel{R}b$.
   * The *dominating number* $\mathfrak d(R)$ of $R$ is the minimum cardinality of an $R$-dominating family.
-
 </defn>
 
 It is clear that the dominating number $\mathfrak d$ is the dominating number of the relation $\leq^*$. But it is also easy to check that the unbounding number $\mathfrak b$ can be expressed as the dominating number of the relation $\not\geq^*$. Moreover, if $\mathcal I$ is an ideal then all four of the cardinal characteristics of $\mathcal I$ can be expressed as dominating numbers.
@@ -1072,7 +1095,6 @@ It is clear that the dominating number $\mathfrak d$ is the dominating number of
   * $\cov(\mathcal I)$ is the dominating number of the $\in$ relation on $X\times\mathcal I$.
   * $\non(\mathcal I)$ is the dominating number of the $\not\ni$ relation on $\mathcal I\times X$.
   * $\add(\mathcal I)$ is the dominating number of the relation $\not\supset$ on $\mathcal I$.
-
 </prop>
 
 <proof>
@@ -1083,12 +1105,12 @@ It is worth observing that the four cardinals come in two dual pairs. Here, if $
 
 <defn>
   Let $R$ and $S$ be relations, and to avoid excessive notation, write $\dom(R)$ and $\cod(R)$ for the demain and codomain of $R$, and similarly for $S$. A *morphism* from $R$ to $S$ is a pair of maps
-\[\begin{cases} \psi\colon\cod(R)\to\cod(S)\\\phi\colon\dom(S)\to\dom(R)\end{cases}
-\]
-such that the following holds
-\[\phi(c)\mathrel{R}d\implies c\mathrel{S}\psi(d)
-\]
-for all $c\in\dom(S)$ and $d\in\cod(R)$.
+  \[\begin{cases} \psi\colon\cod(R)\to\cod(S)\\\phi\colon\dom(S)\to\dom(R)\end{cases}
+  \]
+  such that the following holds
+  \[\phi(c)\mathrel{R}d\implies c\mathrel{S}\psi(d)
+  \]
+  for all $c\in\dom(S)$ and $d\in\cod(R)$.
 </defn>
 
 The definition in a sense implies that the following diagram ``commutes.'' Of course, the $R$ and $S$ edges symbolize relations, not functions, so this is only a partial analogy.
@@ -1113,10 +1135,8 @@ The definition in a sense implies that the following diagram ``commutes.'' Of co
 In any case, the definition of a morphism is custom-designed to give us the following two key properties.
 
 <prop id="prop:morphism">
-
   * If $(\phi,\psi)$ is a morphism from $R$ to $S$, then $\mathfrak d(R)\geq\mathfrak d(S)$.
   * If $(\phi,\psi)$ is a morphism from $R$ to $S$, then $(\psi,\phi)$ is a morphism from $\hat S$ to $\hat R$. Hence in this case we also have $\mathfrak d(\hat S)\geq\mathfrak d(\hat R)$.
-
 </prop>
 
 <proof>
@@ -1160,7 +1180,7 @@ Beyond these two examples, we see that each arrow in Cichoń's diagram (<ref tar
 </exerc>
 
 <notes>
-  The category-theoretic presentation of relations, morphisms, and duality follows Section~4 of Blass.
+  The category-theoretic presentation of relations, morphisms, and duality follows Section&nbsp;4 of Blass.
 </notes>
 
 
@@ -1185,9 +1205,9 @@ If $x\in2^\omega$ is fixed and $P$ is an interval partition, we define the set $
   \]
   Thus $A\subset\bigcup A_n$, and it is clear that $A_N$ contains no interior. Moreover $A_N$ is a countable intersection of boolean combinations of basic open sets, and hence $A_N$ is closed. Thus we have shown that $A$ is meager.
 
-  Conversely suppose $A=\bigcup A_n$ where each $A_n$ is nowhere dense, and suppose without loss of generality that $A_n\subset A_{n+1}$ for all $n$. We will define an interval partition $P=(I_n)$ and an element $x\in2^\omega$ recursively. To begin, since $A_0$ isn't dense there exists $s\in2^{\lt \omega}$ such that $A_0\cap V_s=\emptyset$. We let $I_0=\dom(s)$ and $x\restriction I_0=s$.
+  Conversely suppose $A=\bigcup A_n$ where each $A_n$ is nowhere dense, and suppose without loss of generality that $A_n\subset A_{n+1}$ for all $n$. We will define an interval partition $P=(I_n)$ and an element $x\in2^\omega$ recursively. To begin, since $A_0$ isn't dense there exists $s\in2^{\lt\omega}$ such that $A_0\cap V_s=\emptyset$. We let $I_0=\dom(s)$ and $x\restriction I_0=s$.
 
-  Now suppose that $I_i$ and $x\restriction I_i$ have been constructed for $i<n$ and let $s=x\restriction\bigcup_{i<n}I_i$ be the initial segment built so far. Since $A_n$ is nowhere dense, by <ref target="prop:cantor-space-nwd"></ref> we can find an extension $t$ of $s$ such that $A_n\cap V_t=\emptyset$. But we can do even better: we can find an extension $t$ of $s$ such that even if $y\in2^\omega$ only agrees with $t$ on $\dom(t\smallsetminus s)$, then we still have $y\notin A_n$.
+  Now suppose that $I_i$ and $x\restriction I_i$ have been constructed for $i\lt n$ and let $s=x\restriction\bigcup_{i\lt n}I_i$ be the initial segment built so far. Since $A_n$ is nowhere dense, by <ref target="prop:cantor-space-nwd"></ref> we can find an extension $t$ of $s$ such that $A_n\cap V_t=\emptyset$. But we can do even better: we can find an extension $t$ of $s$ such that even if $y\in2^\omega$ only agrees with $t$ on $\dom(t\smallsetminus s)$, then we still have $y\notin A_n$.
 
   Such a $t$ is built in $k$ many steps: Let $s_0,\ldots,s_{k-1}$ enumerate all elements of $2^{\lt \omega}$ whose domain is exactly $\dom(s)$. Repeatedly using that $A_n$ is nowhere dense, we can find a sequence of successive extensions $s\subset t_0\subset\ldots\subset t_{k-1}=t$ such that $A_n\cap V_{s_i\cup(t_i\smallsetminus s)}=\emptyset$. We then let $I_n=\dom(t\smallsetminus s)$ and $x_n=t\restriction I_n$. This concludes the construction of $x$ and $P$.
 
@@ -1260,7 +1280,9 @@ We conclude this section with a further result that gives much more information 
  -->
 
 </section>
-<section><name>Bartoszyński's theorem</name>
+
+<section>
+<name>Bartoszyński's theorem</name>
 
 In this section we complete the proof of the two inequalities remaining in Cichoń's diagram: $\add(\Null)\leq\add(\Meager)$ and $\cof(\Meager)\leq\cof(\Null)$. By duality, the two inequalities are really one that was discovered independently by Bartoszyński and Raisonnier--Stern. The proof we give is mostly due to Bartoszyński, and is markedly more difficult than our previous results. In fact I will need your help proving two of the preparatory facts (see the exercises).
 
@@ -1328,7 +1350,6 @@ This time we will need a topological fact before the proof, and once again we le
 
   * Whenever $U_1,\ldots,U_{2^n}\in\mathcal U_n$ we have $U_1\cap\cdots\cap U_{2^n}\neq\emptyset$;
   * Every nowhere dense set is disjoint from some set in $\mathcal U_n$.
-
 </prop>
 
 <proof>
@@ -1368,8 +1389,9 @@ This concludes the proof of Bartoszyński's theorem, as well as <ref target="thm
 </notes>
 
 </chapter>
+
 <chapter>
-  <name>Le tour de forcing</name>
+<name>Le tour de forcing</name>
 <!--
 %<section><name>Models of set theory</name>
 
@@ -1381,7 +1403,9 @@ This concludes the proof of Bartoszyński's theorem, as well as <ref target="thm
 
 % reflection theorem
  -->
-<section id="sec:idea-forcing">The idea of forcing</section>
+
+<section id="sec:idea-forcing">
+<name>The idea of forcing</name>
 
 In this part, we will assume familiarity with the notions of statement, theory, and model. As a reminder, a *formula* is simply a mathematical assertion that can be expressed using the ordinary logical symbols (and, or, not, quantifiers, variables) and non-logical symbols (in our case, $\in$, $\cup$, $\mathcal P$, etc). A *sentence* is a formula in which every variable is quantified, and a *theory* is a collection of sentences. If $T$ is a theory, then a *model* of $T$ is a set, together with interpretations of the non-logical symbols of $T$, in which all the sentences in $T$ hold true.
 
@@ -1459,7 +1483,9 @@ This example brings us back to our discussion of forcing CH to be false in a for
  -->
 
 </section>
-<section><name>Martin's axiom</name>
+
+<section>
+<name>Martin's axiom</name>
 
 We will make the ideas of the previous section more rigorous shortly. But before going into the technical details of this, we will introduce the combinatorics of forcing using forcing itself as a black box. Specifically, we will appeal to a statement called Martin's axiom, which roughly speaking says that the current universe of set theory $V$ already contains many highly generic filters $G$. The consistency of MA is itself proved using forcing, but we shall take this for granted for now. This will allow us to explore the effects of forcing using a number of partial orders without ever leaving $V$.
 
@@ -1539,26 +1565,29 @@ We close this section with a result showing the effect of MA on properties of th
 
   Now by MA, we can find a filter $G\subset\PP$ such that $G$ meets $D_A$ for every $A\in\mathcal F$. Then the sets $\overline{I}$ for $I\in G$ have the finite intersection property, and it follows from the completeness of $\RR$ that there is a point $x\in\bigcap\set{\overline{I}\mid I\in G}$. Then if $A\in\mathcal F$, since $G\cap D_A\neq\emptyset$ we can find a positive-length interval $I$ such that $I\in G$ and $\overline{I}\cap A=\emptyset$. That is, we have $x\in\overline{I}$ and $\overline{I}\cap A=\emptyset$, and so $x\notin A$. We conclude that $x$ is not an element of $\bigcup\mathcal F$, as desired.
 </proof>
+
 <!--
-% <proof>
-%   First recall from <ref target="prop:meager-diff"></ref> that a subset $A\subset2^\omega$ is meager if and only if it is contained in a set of the form $\Diff(x,P)$ for $x\in2^\omega$ and $P$ an interval partition. It follows that $\cov(\Meager)$ is the least cardinality of a family $\mathcal F$ of pairs $(y,P)$ such that for all $x\in2^\omega$ there exists $(y,P)\in\mathcal F$ such that $x$ strongly differs from $y$ on $P$.
+<proof>
+ First recall from <ref target="prop:meager-diff"></ref> that a subset $A\subset2^\omega$ is meager if and only if it is contained in a set of the form $\Diff(x,P)$ for $x\in2^\omega$ and $P$ an interval partition. It follows that $\cov(\Meager)$ is the least cardinality of a family $\mathcal F$ of pairs $(y,P)$ such that for all $x\in2^\omega$ there exists $(y,P)\in\mathcal F$ such that $x$ strongly differs from $y$ on $P$.
 
-%   Now suppose towards a contradiction that $\cov(\Meager)\lt \mathfrak c$, and fix a family $\mathcal F$ of pairs $(y,P)$ as above. We will apply MA to the partial order $\PP=2^{\lt \omega}$ to obtain a suitably generic filter $G$. Our goal will be to ensure that $G$ matches (that is, doesn't strongly differ from) all of the $(y,P)$ pairs, which will be a contradiction. To this end, consider the subsets
-%   \[D_{y,P,n}=\set{s\in2^{\lt \omega}\mid \text{there is $I\in P$ such that $I\gt n$ and $s\restriction I=y\restriction I$}}
-%   \]
-%   Then for any $y$, $P$, and $n$ the set $D_{y,P,n}$ is dense: given any $s$ we can find an interval $I$ of $P$ beyond both $n$ and $\dom(s)$, and extend $s$ to a sequence $t$ which agrees with $y$ on $I$.
+ Now suppose towards a contradiction that $\cov(\Meager)\lt \mathfrak c$, and fix a family $\mathcal F$ of pairs $(y,P)$ as above. We will apply MA to the partial order $\PP=2^{\lt \omega}$ to obtain a suitably generic filter $G$. Our goal will be to ensure that $G$ matches (that is, doesn't strongly differ from) all of the $(y,P)$ pairs, which will be a contradiction. To this end, consider the subsets
+ \[D_{y,P,n}=\set{s\in2^{\lt \omega}\mid \text{there is $I\in P$ such that $I\gt n$ and $s\restriction I=y\restriction I$}}
+ \]
+ Then for any $y$, $P$, and $n$ the set $D_{y,P,n}$ is dense: given any $s$ we can find an interval $I$ of $P$ beyond both $n$ and $\dom(s)$, and extend $s$ to a sequence $t$ which agrees with $y$ on $I$.
 
-%   Thus by MA, there exists a filter $G\subset\PP$ that meets the sets $D_{y,P,n}$ for all $(y,P)\in\mathcal F$, and we let $g=\bigcup G$ be the associated element of $2^\omega$. Given any $(y,P)\in\mathcal F$, since $G$ meets all dense sets $D_{y,P,n}$ it follows that $g$ does not strongly differ from $y$ on $P$. This contradicts our assumption about the family $\mathcal F$.
-% </proof>
+ Thus by MA, there exists a filter $G\subset\PP$ that meets the sets $D_{y,P,n}$ for all $(y,P)\in\mathcal F$, and we let $g=\bigcup G$ be the associated element of $2^\omega$. Given any $(y,P)\in\mathcal F$, since $G$ meets all dense sets $D_{y,P,n}$ it follows that $g$ does not strongly differ from $y$ on $P$. This contradicts our assumption about the family $\mathcal F$.
+</proof>
 
 % kunen, III.2 for ccc
 % kunen, III.3 for MA
 % jech, Sec16 for covm
 % blass, forcing section for a generalization of "solving" forcing
-
  -->
+
 </section>
-<section><name>Martin's axiom and Cichoń's diagram</name>
+
+<section>
+<name>Martin's axiom and Cichoń's diagram</name>
 
 We have seen the effect of MA on properties of the continuum. We now explore the effect of MA on further cardinal characteristics found in Cichoń's diagram. We begin by showing that MA makes $\mathfrak d$ large. Although this already follows from <ref target="thm:ma-covm"></ref> together with all we have proved about Cichoń's diagram, here we give a direct proof.
 
@@ -1624,13 +1653,13 @@ For this proof, we once again introduce a new and special notion of forcing. The
   Now for each $O\in\mathcal F_0$ we can find an open set $B_O\subset O$ which is a finite union of intervals with rational endpoints and such that $m(O\smallsetminus B_O)\lt1/2n$. Once again, since there are only countably many possible sets $B_O$, we can find a fixed set $B$ and an uncountable $\mathcal F_{00}\subset\mathcal F_0$ such that $B=B_O$ for every $O\in\mathcal F_{00}$.
 
   We claim that any two elements $O,O'\mathcal F_{00}$ are compatible. Indeed, we compute:
-  <align*>
-    m(O\cup O')&amp;=m(B_O\cup(O\smallsetminus B_O)\cup B_{O'}\cup(O'\smallsetminus B_{O'}))\\
-    &amp;=m(B\cup(O\smallsetminus B_O)\cup(O'\smallsetminus B_{O'}))\\
-    &amp;\leq m(B)+2(1/2n)\\
-    &amp;<(\epsilon-1/n)+1/n\\
-    &amp;=\epsilon\text{.}
-  </align*>
+  \begin{align*}
+    m(O\cup O')&=m(B_O\cup(O\smallsetminus B_O)\cup B_{O'}\cup(O'\smallsetminus B_{O'}))\\
+    &=m(B\cup(O\smallsetminus B_O)\cup(O'\smallsetminus B_{O'}))\\
+    &\leq m(B)+2(1/2n)\\
+    &\lt(\epsilon-1/n)+1/n\\
+    &=\epsilon\text{.}
+  \end{align*}
   Thus we can conclude that $\mathcal F$ is not an antichain, as desired.
 </proof>
 
@@ -1658,7 +1687,9 @@ kunen, III.3 for amoeba
  -->
 
 </section>
-<section><name>The machinery of forcing</name>
+
+<section>
+<name>The machinery of forcing</name>
 
 So far we have seen forcing only in the context of appeals to Martin's axiom, which gives us highly generic filters $G$ in a single model $V$ of set theory. When we actually do forcing, we wish to find a fully generic filter $G$, even though we know this must lie outside of $V$. But what does it mean that a set $G$ lies outside of the universe of sets? In fact, to find ``new'' sets $G$ we will really assume that $V$ is a countable, transitive model of ZFC. In other words $V$ is a countable set lying in some larger universe $W$, $V$ it is closed downwards under $\in$, and the structure $(V,\in)$ satisfies all of the axioms of set theory.
 
@@ -1749,7 +1780,9 @@ For the metamathematics of forcing see Kunen sec IV.5
  -->
 
 </section>
-<section><name>The forcing language and forcing theorems</name>
+
+<section>
+<name>The forcing language and forcing theorems</name>
 
 We have been able to establish a number of facts about the forcing extension $V[G]$ using elementary manipulations of the definition of $\mathbb P$-name. For more complex axioms and properties of $V[G]$, we will need a way to decide whether a given sentence holds in $V[G]$. But just as the value $\tau_G$ of a name depends on the filter $G$, the truth value of a given sentence may depend on the filter $G$, just as the set value $\tau_G$ of a name depends on $G$.
 
@@ -1761,7 +1794,6 @@ For example to prove the comprehension axiom, we need to build a name for the se
   * The *forcing language* for $\PP$ consists of the usual logical symbols, $\in$, and the $\PP$-names as constant symbols.
   * If $\phi$ is a sentence of the forcing language for $\PP$, we say $V[G]$ *satisfies* $\phi$ if, after replaceing the names $\tau$ in $\phi$ replaced by their values $\tau_G$, it is true in $V[G]$.
   * If $p\in\PP$ and $\phi$ is a sentence of the forcing language for $\PP$, then we say $p$ *forces* $\phi$, written $p\forces\phi$, if $p\in G$ implies $V[G]$ satisfies $\phi$.
-
 </defn>
 
 <example>
@@ -1775,12 +1807,10 @@ For example to prove the comprehension axiom, we need to build a name for the se
 The following three results are the fundamental tools used in the development of the theory of forcing. Essentially all further facts about forcing will be derived from these properties of the forcing machinery.
 
 <thm id="thm:forcing">
-<name>The forcing theorems</name>
-
-1. <i>Definability theorem</i>: The relation $\forces$ is definable in $V$.
-1. <i>Forcing theorem</i>: If $\phi$ is a sentence of the forcing language $V[G]$ satisfies $\phi$, then there exists $p\in G$ such that $p\forces\phi$.
-1. If $V$ is a model of ZFC then $V[G]$ is a model of ZFC.
-
+  <name>The forcing theorems</name>
+  1. <i>Definability theorem</i>: The relation $\forces$ is definable in $V$.
+  2. <i>Forcing theorem</i>: If $\phi$ is a sentence of the forcing language $V[G]$ satisfies $\phi$, then there exists $p\in G$ such that $p\forces\phi$.
+  3. If $V$ is a model of ZFC then $V[G]$ is a model of ZFC.
 </thm>
 
 <rem>
@@ -1844,7 +1874,7 @@ Recall that our definition of the $\forces$ relation cannot be carried out withi
 
 <defn id="defn:forces-0">
   We first define $p\forces_0\phi$ for atomic and neg-atomic formulas by recursion on the complexity of the names $\sigma,\tau$.
-  <alignat>{2}
+  \begin{alignat}{2}
     p&amp;\forces_0\sigma\in\tau&amp;&amp;\iff (\exists(\sigma',q)\in\tau)\;p\leq q\text{ and }p\forces_0\sigma'=\sigma\\
     p&amp;\forces_0\tau\neq\tau'&amp;&amp;\iff (\exists(\sigma,q)\in\tau)\;p\leq q\text { and }p\forces_0\sigma\notin\tau'\text{,}\\
     \notag &amp; &amp;&amp;\qquad\quad\text{or }(\exists(\sigma,q)\in\tau')\;p\leq q\text{ and }p\forces_0\sigma\notin\tau\\
@@ -1852,13 +1882,13 @@ Recall that our definition of the $\forces$ relation cannot be carried out withi
     \intertext{We now extend this to compound formulas using the following rules.}
     p&amp;\forces_0\phi\vee\psi&amp;&amp;\iff p\forces_0\phi\text{ or }p\forces_0\psi\\
     p&amp;\forces_0\exists x\phi(x)&amp;&amp;\iff(\exists\tau)\;p\forces_0\phi(\tau)
-  </alignat>
-  Clause (3) above is also used in the formation of compound formulas.
+  \end{alignat}
+  Clause&nbsp;(3) above is also used in the formation of compound formulas.
 </defn>
 
 Several remarks are in order. First, one should take a moment to confirm the definition isn't circular. For example $\sigma\in\tau$ is defined in terms of equality, which after negating is defined in terms of $\notin$, which after negating is defined in terms of $\in$. The key thing to notice is that when we encounter $\in$ for the second time, we have names of *lower complexity* than before. Since the class of names is well-founded, the recursion is well-defined.
 
-Second, while the clauses in <ref target="defn:forces-0"></ref> are inspired by properties of $\forces$, they are actually somewhat oversimplified. For example, comparing clause~(5) with <ref target="lem:forcing-exists"></ref> we see that clause~(5) does not reflect the general case. It turns out that $\forces_0$ is nearly but not fully equivalent to $\forces$; this will still be enough to complete our proof.
+Second, while the clauses in <ref target="defn:forces-0"></ref> are inspired by properties of $\forces$, they are actually somewhat oversimplified. For example, comparing clause&nbsp;(5) with <ref target="lem:forcing-exists"></ref> we see that clause&nbsp;(5) does not reflect the general case. It turns out that $\forces_0$ is nearly but not fully equivalent to $\forces$; this will still be enough to complete our proof.
 
 <!-- motivation: the forces_0 relation means "forces in an obvious/direct way." the true forcing relation can force things in an indirect way. -->
 
@@ -1888,9 +1918,9 @@ The centerpiece of the proof is the following result, which shows that the analo
   Finally, we verify that the induction passes through the third clause of <ref target="defn:forces-0"></ref>. So suppose the lemma is true for $\phi$, and let us show it holds for $\neg\phi$. For this, first suppose that there is $p\in G$ such that $p\forces_0\neg\phi$. Then for all $q\leq p$ we have $q\not\forces_0\phi$. It follows from <ref target="lem:forcing-downward-0"></ref> that for all $q\in G$ we have $q\not\forces_0\phi$. By inductive hypothesis, we must have that $V[G]$ does not satisfy $\phi$, and hence $V[G]$ satisfies $\neg\phi$.
 
   Conversely suppose that $V[G]$ satisfies $\neg\phi$. Then $V[G]$ does not satisfy $\phi$, so by inductive hypothesis, for all $p\in G$ we have $p\not\forces_0\phi$. We now consider the set
-\[D=\set{p\in\PP\mid p\forces_0\phi\text{ or }p\forces_0\neg\phi}\text{.}
-\]
-Then $D$ is dense: given any $p$, if $p\forces_0\phi$ then $p$ itself lies in $D$. Otherwise $p\not\forces_0\phi$, so by <ref target="defn:forces-0"></ref> there is $q\leq p$ such that $q\forces_0\neg\phi$. Thus in this case $q\in D$, and we have verified $D$ is dense. Finally, since $G$ is $V$-generic there exists $p\in G\cap D$. Since we know $p\not\forces_0\phi$, we must have instead that $p\forces_0\neg\phi$, as desired.
+  \[D=\set{p\in\PP\mid p\forces_0\phi\text{ or }p\forces_0\neg\phi}\text{.}
+  \]
+  Then $D$ is dense: given any $p$, if $p\forces_0\phi$ then $p$ itself lies in $D$. Otherwise $p\not\forces_0\phi$, so by <ref target="defn:forces-0"></ref> there is $q\leq p$ such that $q\forces_0\neg\phi$. Thus in this case $q\in D$, and we have verified $D$ is dense. Finally, since $G$ is $V$-generic there exists $p\in G\cap D$. Since we know $p\not\forces_0\phi$, we must have instead that $p\forces_0\neg\phi$, as desired.
 </proof>
 
 We observe that the key use of the genericity of $G$ is in the above very clever verification that the induction goes through the third clause of <ref target="defn:forces-0"></ref>.
@@ -1926,14 +1956,16 @@ Finally we can conclude that the forcing theorem holds for the true forcing rela
 </exerc>
 
 <notes>
-  This version of the proof of the forcing and definability theorems was largely drawn from handwritten notes, written by Spencer Unger during a forcing course given by Richard Laver. A proof can also be found in [REF Kunen, Section~IV.2].
+  This version of the proof of the forcing and definability theorems was largely drawn from handwritten notes, written by Spencer Unger during a forcing course given by Richard Laver. A proof can also be found in [REF Kunen, Section&nbsp;IV.2].
 </notes>
 
 </chapter>
-<chapter>
-  <name>Forcing and cardinal characteristics</name>
 
-<section><name>Cohen forcing and the continuum</name>
+<chapter>
+<name>Forcing and cardinal characteristics</name>
+
+<section>
+<name>Cohen forcing and the continuum</name>
 
 We are now ready to use forcing, and our first big target will be to establish the consistency of $\neg$CH.
 
@@ -2016,9 +2048,10 @@ A family $\mathcal F$ of sets is called a *delta system* if there exists a set $
 
 <!-- Kunen, sec IV.3 -->
 
-
 </section>
-<section><name>More tricks with the continuum</name>
+
+<section>
+<name>More tricks with the continuum</name>
 
 Since ccc forcing preserves cardinals, if $V$ satisfies $\neg$CH then it is not possible to force CH using ccc forcing. Indeed, since forcing only adds sets (and never takes them away), the only way to lower the cardinality of the continuum is to collapse cardinals.
 
@@ -2099,9 +2132,10 @@ We now return to the argument of the previous section. Recall that we showed for
   Kunen, exercise IV.7.10.
 </exerc>
 
-
 </section>
-<section><name>Cohen forcing and the domination order</name>
+
+<section>
+<name>Cohen forcing and the domination order</name>
 
 In the previous sections we studied the effect of the forcing $\Fn(\kappa,\omega)$ on the value of the continuum $\mathfrak c$. For the next two sections, we generalize our previous results by exploring the effect of forcing with $\Fn(\kappa,\omega)$ on the values of the other cardinal characteristics in Cichoń's diagram. In this section, we consider just the cardinals associtaed with the domination order $\leq^*$, namely $\mathfrak b$ and $\mathfrak d$.
 
@@ -2110,9 +2144,8 @@ Before we study the effect of the $\kappa$-sized Cohen forcing $\Fn(\kappa,\omeg
 <lem id="lem:cohen-dominating">
   Let $\PP=\Fn(\omega,\omega)$, and let $G$ be a $V$-generic filter. Then we have:
 
-* If $g=\bigcup G$, then $g$ is not $\leq^*$-dominated by any element of $\omega^\omega\cap V$.
-* If $h\in V[G]$, then not every element of $\omega^\omega\cap V$ is $\leq^*$-dominated by $h$.
-
+  * If $g=\bigcup G$, then $g$ is not $\leq^*$-dominated by any element of $\omega^\omega\cap V$.
+  * If $h\in V[G]$, then not every element of $\omega^\omega\cap V$ is $\leq^*$-dominated by $h$.
 </lem>
 
 <proof>
@@ -2184,9 +2217,10 @@ We are now ready to state the effect of forcing with $\Fn(\kappa,\omega)$ on the
 
 <!-- Kunen, secs IV.4 and V.2 -->
 
-
 </section>
-<section><name>Cohen forcing and Cichoń's diagram</name>
+
+<section>
+<name>Cohen forcing and Cichoń's diagram</name>
 
 In the previous section we began to study the effect of Cohen forcing on the values of the cardinals in Cichoń's diagram. In this section we complete this study by establishing the following result.
 
@@ -2195,7 +2229,8 @@ In the previous section we began to study the effect of Cohen forcing on the val
 </thm>
 
 <figure id="fig:cichon-cohen">
-  <!-- <tikzpicture\gt 1every node/.style={minimum size=20pt},->]
+  <!-- 
+  <tikzpicture\gt 1every node/.style={minimum size=20pt},->]
     \node (addn) [right=of a1] {$\aleph_1$};
     \node (covn) [above=2 of addn] {$\aleph_1$} edge (addn);
     \node (addm) [right=of addn] {$\aleph_1$} edge (addn);
@@ -2206,7 +2241,8 @@ In the previous section we began to study the effect of Cohen forcing on the val
     \node (cofm) [above=2 of covm] {$\mathfrak c$} edge (nonm) edge (d);
     \node (nonn) [right=of covm] {$\mathfrak c$} edge (covm);
     \node (cofn) [above=2 of nonn] {$\mathfrak c$} edge (cofm) edge (nonn);
-  </tikzpicture> -->
+  </tikzpicture>
+  -->
   <figcaption>Values of the cardinal characteristics in Cichoń's diagram after Cohen forcing. Refer to <ref target="fig:cichon"></ref> for the template of cardinal characteristics.
     </figcaption>
 </figure>
@@ -2218,7 +2254,6 @@ The key to the proof of this theorem is to establish the analogs of the statemen
 
   * If $g=\bigcup G$, then $g$ does not lie in any set of the form $\Diff_P(x)$ where $P,x\in V$.
   * If $Q,y\in V[G]$, then not every element of $\omega^\omega\cap V$ lies in $\Diff_Q(y)$.
-
 </lem>
 
 In other words, the first statement says that the generic $g$ does not lie in in any meager set coded in $V$, and the second statement says that the Baire space of the ground model remains nonmeager after the forcing.
@@ -2245,7 +2280,7 @@ We are now ready to complete the proof of <ref target="thm:cohen-cichon"></ref>.
 </thm>
 
 <proof>
- Once again, the proofs of these two statements are similar to the arguments of <ref target="thm:cohen-bd"></ref>.
+  Once again, the proofs of these two statements are similar to the arguments of <ref target="thm:cohen-bd"></ref>.
 
   We first show that $\cov(\Meager)=\kappa$. So suppose, towards a contradiction, that $\cov(\Meager)\lt\kappa$. That is, in $V[G]$ there exists a family $\mathcal F$ of meager subsets of $\omega^\omega$ such that $|\mathcal F|\lt\kappa$ and $\bigcup F=\omega^\omega$.  Note that we can suppose without loss of generality that every element of $\mathcal F$ is of the form $\Diff_P(x)$.
 
@@ -2260,9 +2295,9 @@ We are now ready to complete the proof of <ref target="thm:cohen-cichon"></ref>.
 
 <!-- blass section 11.3, kunen 5.2 -->
 
-
 </section>
-<section><name>Random forcing</name>
+<section>
+<name>Random forcing</name>
 
 The previous section provided one possible picture of Cichoń's diagram after forcing: the left half of the diagram is small, the right half large. It turns out that many other configurations can be achieved with more creative forcing partial orders. In this section we begin to explore the effect of random forcing which, as we will see, does for measure what Cohen forcing did for category.
 
@@ -2335,7 +2370,9 @@ Monk, ch 22
  -->
 
 </section>
-<section><name>Random forcing and Cichoń's diagram</name>
+
+<section>
+<name>Random forcing and Cichoń's diagram</name>
 
 So far we have seen only similarities between the effects of Cohen and random forcing. In this section we investigate the effect of random forcing on Cichoń's diagram, and in the process we'll see that the two forcing notions are not the same. In fact the effect random forcing on the characteristics of $\Null$.  is analogous to the effect of Cohen forcing on the characteristics of $\Meager$
 
@@ -2373,10 +2410,10 @@ We begin by addressing the effect of random forcing on the domination order. The
 
   Now clearly $q_n\forces\dot h(\check n)\leq\check f(\check n)$. Therefore, if $q=\bigcap q_n$ then $q\forces(\forall n)\;\dot h(n)\leq\check f(n)$ as desired. However, we must check that $q$ is not null, and this follows from our choice of the $f(n)$:
   \begin{align*}
-    m(p'\smallsetminus q)&amp;=m(\bigcup p'\smallsetminus q_n)\\
-                        &amp;\leq\sum m(p'\smallsetminus q_n)\\
-                        &amp;\leq\sum 2^{-n-2}m(p')\\
-                        &amp;\lt m(p')
+    m(p'\smallsetminus q)&=m(\bigcup p'\smallsetminus q_n)\\
+                         &\leq\sum m(p'\smallsetminus q_n)\\
+                         &\leq\sum 2^{-n-2}m(p')\\
+                         &\lt m(p')
   \end{align*}
   It follows that $m(q)\gt 0$, and this completes the proof.
 </proof>
@@ -2433,7 +2470,7 @@ We omit the proof [temporarily]. [We also need the definition of $p\hat{\times}q
 </proof>
 
 <notes>
-  Some of the results of this section are proved in Kunen, Section~IV.7. Others appear as exercises in Section~V.4. The ideas of the proofs are also summarized in Blass, Subsection~11.4.
+  Some of the results of this section are proved in Kunen, Section&nbsp;IV.7. Others appear as exercises in Section&nbsp;V.4. The ideas of the proofs are also summarized in Blass, Subsection&nbsp;11.4.
 </notes>
 
 
@@ -2462,9 +2499,6 @@ We omit the proof [temporarily]. [We also need the definition of $p\hat{\times}q
 <appendix>
 <chapter>Conclusions and further reading</chapter>
  -->
-
-
-
 
 <bibliography></bibliography>
 
