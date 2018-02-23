@@ -1,5 +1,5 @@
 const { renameTag } = require('./helpers.js');
-const yamldata = require('./yamldata.js')
+const yamldata = require('./yamldata.js');
 const metadata = require('./metadata.js');
 const preamble = require('./preamble.js');
 const abstract = require('./abstract.js');
@@ -11,7 +11,7 @@ const blames = require('./blames.js');
 const refs = require('./refs.js');
 const cites = require('./cites.js');
 const notes = require('./notes.js');
-const bibliography = require('./bibliography.js')
+const bibliography = require('./bibliography.js');
 
 module.exports = function(document) {
   yamldata(document);
@@ -29,4 +29,3 @@ module.exports = function(document) {
   notes(document);
   bibliography(document);
 };
-

@@ -1,5 +1,5 @@
 const laml = require('./laml.js');
-const {tex2jax} = require('./tex2jax.js');
+const { tex2jax } = require('./tex2jax.js');
 const commonmark = require('commonmark');
 
 const htmlHead = require('./html-head');
@@ -16,7 +16,6 @@ const worker = function(window) {
   window.tex2jax.config.processEscapes = true;
   window.tex2jax.PreProcess();
 
-
   const reader = new commonmark.Parser();
   const writer = new commonmark.HtmlRenderer();
   const parsed = reader.parse(document.body.innerHTML);
@@ -25,10 +24,13 @@ const worker = function(window) {
   laml(document);
 };
 
-if (Object.prototype.toString.call(typeof process !== 'undefined' ? process : 0) === '[object process]'){
-    module.exports.worker = worker;
-}
-else {
+if (
+  Object.prototype.toString.call(
+    typeof process !== 'undefined' ? process : 0
+  ) === '[object process]'
+) {
+  module.exports.worker = worker;
+} else {
   worker(window);
   window.MathJax = {
     'fast-preview': {
@@ -39,5 +41,4 @@ else {
   mj.src =
     'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/MathJax.js?config=TeX-AMS_CHTML-full';
   document.head.appendChild(mj);
-
 }
