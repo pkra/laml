@@ -75,7 +75,7 @@ See [the issues](https://github.com/pkra/laml/issues/).
   * Open `output.html`
 * when developing, it often helps to have automatic rebuilds and a server with live-reload
   * e.g., `$ npm run live ./samples/vatter/vatter.html` combines both of the above
-
+* you can render to PDF via `$ node bin/renderPDF input.html`
 
 ## Tips and tools
 
