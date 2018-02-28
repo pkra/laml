@@ -36,6 +36,9 @@ const window = dom.window;
 stylesheet(window.document);
 worker(window);
 
+const globalsvg = window.document.createElement('span');
+globalsvg.innerHTML = store['globalsvg'].svg;
+window.document.body.insertBefore(globalsvg.firstChild, window.document.body.firstChild);
 const equations = window.document.querySelectorAll('script[type^="math/tex"]');
 for (let equation of equations) {
   const type = (equation.getAttribute('type') === 'math/tex') ? "inline-TeX" : "TeX";

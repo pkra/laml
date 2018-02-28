@@ -5,7 +5,7 @@ const mj = require('mathjax-node-sre').typeset;
 const jsdom = require('jsdom');
 const { JSDOM } = jsdom;
 
-const inputfilename = path.join(__dirname, process.argv[2]);
+const inputfilename = path.join(process.argv[2]);
 const input = fs.readFileSync(inputfilename).toString();
 const dom = new JSDOM(input);
 const window = dom.window;
@@ -21,6 +21,7 @@ const worker = async function(window, store) {
   window.tex2jax.config.processEscapes = true;
   window.tex2jax.PreProcess();
 
+  const state = {};
   const equations = document.querySelectorAll('script[type^="math/tex"]');
   for (let equation of equations) {
       const type = (equation.getAttribute('type') === 'math/tex') ? "inline-TeX" : "TeX";
@@ -30,7 +31,9 @@ const worker = async function(window, store) {
       const options = {
           math: tex,
           format: type,
-          svg: true
+          svg: true,
+          useGlobalCache: true,
+          state: state
       }
     const result = await mj(options);
     store[key] = {
@@ -38,6 +41,14 @@ const worker = async function(window, store) {
         format: type,
         svg: result.svg
     }
+  }
+  const global = document.createElement('svg');
+  global.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+  global.setAttribute('xmlns:xlink', 'http://www.w3.org/1999/xlink');
+  global.setAttribute('style', 'display:none;');
+  global.innerHTML = state.defs.outerHTML;
+  store['globalsvg'] = {
+    svg: global.outerHTML
   }
 
 };
