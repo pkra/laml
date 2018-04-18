@@ -14,22 +14,34 @@ laml:
   statements:
     thm:
       fullName: Theorem
+      counter: statement
     lem:
       fullName: Lemma
     defn:
       fullName: Definition
+      counter: statement
     rem:
       fullName: Remark
     exerc:
       fullName: Exercise
+      counter: exercise
     notes:
       fullName: Notes
+      counter: false
     prop:
       fullName: Proposition
     cor:
       fullName: Corollary
     example:
       fullName: Example
+  counters:
+    section:
+      appearance: roman
+    statement:
+      numberwithin: section
+      appearance: arabic
+    exercise:
+      appearance: arabic
 </script>
 
 <preamble>
@@ -1877,7 +1889,8 @@ Recall that our definition of the $\forces$ relation cannot be carried out withi
     p&amp;\forces_0\tau\neq\tau'&amp;&amp;\iff (\exists(\sigma,q)\in\tau)\;p\leq q\text { and }p\forces_0\sigma\notin\tau'\text{,}\\
     \notag &amp; &amp;&amp;\qquad\quad\text{or }(\exists(\sigma,q)\in\tau')\;p\leq q\text{ and }p\forces_0\sigma\notin\tau\\
     p&amp;\forces_0\neg\phi&amp;&amp;\iff(\forall q\leq p)\;q\not\forces_0\phi
-    \intertext{We now extend this to compound formulas using the following rules.}
+    \\
+    \rlap{\text{We now extend this to compound formulas using the following rules.}}\\
     p&amp;\forces_0\phi\vee\psi&amp;&amp;\iff p\forces_0\phi\text{ or }p\forces_0\psi\\
     p&amp;\forces_0\exists x\phi(x)&amp;&amp;\iff(\exists\tau)\;p\forces_0\phi(\tau)
   \end{alignat}
