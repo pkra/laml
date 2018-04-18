@@ -3,6 +3,18 @@ const config = {
     theorem: {
       fullname: "Theorem",
       counter: "statement"
+    },
+    lemma: {
+      fullname: "Lemma",
+      counter: "statement"
+    },
+    question: {
+      fullname: "Question",
+      counter: "question"
+    },
+    section: {
+      fullname: "\00A7",
+      counter: "section"
     }
   },
   counters: {
@@ -12,6 +24,9 @@ const config = {
     statement: {
       appearance: "arabic",
       numberwithin: "section"
+    },
+    question: {
+      appearance: "arabic"
     }
   }
 };
@@ -25,17 +40,33 @@ const config = {
       if ( !styles[counter.numberwithin] ) {
         styles[counter.numberwithin] = "";
       }
-      styles[counter.numberwithin] += "counter-reset: " + counter_name + ";\n";
+      styles[counter.numberwithin] += "  counter-reset: " + counter_name + ";\n";
     } else {
-      if ( !styles.body ) {
-        styles.body = "";
+      if ( !styles["body"] ) {
+        styles["body"] = "";
       }
-      styles.body += "counter-reset: " + counter_name + ";\n";
+      styles["body"] += "  counter-reset: " + counter_name + ";\n";
     }
-    
   }
   
   for ( let statement_name of Object.keys(config.statements) ) {
+    const counter_name = config.statements[statement_name].counter;
+    if ( !styles[statement_name] ){
+      styles[statement_name] = "";
+    }
+    styles[statement_name] += "  counter-increment: " + counter_name + ";\n";
+    const nw = config.counters[counter_name].numberwithin;
+    if ( !styles[statement_name + " > h3::after"] ) {
+      styles[statement_name + " > h3::after"] = "";
+    }
+    if ( nw ) {
+      styles[statement_name + " > h3::after"] += "  content: \" \" counter("
+        + nw + ") \".\" "
+        + "counter(" + statement_name + ") \". \";\n";
+    } else {
+      styles[statement_name + " > h3::after"] += "  content: \" \" counter("
+        + statement_name + ") \". \";\n";
+    }
     
   }
   
